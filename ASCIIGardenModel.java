@@ -106,11 +106,11 @@ public class ASCIIGardenModel {
 			System.out.println("If user moves flower to the capital 'X', plant is deleted. Else, plant is moved");
 			System.out.println("\nInput an x coordinate");
 			int x = input.nextInt();
-			System.out.println("Now input a y coordinate");
+			System.out.println("Now input a y coordinate (NOTE: y is going down instead of up)");
 			int y = input.nextInt();
 			
 			//selecting space on the hotbar
-			if(y==0 && x<=13) {
+			if(x==0 && y<=13) {
 				Plant tba = new Plant("if you are seeing this you done goofed", 99, 99); // tba == to be added
 				for(Plant p : hotBarPlants) {
 					if(p.yLoc==y) {
@@ -130,7 +130,7 @@ public class ASCIIGardenModel {
 						System.out.println(tba);
 						garden.addPlant(tba, gX, gY);
 						char z = tba.name.charAt(0);
-						grid[gX][gY] = z;
+						grid[gY][gX] = z;
 						inside=false;
 					}
 					else {
@@ -161,12 +161,12 @@ public class ASCIIGardenModel {
 								tbm.updatePlantLocation(gX, gY);
 								grid[x][y] = '*';
 								char z = tbm.name.charAt(0);
-								grid[gX][gY] = z;
+								grid[gY][gX] = z;
 								inside = false;
 							}
 							else if(gX == 0 && gY == 14) {
 								garden.deletePlant(tbm);
-								grid[x][y] = '*';
+								grid[y][x] = '*';
 								System.out.println("Deletion successful");
 								inside = false;
 							}
@@ -180,7 +180,7 @@ public class ASCIIGardenModel {
 					}
 				}
 				if(!plantThere) {
-					System.out.print("You select an area with no plant.");
+					System.out.println("You select an area with no plant.");
 				}
 				
 			}
