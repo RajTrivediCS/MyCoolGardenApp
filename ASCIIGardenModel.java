@@ -106,8 +106,9 @@ public class ASCIIGardenModel {
 			System.out.println("If user moves flower to the capital 'X', plant is deleted. Else, plant is moved");
 			System.out.println("\nInput an x coordinate");
 			int x = input.nextInt();
-			System.out.println("Now input a y value");
+			System.out.println("Now input a y coordinate");
 			int y = input.nextInt();
+			
 			//selecting space on the hotbar
 			if(y==0 && x<=13) {
 				Plant tba = new Plant("if you are seeing this you done goofed", 99, 99); // tba == to be added
@@ -137,8 +138,50 @@ public class ASCIIGardenModel {
 					}
 				}
 			}
+			
 			//selecting space in the garden
 			else if(x>0 && x<=9 && y>=0 && y<=14) {
+				boolean plantThere = false;
+				Plant tbm = new Plant("if you see this YOU DONE GOOFED", 99, 99);
+				for(Plant p : garden.gardensPlants) {
+					if(p.xLoc == x && p.yLoc == y) {
+						tbm=p;
+						plantThere=true;
+						System.out.println("You selected " + p.name + " now where do you want it to go. "
+								+ "If you select input 0,14, it will get deleted");
+						
+						//start of while loop
+						boolean inside=true;
+						while(inside) {
+							System.out.println("Select the xLocation you want this plant to go");
+							int gX = input.nextInt();
+							System.out.println("Selecy the y location you want this plant to go");
+							int gY = input.nextInt();
+							if(gX>=1 && gX<=9 && gY >= 0 && gY <= 14) {
+								tbm.updatePlantLocation(gX, gY);
+								grid[x][y] = '*';
+								char z = tbm.name.charAt(0);
+								grid[gX][gY] = z;
+								inside = false;
+							}
+							else if(gX == 0 && gY == 14) {
+								garden.deletePlant(tbm);
+								grid[x][y] = '*';
+								System.out.println("Deletion successful");
+								inside = false;
+							}
+							else {
+								System.out.println("The space you selected is not valid. Try again");
+							}
+						}
+						break;
+						//end of while loop
+						
+					}
+				}
+				if(!plantThere) {
+					System.out.print("You select an area with no plant.");
+				}
 				
 			}
 			//selecting trash bin
