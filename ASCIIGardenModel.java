@@ -7,8 +7,6 @@ public class ASCIIGardenModel {
 	int xMaxWorkSpace, yMaxWorkSpace;
 	int xWasteBasket;
 	int yWasteBasket;
-	ArrayList<Plant> hotBarPlants;
-	Garden garden;
 	
 	boolean running = true;
 	
@@ -23,22 +21,6 @@ public class ASCIIGardenModel {
 		this.yMaxWorkSpace=14;
 		this.xWasteBasket=0;
 		this.yWasteBasket=14;
-		ArrayList<Plant> hotBarPlants = new ArrayList();
-		hotBarPlants.add(new Plant("autumn bentgrass",0,0));
-		hotBarPlants.add(new Plant("bushy bluestem",0,1));
-		hotBarPlants.add(new Plant("crossvine",0,2));
-		hotBarPlants.add(new Plant("devil's walking stick",0,3));
-		hotBarPlants.add(new Plant("ebony spleenwart",0,4));
-		hotBarPlants.add(new Plant("fern (sensitive)",0,5));
-		hotBarPlants.add(new Plant("giant plumegrass",0,6));
-		hotBarPlants.add(new Plant("heart leaved aster",0,7));
-		hotBarPlants.add(new Plant("white snakeroot",0,8));
-		hotBarPlants.add(new Plant("joe-pye weed",0,9));
-		hotBarPlants.add(new Plant("tall coneflower",0,10));
-		hotBarPlants.add(new Plant("yellow sneezeweed",0,11));
-		hotBarPlants.add(new Plant("red chokeberry",0,12));
-		hotBarPlants.add(new Plant("purple false foxglove",0,13));
-		Garden garden = new Garden();
 	}
 	
 	//public void handlePlacement();
@@ -64,7 +46,28 @@ public class ASCIIGardenModel {
 		//ask user for input on what they would like to do
 		//input changes the garden by adding or deleting a flower or moving plant
 		//can display tallies too and print them
+		
 		//***********************
+		//create bar
+		ArrayList<Plant> hotBarPlants = new ArrayList();
+		hotBarPlants.add(new Plant("autumn bentgrass",0,0));
+		hotBarPlants.add(new Plant("bushy bluestem",0,1));
+		hotBarPlants.add(new Plant("crossvine",0,2));
+		hotBarPlants.add(new Plant("devil's walking stick",0,3));
+		hotBarPlants.add(new Plant("ebony spleenwart",0,4));
+		hotBarPlants.add(new Plant("fern (sensitive)",0,5));
+		hotBarPlants.add(new Plant("giant plumegrass",0,6));
+		hotBarPlants.add(new Plant("heart leaved aster",0,7));
+		hotBarPlants.add(new Plant("white snakeroot",0,8));
+		hotBarPlants.add(new Plant("joe-pye weed",0,9));
+		hotBarPlants.add(new Plant("tall coneflower",0,10));
+		hotBarPlants.add(new Plant("yellow sneezeweed",0,11));
+		hotBarPlants.add(new Plant("red chokeberry",0,12));
+		hotBarPlants.add(new Plant("purple false foxglove",0,13));
+		
+		//create garden
+		Garden garden = new Garden();
+		
 		//creating grid
 		char[][]grid=new char[15][10];
 		for(char g[] : grid) {
@@ -108,7 +111,7 @@ public class ASCIIGardenModel {
 			//selecting space on the hotbar
 			if(y==0 && x<=13) {
 				Plant tba = new Plant("if you are seeing this you done goofed", 99, 99); // tba == to be added
-				for(Plant p : model.hotBarPlants) {
+				for(Plant p : hotBarPlants) {
 					if(p.yLoc==y) {
 						System.out.println("You have selected: " + p.name + ". Now select where you want to move it");
 						tba=p;
@@ -123,7 +126,8 @@ public class ASCIIGardenModel {
 					int gY = input.nextInt();
 					//FIXME: replace with variables in constructor later
 					if(gX>=1 && gX<=9 && gY >=0 && gY <= 13) {
-						model.garden.addPlant(tba, gX, gY);
+						System.out.println(tba);
+						garden.addPlant(tba, gX, gY);
 						char z = tba.name.charAt(0);
 						grid[gX][gY] = z;
 						inside=false;
