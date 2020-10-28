@@ -127,7 +127,6 @@ public class ASCIIGardenModel {
 					int gY = input.nextInt();
 					//FIXME: replace with variables in constructor later
 					if(gX>=1 && gX<=9 && gY >=0 && gY <= 13) {
-						System.out.println(tba);
 						garden.addPlant(tba, gX, gY);
 						char z = tba.name.charAt(0);
 						grid[gY][gX] = z;
@@ -191,6 +190,11 @@ public class ASCIIGardenModel {
 			}
 			else {
 				System.out.println("Nice try, but the value you inputed was not within our 15 by 10 grid.");
+			}
+			System.out.println("Exit?(yes/no)");
+			String exit = input.next();
+			if(exit.equals("yes")) {
+				model.running = false;
 			}
 		}
 		
