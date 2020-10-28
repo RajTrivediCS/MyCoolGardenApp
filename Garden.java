@@ -1,27 +1,27 @@
 import java.util.*;
 
 public class Garden {
-	ArrayList<Plant> gardenElements;
+	ArrayList<Plant> gardensPlants;
 	String gardenLight;
 	String gardenWater;
 	String gardenSoil;
 	
 	public void addPlant(Plant p, int x, int y) {
-		
+		p.xLoc = x;
+		p.yLoc = y;
+		this.gardensPlants.add(p);
 	}
-	public void updatePlantLocation(Plant p, int newX, int newY) {
-		
-	}
+
 	public void deletePlant(Plant p) {
-		
+		gardensPlants.remove(p);
 	}
 	public int tallyGardenScore() {
-		
+		return 0;
 	}
 	public String writeGardenScore() {
-		
+		return "";
 	}
 	public String sumGarden() {
-		
+		return "";
 	}
 }
