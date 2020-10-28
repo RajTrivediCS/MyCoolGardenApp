@@ -158,7 +158,7 @@ public class ASCIIGardenModel {
 							int gY = input.nextInt();
 							if(gX>=1 && gX<=9 && gY >= 0 && gY <= 14) {
 								tbm.updatePlantLocation(gX, gY);
-								grid[x][y] = '*';
+								grid[y][x] = '*';
 								char z = tbm.name.charAt(0);
 								grid[gY][gX] = z;
 								inside = false;
