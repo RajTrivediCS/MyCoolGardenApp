@@ -1,15 +1,13 @@
 import java.util.*;
 
 public class Garden {
-	ArrayList<Plant> gardensPlants;
+	ArrayList<Plant> gardensPlants = new ArrayList();
 	String gardenLight;
 	String gardenWater;
 	String gardenSoil;
 	
 	public void addPlant(Plant p, int x, int y) {
-		p.xLoc = x;
-		p.yLoc = y;
-		this.gardensPlants.add(p);
+		this.gardensPlants.add(new Plant(p.name, x, y));
 	}
 
 	public void deletePlant(Plant p) {
