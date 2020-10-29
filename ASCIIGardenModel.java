@@ -42,6 +42,15 @@ public class ASCIIGardenModel {
 		}
 	}
 	
+	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException {
+		ArrayList<Plant> plantsList = new ArrayList<>();
+		for(int i = 0; i < 14; i++) {
+			String currLine = Files.readAllLines(Paths.get(filename)).get(i);
+			String[] parts = currLine.split("-");
+			plantsList.add(new Plant(parts[0],0,i,parts[1],parts[2]));
+		}
+		return plantsList;
+	}
 	
 	public static void main(String[] args) throws IOException {
 		//create empty garden here which will be an array of array of characters that we will print out later
@@ -51,66 +60,13 @@ public class ASCIIGardenModel {
 		//can display tallies too and print them
 		
 		//***********************
-		//create bar, FIXME: change to for each loop later
-		ArrayList<Plant> hotBarPlants = new ArrayList();
-		String line1 = Files.readAllLines(Paths.get("plants.txt")).get(0);
-		String[]parts = line1.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,0,parts[1],parts[2]));
+		ASCIIGardenModel model = new ASCIIGardenModel();
 		
-		String line2 = Files.readAllLines(Paths.get("plants.txt")).get(1);
-		parts = line2.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,1,parts[1],parts[2]));
-		
-		String line3 = Files.readAllLines(Paths.get("plants.txt")).get(2);
-		parts = line3.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,2,parts[1],parts[2]));
-		
-		String line4 = Files.readAllLines(Paths.get("plants.txt")).get(3);
-		parts = line4.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,3,parts[1],parts[2]));
-		
-		String line5 = Files.readAllLines(Paths.get("plants.txt")).get(4);
-		parts = line5.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,4,parts[1],parts[2]));
-		
-		String line6 = Files.readAllLines(Paths.get("plants.txt")).get(5);
-		parts = line6.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,5,parts[1],parts[2]));
-		
-		String line7 = Files.readAllLines(Paths.get("plants.txt")).get(6);
-		parts = line7.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,6,parts[1],parts[2]));
-		
-		String line8 = Files.readAllLines(Paths.get("plants.txt")).get(7);
-		parts = line8.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,7,parts[1],parts[2]));
-		
-		String line9 = Files.readAllLines(Paths.get("plants.txt")).get(8);
-		parts = line9.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,8,parts[1],parts[2]));
-		
-		String line10 = Files.readAllLines(Paths.get("plants.txt")).get(9);
-		parts = line10.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,9,parts[1],parts[2]));
-		
-		String line11 = Files.readAllLines(Paths.get("plants.txt")).get(10);
-		parts = line11.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,10,parts[1],parts[2]));
-		
-		String line12 = Files.readAllLines(Paths.get("plants.txt")).get(11);
-		parts = line12.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,11,parts[1],parts[2]));
-		
-		String line13 = Files.readAllLines(Paths.get("plants.txt")).get(12);
-		parts = line13.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,12,parts[1],parts[2]));
-		
-		String line14 = Files.readAllLines(Paths.get("plants.txt")).get(13);
-		parts = line14.split("-");
-		hotBarPlants.add(new Plant(parts[0],0,13,parts[1],parts[2]));
+		//create bar by reading input data from text file
+		ArrayList<Plant> hotBarPlants = model.getPlantsListFromFile("plants.txt");
 		
 		//create empty trash can
-		ArrayList<Plant> trashBin = new ArrayList();
+		ArrayList<Plant> trashBin = new ArrayList<>();
 		
 		//create garden
 		Garden garden = new Garden();
@@ -137,7 +93,6 @@ public class ASCIIGardenModel {
 		grid[14][0] = 'X';
 		
 		
-		ASCIIGardenModel model = new ASCIIGardenModel();
 		
 		System.out.println("Welcome to Team #1's garden application!");
 		//FIXME print garden here
@@ -272,6 +227,6 @@ public class ASCIIGardenModel {
 			else {
 				System.out.println("Nice try buddy but that wasn't a choice.");
 			}
-		}
+		} 
 	}
 }
