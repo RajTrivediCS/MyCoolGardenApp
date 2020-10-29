@@ -126,7 +126,7 @@ public class ASCIIGardenModel {
 					System.out.println("Good, now choose a y in your garden: ");
 					int gY = input.nextInt();
 					//FIXME: replace with variables in constructor later
-					if(gX>=1 && gX<=9 && gY >=0 && gY <= 13) {
+					if(gX>=1 && gX<=9 && gY >=0 && gY <= 14) {
 						garden.addPlant(tba, gX, gY);
 						char z = tba.name.charAt(0);
 						grid[gY][gX] = z;
