@@ -154,8 +154,9 @@ public class ASCIIGardenModel {
 						if(p.xLoc == x && p.yLoc == y) {
 							tbm=p;
 							plantThere=true;
-							System.out.println("You selected a " + p.name + " to be moved. Now where do you want it to go. "
-									+ "If you select input 0,14, it will get deleted");
+							System.out.println("You selected a " + p.name + " to be moved. It needs "+ p.plantLight +
+									" and "+ p.plantSoil + ". Now where do you want it to go. "
+									+ "If you select input 0,14, it will be moved to the trashbin");
 							
 							//start of while loop
 							boolean inside=true;
@@ -174,6 +175,7 @@ public class ASCIIGardenModel {
 								else if(gX == 0 && gY == 14) {
 									garden.deletePlant(tbm);
 									grid[y][x] = '*';
+									trashBin.add(tbm);
 									System.out.println("Deletion successful");
 									inside = false;
 								}
@@ -193,8 +195,11 @@ public class ASCIIGardenModel {
 				}
 				//selecting trash bin
 				else if(x==0 && y==14) {
-					System.out.println("You selected the trashbin. Before selecting this you need to first select "
-							+ "a grid space with in the garden you want to delete");
+					System.out.println("You selected the trashbin. Here's what's inside: ");
+					for(Plant p : trashBin) {
+						System.out.print(p.name+" ");
+					}
+					System.out.println("");
 				}
 				else {
 					System.out.println("Nice try, but the value you inputed was not within our 15 by 10 grid.");
