@@ -3,7 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class ASCIIGardenModel {
+public class Model {
 	int xMinLeftBar, yMinLeftBar;
 	int xMaxLeftBar, yMaxLeftBar;
 	int xMinWorkSpace, yMinWorkSpace;
@@ -15,7 +15,7 @@ public class ASCIIGardenModel {
 	ArrayList<Plant> hotBarPlants;
 	boolean running = true;
 	
-	ASCIIGardenModel() throws IOException{
+	Model() throws IOException{
 		this.xMinLeftBar = 0;
 		this.xMaxLeftBar = 0;
 		this.yMinLeftBar = 0;
@@ -30,23 +30,6 @@ public class ASCIIGardenModel {
 		this.trashBin = new ArrayList<>();
 		this.hotBarPlants = getPlantsListFromFile("plants.txt");
 	}
-	
-	//public void handlePlacement();
-	//public void handleDrag();
-	//public void handleHoverText(int x, int y);
-	public void printGarden(char[][]g) {
-		for(int i = 0; i<g.length; i++) {
-			for(int j = 0; j<g[0].length; j++) {	
-				if(j==0) {
-					System.out.print(g[i][j]+"||");
-				}else {
-					System.out.print(g[i][j]+"   ");
-				}
-			}
-			System.out.println("");
-		}
-	}
-	
 	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException {
 		ArrayList<Plant> plantsList = new ArrayList<>();
 		for(int i = 0; i < 14; i++) {
@@ -57,40 +40,7 @@ public class ASCIIGardenModel {
 		return plantsList;
 	}
 	
-	public char[][] createGrid(){
-			char[][]grid=new char[15][10];
-			for(char g[] : grid) {
-				Arrays.fill(g, '*');
-			}
-			grid[0][0] = 'a';
-			grid[1][0] = 'b';
-			grid[2][0] = 'c';
-			grid[3][0] = 'd';
-			grid[4][0] = 'e';
-			grid[5][0] = 'f';
-			grid[6][0] = 'g';
-			grid[7][0] = 'h';
-			grid[8][0] = 'w';
-			grid[9][0] = 'j';
-			grid[10][0] = 't';
-			grid[11][0] = 'y';
-			grid[12][0] = 'r';
-			grid[13][0] = 'p';
-			grid[14][0] = 'X';
-			return grid;
-	}
-	
-	public void printOpening() {
-		System.out.println("\nEveryting to the right of the double lines is your current garden.");
-		System.out.println("To the left of the double-lines is our hotbar. The lower case letters represents plants "
-				+ "The 'X' represents the trashbin");
-		System.out.println("If user inputs where a lower case letter is, he will get a second prompt to input where he would like to"
-				+ "place the flower");
-		System.out.println("If user inputs where a plant is in the garden he will get information and a prompt asking if he wants to move it");
-		System.out.println("If user moves flower to the capital 'X', plant is deleted. Else, plant is moved");
-		System.out.println("Type one of the following: edit, print, fact, or exit: ");
-	}
-	
+
 	public Plant handleBarSelect(int x, int y) {
 		Plant tba = new Plant("if you are seeing this you done goofed", 99, 99); // tba == to be added
 		for(Plant p : hotBarPlants) {
@@ -103,10 +53,9 @@ public class ASCIIGardenModel {
 		return tba;
 	}
 	
-	public void handleAddToGarden(int gX, int gY, Plant tba, char[][]grid) {
+	public void handleAddToGarden(int gX, int gY, Plant tba) {
 		garden.addPlant(tba, gX, gY);
-		char z = tba.name.charAt(0);
-		grid[gY][gX] = z;
+		//add more info as we work more with the new View
 	}
 	
 	public Plant handleSelectingPlantInGarden(int x, int y) {
@@ -122,21 +71,20 @@ public class ASCIIGardenModel {
 		return tbm;
 	}
 	
-	public void handleMoveInGarden(int x, int y, int gX, int gY, Plant tbm, char[][]grid) {
+	public void handleMoveInGarden(int x, int y, int gX, int gY, Plant tbm) {
 		tbm.updatePlantLocation(gX, gY);
-		grid[y][x] = '*';
-		char z = tbm.name.charAt(0);
-		grid[gY][gX] = z;
+		//add more info as we work more with the new View
 	}
 	
-	public void handleDeletionInGarden(int x, int y, Plant tbm, char[][]grid) {
+	public void handleDeletionInGarden(int x, int y, Plant tbm) {
 		garden.deletePlant(tbm);
-		grid[y][x] = '*';
 		trashBin.add(tbm);
+		//add more info as we work more with the new View
 		System.out.println("Deletion successful");
 	}
 	
-	public void handleAddEdit(Scanner input, int x, int y, char[][]grid) {
+	/*
+	public void handleAddEdit(Scanner input, int x, int y) {
 		Plant tba = handleBarSelect(x, y);
 		boolean inside = true;
 		while(inside) {
@@ -145,16 +93,16 @@ public class ASCIIGardenModel {
 			System.out.println("Good, now choose a y in your garden: ");
 			int gY = input.nextInt();
 			if(gX>=xMinWorkSpace && gX<=xMaxWorkSpace && gY >=yMinWorkSpace && gY <= yMaxWorkSpace) {
-				handleAddToGarden(gX, gY, tba, grid);
+				handleAddToGarden(gX, gY, tba);
 				inside=false;
 			}
 			else {
 				System.out.println("Something went wrong. Make sure your x is between 1 and 9 and your y is between 0 and 14");
 			}
 		}
-	}
-	
-	public void handleMoveEdit(Scanner input, int x, int y, char[][]grid) {
+	}*/
+	/*
+	public void handleMoveEdit(Scanner input, int x, int y) {
 		Plant tbm = handleSelectingPlantInGarden(x,y);
 		if(tbm.name.equals("no plant")) {
 			System.out.println("You select an area with no plant.");
@@ -168,11 +116,11 @@ public class ASCIIGardenModel {
 				System.out.println("Selecy the y location you want this plant to go");
 				int gY = input.nextInt();
 				if(gX >= xMinWorkSpace && gX<=xMaxWorkSpace && gY >= yMinWorkSpace && gY <= yMaxWorkSpace) {
-					handleMoveInGarden(x,y,gX,gY,tbm, grid);
+					handleMoveInGarden(x,y,gX,gY,tbm);
 					inside = false;
 				}
 				else if(gX == xWasteBasket && gY == yWasteBasket) {
-					handleDeletionInGarden(x,y,tbm,grid);
+					handleDeletionInGarden(x,y,tbm);
 					inside = false;
 				}
 				else {
@@ -180,7 +128,7 @@ public class ASCIIGardenModel {
 				}
 			}
 		}
-	}
+	}*/
 	
 	public void handleShowTrash() {
 		System.out.println("You selected the trashbin. Here's what's inside: ");
@@ -189,19 +137,19 @@ public class ASCIIGardenModel {
 		}
 		System.out.println("");
 	}
-	
-	public void handleEdit(Scanner input, char[][]grid) {
+	/*
+	public void handleEdit(Scanner input) {
 		System.out.println("\nInput an x coordinate");
 		int x = input.nextInt();
 		System.out.println("Now input a y coordinate (NOTE: y is going down instead of up)");
 		int y = input.nextInt();
 		//selecting space on the hotbar
 		if(x >= xMinLeftBar && x <= xMaxLeftBar && y >= yMinLeftBar && y <= yMaxLeftBar) {
-			handleAddEdit(input, x, y, grid);
+			handleAddEdit(input, x, y);
 		}
 		//selecting space in the garden
 		else if(x>=xMinWorkSpace && x <= xMaxWorkSpace && y >= yMinWorkSpace && y <= yMaxWorkSpace) {
-			handleMoveEdit(input, x, y, grid);
+			handleMoveEdit(input, x, y);
 		}
 		//selecting trash bin
 		else if(x==xWasteBasket && y==yWasteBasket) {
@@ -232,42 +180,5 @@ public class ASCIIGardenModel {
 			return true;
 		}
 	}
-	
-	public static void main(String[] args) throws IOException {
-		//create empty garden here which will be an array of array of characters that we will print out later
-		//create list of flowers for user to choose from. They will be represented by the first letter of their name in the ASCII Garden.
-		//ask user for input on what they would like to do
-		//input changes the garden by adding or deleting a flower or moving plant
-		//can display tallies too and print them
-		
-		//***********************
-		ASCIIGardenModel model = new ASCIIGardenModel();
-		
-		char[][]grid = model.createGrid(); //this is kind of like our view.		
-		
-		System.out.println("Welcome to Team #1's garden application!");
-		Scanner input = new Scanner(System.in);
-		model.printGarden(grid);
-		while(model.running) {
-			model.printOpening();
-			String command = input.next();
-			if(command.equals("edit")) {
-				model.handleEdit(input, grid);
-			}
-			
-			else if (command.equals("print")) {
-				model.printGarden(grid);
-			}
-			
-			else if (command.equals("fact")) {
-				model.handleFact(input);
-			}
-			else if(command.equals("exit")) {
-				model.running = model.handleExit(input);
-			}
-			else {
-				System.out.println("Nice try buddy but that wasn't a choice.");
-			}
-		} 
-	}
+	*/
 }
