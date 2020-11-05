@@ -4,28 +4,34 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class Model {
-	int xMinLeftBar, yMinLeftBar;
-	int xMaxLeftBar, yMaxLeftBar;
-	int xMinWorkSpace, yMinWorkSpace;
-	int xMaxWorkSpace, yMaxWorkSpace;
-	int xWasteBasket;
-	int yWasteBasket;
+	double xMinLeftBar, yMinLeftBar;
+	double xMaxLeftBar, yMaxLeftBar;
+	double xMinWorkSpace, yMinWorkSpace;
+	double xMaxWorkSpace, yMaxWorkSpace;
+	double xMinWasteBasket;
+	double yMinWasteBasket;
+	double xMaxWasteBasket;
+	double yMaxWasteBasket;
 	Garden garden;
 	ArrayList<Plant> trashBin;
 	ArrayList<Plant> hotBarPlants;
 	boolean running = true;
 	
-	Model() throws IOException{
-		this.xMinLeftBar = 0;
-		this.xMaxLeftBar = 0;
-		this.yMinLeftBar = 0;
-		this.yMaxLeftBar = 13;
-		this.xMinWorkSpace = 1;
-		this.xMaxWorkSpace = 9;
-		this.yMinWorkSpace = 0;
-		this.yMaxWorkSpace = 14;
-		this.xWasteBasket = 0;
-		this.yWasteBasket = 14;
+	Model(double xMinLeftBar, double yMinLeftBar, double xMaxLeftBar, double yMaxLeftBar, double xMinWorkSpace, double yMinWorkSpace,
+			double xMaxWorkSpace, double yMaxWorkSpace, double xMinWasteBasket, double yMinWasteBasket, double xMaxWasteBasket,
+			double yMaxWasteBakset)throws IOException{
+		this.xMinLeftBar = xMinLeftBar;
+		this.yMinLeftBar = yMinLeftBar;
+		this.xMaxLeftBar = xMaxLeftBar;
+		this.yMaxLeftBar = yMaxLeftBar;
+		this.xMinWorkSpace = xMinWorkSpace;
+		this.yMinWorkSpace = yMinWorkSpace;
+		this.xMaxWorkSpace = xMaxWorkSpace;
+		this.yMaxWorkSpace = yMaxWorkSpace;
+		this.xMinWasteBasket = xMinWasteBasket;
+		this.yMinWasteBasket = yMinWasteBasket;
+		this.xMaxWasteBasket = xMaxWasteBasket;
+		this.yMaxWasteBasket = yMaxWasteBasket;
 		this.garden = new Garden();
 		this.trashBin = new ArrayList<>();
 		this.hotBarPlants = getPlantsListFromFile("plants.txt");
