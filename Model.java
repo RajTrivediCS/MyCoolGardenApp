@@ -3,7 +3,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class Model { //gut these variables
+public class Model { 
+	static final int NAMESPOT = 0;
+	static final int SUNSPOT = 1;
+	static final int SOILSPOT = 2;
 	Garden garden;
 	ArrayList<Plant> trashBin;
 	ArrayList<Plant> hotBarPlants;
@@ -21,7 +24,7 @@ public class Model { //gut these variables
 		for(int i = 0; i < 14; i++) {
 			String currLine = Files.readAllLines(Paths.get(filename)).get(i);
 			String[] parts = currLine.split("-");
-			plantsList.add(new Plant(parts[0],0,i,parts[1],parts[2]));
+			plantsList.add(new Plant(parts[NAMESPOT],0,i,parts[SUNSPOT],parts[SOILSPOT]));
 		}
 		return plantsList;
 	}
