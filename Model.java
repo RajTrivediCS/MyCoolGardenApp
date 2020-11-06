@@ -3,41 +3,21 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class Model {
-	double xMinLeftBar, yMinLeftBar;
-	double xMaxLeftBar, yMaxLeftBar;
-	double xMinWorkSpace, yMinWorkSpace;
-	double xMaxWorkSpace, yMaxWorkSpace;
-	double xMinWasteBasket;
-	double yMinWasteBasket;
-	double xMaxWasteBasket;
-	double yMaxWasteBasket;
+public class Model { //gut these variables
 	Garden garden;
 	ArrayList<Plant> trashBin;
 	ArrayList<Plant> hotBarPlants;
 	boolean running = true;
 	
-	Model(double xMinLeftBar, double yMinLeftBar, double xMaxLeftBar, double yMaxLeftBar, double xMinWorkSpace, double yMinWorkSpace,
-			double xMaxWorkSpace, double yMaxWorkSpace, double xMinWasteBasket, double yMinWasteBasket, double xMaxWasteBasket,
-			double yMaxWasteBakset)throws IOException{
-		this.xMinLeftBar = xMinLeftBar;
-		this.yMinLeftBar = yMinLeftBar;
-		this.xMaxLeftBar = xMaxLeftBar;
-		this.yMaxLeftBar = yMaxLeftBar;
-		this.xMinWorkSpace = xMinWorkSpace;
-		this.yMinWorkSpace = yMinWorkSpace;
-		this.xMaxWorkSpace = xMaxWorkSpace;
-		this.yMaxWorkSpace = yMaxWorkSpace;
-		this.xMinWasteBasket = xMinWasteBasket;
-		this.yMinWasteBasket = yMinWasteBasket;
-		this.xMaxWasteBasket = xMaxWasteBasket;
-		this.yMaxWasteBasket = yMaxWasteBasket;
+	Model() throws IOException{
 		this.garden = new Garden();
 		this.trashBin = new ArrayList<>();
 		this.hotBarPlants = getPlantsListFromFile("plants.txt");
 	}
-	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException {
+	
+	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException { //try with resources
 		ArrayList<Plant> plantsList = new ArrayList<>();
+		//FIXME: use iterator
 		for(int i = 0; i < 14; i++) {
 			String currLine = Files.readAllLines(Paths.get(filename)).get(i);
 			String[] parts = currLine.split("-");
@@ -47,37 +27,32 @@ public class Model {
 	}
 	
 
-	public Plant handleBarSelect(int x, int y) {
+	public Plant selectPlant(int x, int y) {
 		Plant tba = new Plant("if you are seeing this you done goofed", 99, 99); // tba == to be added
 		for(Plant p : hotBarPlants) {
 			if(p.yLoc==y) {
-				System.out.println("You have selected: " + p.name + ". It needs "+ p.plantLight +" and "+ p.plantSoil + 
-						". Now select where you want to move it");
 				tba=p;
 			}
 		}
 		return tba;
 	}
 	
-	public void handleAddToGarden(int gX, int gY, Plant tba) {
+	public void addToGarden(int gX, int gY, Plant tba) {
 		garden.addPlant(tba, gX, gY);
 		//add more info as we work more with the new View
 	}
 	
-	public Plant handleSelectingPlantInGarden(int x, int y) {
+	public Plant selectPlantInGarden(int x, int y) {
 		Plant tbm = new Plant("no plant", 99, 99);
 		for(Plant p : garden.gardensPlants) {
 			if(p.xLoc == x && p.yLoc == y) {
 				tbm=p;
-				System.out.println("You selected a " + p.name + " to be moved. It needs "+ p.plantLight +
-						" and "+ p.plantSoil + ". Now where do you want it to go. "
-						+ "If you select input 0,14, it will be moved to the trashbin");
 			}
 		}
 		return tbm;
 	}
 	
-	public void handleMoveInGarden(int x, int y, int gX, int gY, Plant tbm) {
+	public void moveInGarden(int x, int y, int gX, int gY, Plant tbm) {
 		tbm.updatePlantLocation(gX, gY);
 		//add more info as we work more with the new View
 	}
