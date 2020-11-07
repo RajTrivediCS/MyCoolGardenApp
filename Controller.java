@@ -10,8 +10,14 @@ import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 
 public class Controller extends Application {
-
+	Model model;
 	View view;
+	
+	//handleAddingToGarden
+	//handleMovingInGarden
+	//handleDeletionFromGarden
+	
+	
 	@Override
 	public void start(Stage stage) throws Exception {
 		// TODO Auto-generated method stub
