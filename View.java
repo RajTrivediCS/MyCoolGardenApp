@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -30,7 +31,7 @@ public class View {
 	int canvasHeight = 700;
 	private final int WIDTH = canvasWidth;
 	private final int HEIGHT = canvasHeight;
-	private List<ImageView> ivList = new ArrayList<ImageView>();
+	public List<ImageView> ivList = new ArrayList<ImageView>();
 	Image imageTop = new Image(getClass().getResourceAsStream("img/commonMilkweed.png"));
 	double IV1WIDTH = 100;
 	double IV1HEIGHT = IV1WIDTH * imageTop.getHeight() / imageTop.getWidth();
@@ -38,17 +39,39 @@ public class View {
 	TilePane tilePane = new TilePane();
 	StackPane stackPane = new StackPane();
 	private Controller imc;
+	Button loadGardenButton;
+	Button uploadImageButton;
+	Button newGardenButton;
+	
 	public View(Stage theStage) {
-		System.out.println(imageTop.getWidth());
-		System.out.println(imageTop.getHeight());
-		System.out.println(imageTop.getRequestedWidth());
-		System.out.println(imageTop.getRequestedHeight());
-
+		theStage.setTitle("Garden Design Application");
+		
+		//Load Garden Button
+		loadGardenButton = new Button("Load Garden");
+		loadGardenButton.setTranslateX(-60);
+		loadGardenButton.setTranslateY(275);
+		loadGardenButton.setTranslateZ(25);
+		loadGardenButton.setPrefHeight(50);
+		loadGardenButton.setPrefWidth(100);
+		
+		//Upload Image Button
+		uploadImageButton = new Button("Upload Image");
+		uploadImageButton.setTranslateX(40);
+		uploadImageButton.setTranslateY(300);
+		uploadImageButton.setTranslateZ(75);
+		uploadImageButton.setPrefHeight(50);
+		uploadImageButton.setPrefWidth(100);
+		
+		//New Garden Button
+		newGardenButton = new Button("New Garden");
+		newGardenButton.setTranslateX(-60);
+		newGardenButton.setTranslateY(400);
+		newGardenButton.setTranslateZ(55);
+		newGardenButton.setPrefHeight(50);
+		newGardenButton.setPrefWidth(100);
+		
 		tilePane.getChildren().add(stackPane);
-/*
-		this.addImage(false);
-		this.addImage(true);
-*/
+
 		ivList.add(new ImageView());
 		ivList.get(ivList.size() - 1).setImage(imageTop);
 		ivList.get(ivList.size() - 1).setPreserveRatio(true);
@@ -57,7 +80,13 @@ public class View {
 		stackPane.getChildren().add(ivList.get(ivList.size() - 1));
 		
 		flowPane.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-
+		
+		// Adds all three Buttons to TilePane
+		tilePane.getChildren().add(loadGardenButton);
+		tilePane.getChildren().add(uploadImageButton);
+		tilePane.getChildren().add(newGardenButton);
+		
+		
 		tilePane.setPrefWidth(WIDTH * 0.3);
 		tilePane.setPrefWidth(HEIGHT * 0.3);
 		tilePane.setBackground(new Background(new BackgroundFill(Color.LIGHTGREEN, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -70,29 +99,5 @@ public class View {
 		theStage.setScene(scene);
 		theStage.show();
 	}
-/*	
-	public void addImage(boolean draggable) {
-		ivList.add(new ImageView());
-		ivList.get(ivList.size() - 1).setImage(imageTop);
-		ivList.get(ivList.size() - 1).setPreserveRatio(true);
-		ivList.get(ivList.size() - 1).setFitHeight(IV1HEIGHT);
-		ivList.get(ivList.size() - 1).setFitWidth(IV1WIDTH);
-		System.out.println(ivList.get(ivList.size() - 1).getFitWidth() + ", " + IV1WIDTH);
-		System.out.println(ivList.get(ivList.size() - 1).getFitHeight() + ", " + IV1HEIGHT);
-
-		if (draggable) {
-			ivList.get(ivList.size() - 1).setOnMouseDragged(imc.getHandlerForDrag());
-			ivList.get(ivList.size() - 1).setOnMouseDragReleased(imc.getHandlerForDrop());
-			ivList.get(ivList.size() - 1).setOnMouseReleased(imc.getHandlerForDrop());
-		}
-		ivList.get(ivList.size() - 1).setTranslateX(ivList.get(ivList.size() - 1).getTranslateX());
-		ivList.get(ivList.size() - 1).setTranslateY(ivList.get(ivList.size() - 1).getTranslateY());
-		ivList.get(ivList.size() - 1).setLayoutX(ivList.get(ivList.size() - 1).getLayoutX());
-		ivList.get(ivList.size() - 1).setLayoutY(ivList.get(ivList.size() - 1).getLayoutY());
-
-		System.out.println("ivList.size() = " + ivList.size());
-		stackPane.getChildren().add(ivList.get(ivList.size() - 1));
-
-	}
-*/
 }
+
