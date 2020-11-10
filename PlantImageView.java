@@ -6,10 +6,12 @@ public class PlantImageView extends ImageView{
 	
 	PlantImageView(){
 		super();
+		this.setPickOnBounds(true);
 	}
 	
 	PlantImageView(Image im){
 		super(im);
+		this.setPickOnBounds(true);
 	}
 	
 	public void setPaneLoc(String s) {

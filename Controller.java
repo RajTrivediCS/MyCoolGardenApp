@@ -26,10 +26,10 @@ public class Controller extends Application {
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
 		v.setPaneLoc("flow");
-	}
+		System.out.println(event.getSceneX() + ", " + event.getSceneY());
+	}	
 	
 	public void enter(MouseEvent event, PlantImageView v) {
-		System.out.println(v.getX());
 		if(v.getPaneLoc().equals("tile")) {
 			view.fp.getChildren().add(v);
 			handleReplaceImgView(view.tp);
@@ -57,11 +57,9 @@ public class Controller extends Application {
 	
 	@Override
 	public void start(Stage stage) {
-	    	
 	    	setHandlerForDrag(view.iv1);
 	    	setHandlerForPress(view.iv1);
 
-	    	
 	    	Scene scene = new Scene(view.bp, 800, 600);
 	        stage.setScene(scene);
 	        stage.show();

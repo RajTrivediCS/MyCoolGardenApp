@@ -2,19 +2,19 @@ import java.util.*;
 
 public class Plant {
 	String name;
-	int xLoc;
-	int yLoc;
+	double xLoc;
+	double yLoc;
 	String plantLight;
 	String plantWater;
 	String plantSoil;
 	
-	Plant(String name, int xLoc, int yLoc){
+	Plant(String name, double xLoc, double yLoc){
 		this.name = name;
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
 		//make another constructor in the future
 	}
-	Plant(String name, int xLoc, int yLoc, String pLight, String pSoil){
+	Plant(String name, double xLoc, double yLoc, String pLight, String pSoil){
 		this.name = name;
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
@@ -24,8 +24,8 @@ public class Plant {
 		//make another constructor in the future
 	}
 	
-	public void updatePlantLocation(int newX, int newY) {
-		xLoc = newX;
-		yLoc = newY;
+	public void updatePlantLocation(double gX, double gY) {
+		xLoc = gX;
+		yLoc = gY;
 	}
 }
