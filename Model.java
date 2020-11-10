@@ -10,7 +10,6 @@ public class Model {
 	Garden garden;
 	ArrayList<Plant> trashBin;
 	ArrayList<Plant> hotBarPlants;
-	boolean running = true;
 	
 	Model() throws IOException{
 		this.garden = new Garden();
@@ -25,12 +24,12 @@ public class Model {
 			String currLine = Files.readAllLines(Paths.get(filename)).get(i);
 			String[] parts = currLine.split("-");
 			plantsList.add(new Plant(parts[NAMESPOT],0,i,parts[SUNSPOT],parts[SOILSPOT]));
-		}
+		}	
 		return plantsList;
 	}
 	
 
-	public Plant selectPlant(int x, int y) {
+	public Plant selectPlant(double x, double y) {
 		Plant tba = new Plant("if you are seeing this you done goofed", 99, 99); // tba == to be added
 		for(Plant p : hotBarPlants) {
 			if(p.yLoc==y) {
@@ -40,7 +39,7 @@ public class Model {
 		return tba;
 	}
 	
-	public void addToGarden(int gX, int gY, Plant tba) {
+	public void addToGarden(double gX, double gY, Plant tba) {
 		garden.addPlant(tba, gX, gY);
 		//add more info as we work more with the new View
 	}
@@ -55,12 +54,12 @@ public class Model {
 		return tbm;
 	}
 	
-	public void moveInGarden(int x, int y, int gX, int gY, Plant tbm) {
+	public void moveInGarden(double gX, double gY, Plant tbm) {
 		tbm.updatePlantLocation(gX, gY);
 		//add more info as we work more with the new View
 	}
 	
-	public void handleDeletionInGarden(int x, int y, Plant tbm) {
+	public void handleDeletionInGarden(double x, double y, Plant tbm) {
 		garden.deletePlant(tbm);
 		trashBin.add(tbm);
 		//add more info as we work more with the new View

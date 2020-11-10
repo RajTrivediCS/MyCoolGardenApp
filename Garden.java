@@ -6,7 +6,7 @@ public class Garden {
 	String gardenWater;
 	String gardenSoil;
 	
-	public void addPlant(Plant p, int x, int y) {
+	public void addPlant(Plant p, double x, double y) {
 		this.gardensPlants.add(new Plant(p.name, x, y, p.plantLight, p.plantSoil));
 	}
 
