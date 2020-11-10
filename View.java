@@ -28,7 +28,7 @@ public class View {
 	double yMinWasteBasket;
 	double xMaxWasteBasket;
 	double yMaxWasteBasket;
-	ImageView iv1;
+	PlantImageView iv1;
 	TilePane tp;
 	FlowPane fp;
 	BorderPane bp;
@@ -38,7 +38,8 @@ public class View {
 	 */
 	public View(){
 		Image im1 = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
-    	iv1 = new ImageView();			    	
+    	iv1 = new PlantImageView();		
+    	iv1.setPaneLoc("tile");
     	tp = new TilePane(iv1);
     	tp.setPrefColumns(1);
     	tp.setStyle("-fx-background-color: #ADD8E6");

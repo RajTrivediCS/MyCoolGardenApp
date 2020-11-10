@@ -21,38 +21,38 @@ public class Controller extends Application {
 	//handleAddingToGarden
 	//handleMovingInGarden
 	//handleDeletionFromGarden
-	public void drag(MouseEvent event, ImageView v) {
+	public void drag(MouseEvent event, PlantImageView v) {
 		Node n = (Node)event.getSource();
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
-		v.setX(1);
+		v.setPaneLoc("flow");
 	}
 	
-	public void enter(MouseEvent event, ImageView v) {
+	public void enter(MouseEvent event, PlantImageView v) {
 		System.out.println(v.getX());
-		if(v.getX()==0.0) {
+		if(v.getPaneLoc().equals("tile")) {
 			view.fp.getChildren().add(v);
 			handleReplaceImgView(view.tp);
 		}
 	}
 	
-	public void setHandlerForDrag(ImageView iv1) {
+	public void setHandlerForDrag(PlantImageView iv1) {
 		iv1.setOnMouseDragged(event -> drag(event, iv1));		
 	}
 	
-	public void setHandlerForPress(ImageView v) {
+	public void setHandlerForPress(PlantImageView v) {
 		v.setOnMousePressed(event->enter(event, v));
 	}
 	
 	public void handleReplaceImgView(TilePane tile) {
 		Image im = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
-		ImageView iv = new ImageView(im);
+		PlantImageView iv = new PlantImageView(im);
 		iv.setPreserveRatio(true);
     	iv.setFitHeight(100);
     	setHandlerForDrag(iv);
     	setHandlerForPress(iv);
 		tile.getChildren().add(iv);
-		iv.setX(0);
+		iv.setPaneLoc("tile");
 	}
 	
 	@Override
