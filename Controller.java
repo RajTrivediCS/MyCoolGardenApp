@@ -1,67 +1,71 @@
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
 public class Controller extends Application {
-	Model model;
-	View view;
+	//Model model = new Model();
+	View view = new View();
 	
 	//handleAddingToGarden
 	//handleMovingInGarden
 	//handleDeletionFromGarden
+	public void drag(MouseEvent event, ImageView v) {
+		Node n = (Node)event.getSource();
+		n.setTranslateX(n.getTranslateX() + event.getX());
+		n.setTranslateY(n.getTranslateY() + event.getY());
+		v.setX(1);
+	}
 	
+	public void enter(MouseEvent event, ImageView v) {
+		System.out.println(v.getX());
+		if(v.getX()==0.0) {
+			view.fp.getChildren().add(v);
+			handleReplaceImgView(view.tp);
+		}
+	}
+	
+	public void setHandlerForDrag(ImageView iv1) {
+		iv1.setOnMouseDragged(event -> drag(event, iv1));		
+	}
+	
+	public void setHandlerForPress(ImageView v) {
+		v.setOnMousePressed(event->enter(event, v));
+	}
+	
+	public void handleReplaceImgView(TilePane tile) {
+		Image im = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
+		ImageView iv = new ImageView(im);
+		iv.setPreserveRatio(true);
+    	iv.setFitHeight(100);
+    	setHandlerForDrag(iv);
+    	setHandlerForPress(iv);
+		tile.getChildren().add(iv);
+		iv.setX(0);
+	}
 	
 	@Override
-	public void start(Stage stage) throws Exception {
-		// TODO Auto-generated method stub
-		view = new View(stage);	
-		
-		view.tilePane.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Dragboard db = view.tilePane.startDragAndDrop(TransferMode.COPY);
+	public void start(Stage stage) {
+	    	
+	    	setHandlerForDrag(view.iv1);
+	    	setHandlerForPress(view.iv1);
 
-                ClipboardContent content = new ClipboardContent();
-                content.putImage(view.imageTop);
-
-                db.setContent(content);
-
-                event.consume();
-            }
-        });
-		
-		view.flowPane.setOnDragOver(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                Dragboard db = event.getDragboard();
-                if(db.hasImage()){
-                    event.acceptTransferModes(TransferMode.COPY);
-                }
-                event.consume();
-            }
-        });
-		
-		view.flowPane.setOnDragDropped(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent event) {
-                Dragboard db = event.getDragboard();
-                if(db.hasImage()){
-                    ImageView imageView = new ImageView(db.getImage());
-                    imageView.setPreserveRatio(true);
-                    imageView.setFitHeight(100);
-                    view.flowPane.getChildren().add(imageView);
-                    event.setDropCompleted(true);
-                }
-            }
-        });
-	}
+	    	
+	    	Scene scene = new Scene(view.bp, 800, 600);
+	        stage.setScene(scene);
+	        stage.show();
+	    }
 	
 	public static void main(String[] args) {
 		launch(args);
