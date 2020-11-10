@@ -52,13 +52,17 @@ public class Controller extends Application {
             @Override
             public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
-                if(db.hasImage()){
-                    ImageView imageView = new ImageView(db.getImage());
-                    imageView.setPreserveRatio(true);
-                    imageView.setFitHeight(100);
-                    view.flowPane.getChildren().add(imageView);
-                    event.setDropCompleted(true);
-                }
+                ImageView imageView = new ImageView(db.getImage());
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(100);
+                System.out.println("TranslateX: " + imageView.getTranslateX());
+                System.out.println("TranslateY: " + imageView.getTranslateX());
+                System.out.println("EventX: " + event.getX());
+                System.out.println("EventY: " + event.getY());
+                imageView.setTranslateX(event.getX() - imageView.getTranslateX());
+                imageView.setTranslateY(event.getY() - imageView.getTranslateY());
+                view.flowPane.getChildren().add(imageView);
+                event.setDropCompleted(true);
             }
         });
 	}

@@ -45,7 +45,7 @@ public class View {
 	
 	public View(Stage theStage) {
 		theStage.setTitle("Garden Design Application");
-		
+/*		
 		//Load Garden Button
 		loadGardenButton = new Button("Load Garden");
 		loadGardenButton.setTranslateX(-60);
@@ -69,7 +69,7 @@ public class View {
 		newGardenButton.setTranslateZ(55);
 		newGardenButton.setPrefHeight(50);
 		newGardenButton.setPrefWidth(100);
-		
+*/		
 		tilePane.getChildren().add(stackPane);
 
 		ivList.add(new ImageView());
@@ -80,12 +80,12 @@ public class View {
 		stackPane.getChildren().add(ivList.get(ivList.size() - 1));
 		
 		flowPane.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-		
+/*		
 		// Adds all three Buttons to TilePane
 		tilePane.getChildren().add(loadGardenButton);
 		tilePane.getChildren().add(uploadImageButton);
 		tilePane.getChildren().add(newGardenButton);
-		
+*/		
 		
 		tilePane.setPrefWidth(WIDTH * 0.3);
 		tilePane.setPrefWidth(HEIGHT * 0.3);
