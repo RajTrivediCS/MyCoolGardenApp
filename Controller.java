@@ -28,10 +28,10 @@ public class Controller extends Application  {
 	Model model;
 	View view;
 	
-	Controller() throws IOException{
+	/*Controller() throws IOException{
 		this.model = new Model();
 	    this.view = new View();
-	}
+	}*/
 	
 	public void drag(MouseEvent event, PlantImageView v) {
 		Node n = (Node)event.getSource();
@@ -93,8 +93,9 @@ public class Controller extends Application  {
 	
 	@Override
 	public void start(Stage stage) {
-	    	setHandlerForDrag(view.getIv1());
-	    	setHandlerForPress(view.getIv1());
+			view = new View();
+	    	setHandlerForDrag(view.iv1);
+	    	setHandlerForPress(view.iv1);
 
 	    	Scene scene = new Scene(view.bp, 800, 600);
 	        stage.setScene(scene);

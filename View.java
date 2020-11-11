@@ -38,9 +38,7 @@ public class View {
 	
 	MenuButton sortBy;
 
-	public PlantImageView getIv1() {
-		return iv1;
-	}
+	
 
 
 	/**
@@ -74,6 +72,10 @@ public class View {
     	
     	iv1.setPreserveRatio(true);
     	iv1.setFitHeight(100);
+	}
+	
+	public PlantImageView getIv1() {
+		return iv1;
 	}
 }
 
