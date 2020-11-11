@@ -3,10 +3,12 @@ import javafx.scene.image.ImageView;
 
 public class PlantImageView extends ImageView{
 	String paneLocation;
+	Plant plant;
 	
-	PlantImageView(){
+	PlantImageView(Plant plant){
 		super();
 		this.setPickOnBounds(true);
+		this.plant = plant;
 	}
 	
 	PlantImageView(Image im){

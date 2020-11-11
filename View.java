@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -30,21 +31,24 @@ public class View {
 	double yMinWasteBasket;
 	double xMaxWasteBasket;
 	double yMaxWasteBasket;
-
-	PlantImageView iv1;
+	
+	ArrayList<PlantImageView> sideView;
+	
 	TilePane tp;
 	FlowPane fp;
-	BorderPane bp;
-	
+	BorderPane bp;	 
 	MenuButton sortBy;
 
-	
 
 
 	/**
 	 * Simple constructor that sets initial imageview and controller.
 	 */
-	public View(){
+
+	public View(ArrayList<Plant> plants){
+		Image im1 = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
+		sideView = new ArrayList<PlantImageView>();
+    	tp = new TilePane();
 		sortBy = new MenuButton("Sort by");
 		
 		Button colorButton = new Button("Color");
@@ -56,11 +60,19 @@ public class View {
 		CustomMenuItem flowersItem = new CustomMenuItem(flowersButton);
 		sortBy.getItems().add(flowersItem);
 		flowersItem.setHideOnClick(false);
-		
-		Image im1 = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
-    	iv1 = new PlantImageView();		
-    	iv1.setPaneLoc("tile");
-    	tp = new TilePane(sortBy,iv1);
+		tp.getChildren().add(sortBy);
+    	for(Plant p : plants) {
+    		PlantImageView piv = new PlantImageView(p);
+    		piv.setImage(im1); //write function to change to a plant later
+        	piv.setPreserveRatio(true);
+        	piv.setFitHeight(100);
+        	Tooltip tooltip =  new Tooltip("This is "+p.name);
+        	Tooltip.install(piv, tooltip);
+        	piv.setPaneLoc("tile");
+    		sideView.add(piv);
+        	tp.getChildren().add(piv);
+    	}
+
     	tp.setPrefColumns(1);
     	tp.setStyle("-fx-background-color: #ADD8E6");
     	fp = new FlowPane();
@@ -68,14 +80,6 @@ public class View {
     	bp = new BorderPane();
     	bp.setCenter(fp);
     	bp.setLeft(tp);
-    	iv1.setImage(im1);
-    	
-    	iv1.setPreserveRatio(true);
-    	iv1.setFitHeight(100);
-	}
-	
-	public PlantImageView getIv1() {
-		return iv1;
 	}
 }
 

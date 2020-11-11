@@ -9,12 +9,16 @@ public class Model implements java.io.Serializable  {
 	static final int SOILSPOT = 2;
 	Garden garden;
 	ArrayList<Plant> trashBin;
-	List<Plant> hotBarPlants;
+	ArrayList<Plant> hotBarPlants;
 
-	Model() throws IOException{
+	Model(){
 		this.garden = new Garden();
 		this.trashBin = new ArrayList<>();
-		this.hotBarPlants = getPlantsListFromFile("plants.txt");
+		try {
+			this.hotBarPlants = getPlantsListFromFile("plants.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException {
@@ -130,5 +134,9 @@ public class Model implements java.io.Serializable  {
 
 	public void setHotBar(ArrayList<Plant> plants) {
 		this.hotBarPlants = plants;
+	}
+
+	public ArrayList<Plant> getHotBarPlants() {
+		return this.hotBarPlants;
 	}
 }
