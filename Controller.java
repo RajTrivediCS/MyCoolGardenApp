@@ -1,3 +1,10 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -13,7 +20,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
-
+/* TO-DO
+ * Change View/Controller so setX and setY get called when we update PlantImageViews in our View.
+ * 
+ */
 public class Controller extends Application {
 	//Model model = new Model();
 	View view = new View();
@@ -26,6 +36,10 @@ public class Controller extends Application {
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
 		v.setPaneLoc("flow");
+		v.setX(event.getSceneX());
+		v.setY(event.getSceneY());
+		System.out.println("IV X: " + v.getX());
+		System.out.println("IV Y: " + v.getY());
 		System.out.println(event.getSceneX() + ", " + event.getSceneY());
 	}	
 	
@@ -37,11 +51,34 @@ public class Controller extends Application {
 	}
 	
 	public void setHandlerForDrag(PlantImageView iv1) {
-		iv1.setOnMouseDragged(event -> drag(event, iv1));		
+		iv1.setOnMouseDragged(event -> drag(event, iv1));
 	}
 	
 	public void setHandlerForPress(PlantImageView v) {
 		v.setOnMousePressed(event->enter(event, v));
+	}
+	
+	public void serializeGarden(Model m) {
+		try {
+			FileOutputStream fos = new FileOutputStream("tempdata.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(m.garden);
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public Garden deserializeGarden() {
+		try {
+			FileInputStream fis = new FileInputStream("tempdata.ser");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Garden garden = (Garden)ois.readObject();
+			ois.close();
+			return garden;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public void handleReplaceImgView(TilePane tile) {
@@ -59,7 +96,6 @@ public class Controller extends Application {
 	public void start(Stage stage) {
 	    	setHandlerForDrag(view.iv1);
 	    	setHandlerForPress(view.iv1);
-
 
 	    	Scene scene = new Scene(view.bp, 800, 600);
 	        stage.setScene(scene);
