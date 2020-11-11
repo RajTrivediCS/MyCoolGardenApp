@@ -8,6 +8,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
@@ -36,8 +38,10 @@ public class View {
 	
 	TilePane tp;
 	FlowPane fp;
-	BorderPane bp;	 
+	BorderPane bp;
+	ScrollPane sp;
 	MenuButton sortBy;
+	HBox hbox;
 
 
 
@@ -49,8 +53,8 @@ public class View {
 		Image im1 = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
 		sideView = new ArrayList<PlantImageView>();
     	tp = new TilePane();
+    	tp.setMaxWidth(1);
 		sortBy = new MenuButton("Sort by");
-		
 		Button colorButton = new Button("Color");
 		CustomMenuItem colorItem = new CustomMenuItem(colorButton);
 		sortBy.getItems().add(colorItem);
@@ -72,14 +76,20 @@ public class View {
     		sideView.add(piv);
         	tp.getChildren().add(piv);
     	}
-
     	tp.setPrefColumns(1);
     	tp.setStyle("-fx-background-color: #ADD8E6");
+    	
+    	hbox = new HBox();
+    	hbox.getChildren().add(tp);
+    	sp = new ScrollPane();
+    	sp.setFitToWidth(true);
+    	sp.setContent(hbox);
+    	
     	fp = new FlowPane();
     	fp.setStyle("-fx-background-color: #BFFF00");
     	bp = new BorderPane();
     	bp.setCenter(fp);
-    	bp.setLeft(tp);
+    	bp.setLeft(sp);
 	}
 }
 
