@@ -7,7 +7,7 @@ fern (sensitive)-any sun-clay or loamy or sandy soil
 giant plumegrass-full or partial sun-loamy or sandy soil
 heart leaved aster-partial sun or shade-clay or loamy or sandy soil
 white snakeroot-any sun-clay or loamy or sandy soil
-joe-pye weed-full or partial sun-sandy soil
+joe_pye weed-full or partial sun-sandy soil
 tall coneflower-full or partial sun-clay or loamy or sandy soil
 yellow sneezeweed-any sun-clay or loamy or sandy soil
 red chokeberry-full or partial sun-clay or loamy or sandy soil

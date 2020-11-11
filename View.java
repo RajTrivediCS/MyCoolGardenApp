@@ -78,7 +78,8 @@ public class View {
     	}
     	tp.setPrefColumns(1);
     	tp.setStyle("-fx-background-color: #ADD8E6");
-    	
+    	tp.setMaxWidth(1);
+
     	hbox = new HBox();
     	hbox.getChildren().add(tp);
     	sp = new ScrollPane();
@@ -87,14 +88,8 @@ public class View {
     	
     	fp = new FlowPane();
     	fp.setStyle("-fx-background-color: #BFFF00");
-        tp.setMinWidth(xMinLeftBar);
-	tp.setMaxWidth(xMaxLeftBar);
-	tp.setMinHeight(yMinLeftBar);
-	tp.setMaxHeight(yMaxLeftBar);
-	fp.setMinWidth(xMinWorkSpace);
-	fp.setMaxWidth(xMaxWorkSpace);
-	fp.setMinHeight(yMinWorkSpace);
-	fp.setMaxHeight(yMaxWorkSpace);	
+
+        
     	bp = new BorderPane();
     	bp.setCenter(fp);
     	bp.setLeft(sp);
