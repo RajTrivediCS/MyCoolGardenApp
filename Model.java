@@ -56,7 +56,13 @@ public class Model implements java.io.Serializable {
 		Collections.sort(flowers,new Comparator<Plant>(){
 			@Override
 			public int compare(Plant p1, Plant p2) {
-				return p1.plantLight.compareTo(p2.plantLight);
+				int cmp = p1.plantLight.compareTo(p2.plantLight);
+				if(cmp == 0) {
+					return p1.name.compareTo(p2.name);
+				}
+				else {
+					return cmp;
+				}
 			}
 			
 		});
@@ -65,9 +71,14 @@ public class Model implements java.io.Serializable {
 		Collections.sort(flowers,new Comparator<Plant>(){
 			@Override
 			public int compare(Plant p1, Plant p2) {
-				return p1.plantSoil.compareTo(p2.plantSoil);
+				int cmp = p1.plantSoil.compareTo(p2.plantSoil);
+				if(cmp == 0) {
+					return p1.name.compareTo(p2.name);
+				}
+				else {
+					return cmp;
+				}
 			}
-			
 		});
 	}
 
