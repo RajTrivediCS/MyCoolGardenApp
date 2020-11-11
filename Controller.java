@@ -30,7 +30,7 @@ public class Controller extends Application  {
 	
 	Controller() throws IOException{
 		this.model = new Model();
-	    this.view = new View();
+	    this.view = new View(model.getHotBarPlants());
 	}
 	
 	public void drag(MouseEvent event, PlantImageView v) {

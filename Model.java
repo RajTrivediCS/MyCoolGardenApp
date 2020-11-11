@@ -9,7 +9,7 @@ public class Model implements java.io.Serializable  {
 	static final int SOILSPOT = 2;
 	Garden garden;
 	ArrayList<Plant> trashBin;
-	List<Plant> hotBarPlants;
+	ArrayList<Plant> hotBarPlants;
 
 	Model() throws IOException{
 		this.garden = new Garden();
@@ -130,5 +130,9 @@ public class Model implements java.io.Serializable  {
 
 	public void setHotBar(ArrayList<Plant> plants) {
 		this.hotBarPlants = plants;
+	}
+
+	public ArrayList<Plant> getHotBarPlants() {
+		return this.hotBarPlants;
 	}
 }

@@ -28,24 +28,31 @@ public class View {
 	double yMinWasteBasket;
 	double xMaxWasteBasket;
 	double yMaxWasteBasket;
-
-	PlantImageView iv1;
+	
+	ArrayList<PlantImageView> sideView;
+	
 	TilePane tp;
 	FlowPane fp;
 	BorderPane bp;
 	
-	public PlantImageView getIv1() {
-		return iv1;
-	}
 
 	/**
 	 * Simple constructor that sets initial imageview and controller.
 	 */
-	public View(){
+	public View(ArrayList<Plant> plants){
 		Image im1 = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
-    	iv1 = new PlantImageView();		
-    	iv1.setPaneLoc("tile");
-    	tp = new TilePane(iv1);
+		sideView = new ArrayList<PlantImageView>();
+    	tp = new TilePane();
+    	for(Plant p : plants) {
+    		PlantImageView piv = new PlantImageView(p);
+    		piv.setImage(im1); //write function to change to a plant later
+        	piv.setPreserveRatio(true);
+        	piv.setFitHeight(100);
+        	piv.setPaneLoc("tile");
+    		sideView.add(piv);
+        	tp.getChildren().add(piv);
+    	}
+
     	tp.setPrefColumns(1);
     	tp.setStyle("-fx-background-color: #ADD8E6");
     	fp = new FlowPane();
@@ -53,9 +60,7 @@ public class View {
     	bp = new BorderPane();
     	bp.setCenter(fp);
     	bp.setLeft(tp);
-    	iv1.setImage(im1);
-    	iv1.setPreserveRatio(true);
-    	iv1.setFitHeight(100);
+    	
 	}
 }
 
