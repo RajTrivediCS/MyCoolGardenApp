@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -48,6 +49,8 @@ public class View {
     		piv.setImage(im1); //write function to change to a plant later
         	piv.setPreserveRatio(true);
         	piv.setFitHeight(100);
+        	Tooltip tooltip =  new Tooltip("This is "+p.name);
+        	Tooltip.install(piv, tooltip);
         	piv.setPaneLoc("tile");
     		sideView.add(piv);
         	tp.getChildren().add(piv);

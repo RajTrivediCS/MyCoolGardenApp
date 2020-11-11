@@ -25,37 +25,8 @@ import javafx.stage.Stage;
  * 
  */
 public class Controller extends Application  {
-	Model model;
-	View view;
-	
-	Controller() throws IOException{
-		this.model = new Model();
-	    this.view = new View(model.getHotBarPlants());
-	}
-	
-	public void drag(MouseEvent event, PlantImageView v) {
-		Node n = (Node)event.getSource();
-		n.setTranslateX(n.getTranslateX() + event.getX());
-		n.setTranslateY(n.getTranslateY() + event.getY());
-		v.setPaneLoc("flow");
-
-		System.out.println(event.getSceneX() + ", " + event.getSceneY());
-	}	
-	
-	public void enter(MouseEvent event, PlantImageView v) {
-		if(v.getPaneLoc().equals("tile")) {
-			view.fp.getChildren().add(v);
-			handleReplaceImgView(view.tp);
-		}
-	}
-	
-	public void setHandlerForDrag(PlantImageView iv1) {
-		iv1.setOnMouseDragged(event -> drag(event, iv1));
-	}
-	
-	public void setHandlerForPress(PlantImageView v) {
-		v.setOnMousePressed(event->enter(event, v));
-	}
+	Model model = new Model();	
+	View view= new View(model.getHotBarPlants());
 	
 	public void serializeGarden(Model m) {
 		try {
@@ -80,8 +51,32 @@ public class Controller extends Application  {
 		return null;
 	}
 	
-	public void handleReplaceImgView(TilePane tile) {
-		Image im = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
+	public void drag(MouseEvent event, PlantImageView v) {
+		Node n = (Node)event.getSource();
+		n.setTranslateX(n.getTranslateX() + event.getX());
+		n.setTranslateY(n.getTranslateY() + event.getY());
+		v.setPaneLoc("flow");
+
+		System.out.println(event.getSceneX() + ", " + event.getSceneY());
+	}	
+	
+	public void enter(MouseEvent event, PlantImageView v) {
+		if(v.getPaneLoc().equals("tile")) {
+			view.fp.getChildren().add(v);
+			handleReplaceImgView(view.tp, v);
+		}
+	}
+	
+	public void setHandlerForDrag(PlantImageView iv1) {
+		iv1.setOnMouseDragged(event -> drag(event, iv1));
+	}
+	
+	public void setHandlerForPress(PlantImageView v) {
+		v.setOnMousePressed(event->enter(event, v));
+	}
+	
+	public void handleReplaceImgView(TilePane tile, PlantImageView v) {
+		Image im = v.getImage();
 		PlantImageView iv = new PlantImageView(im);
 		iv.setPreserveRatio(true);
     	iv.setFitHeight(100);
@@ -93,13 +88,14 @@ public class Controller extends Application  {
 	
 	@Override
 	public void start(Stage stage) {
-	    	setHandlerForDrag(view.getIv1());
-	    	setHandlerForPress(view.getIv1());
-
+	    for(PlantImageView v : view.sideView) {
+			setHandlerForDrag(v);
+	    	setHandlerForPress(v);
+	    }
 	    	Scene scene = new Scene(view.bp, 800, 600);
 	        stage.setScene(scene);
 	        stage.show();
-	    }
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}

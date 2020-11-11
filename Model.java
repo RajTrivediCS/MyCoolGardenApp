@@ -11,10 +11,14 @@ public class Model implements java.io.Serializable  {
 	ArrayList<Plant> trashBin;
 	ArrayList<Plant> hotBarPlants;
 
-	Model() throws IOException{
+	Model(){
 		this.garden = new Garden();
 		this.trashBin = new ArrayList<>();
-		this.hotBarPlants = getPlantsListFromFile("plants.txt");
+		try {
+			this.hotBarPlants = getPlantsListFromFile("plants.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException {
