@@ -33,7 +33,10 @@ public class View {
 	TilePane tp;
 	FlowPane fp;
 	BorderPane bp;
-
+	
+	public PlantImageView getIv1() {
+		return iv1;
+	}
 
 	/**
 	 * Simple constructor that sets initial imageview and controller.
