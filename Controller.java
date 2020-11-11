@@ -24,22 +24,21 @@ import javafx.stage.Stage;
  * Change View/Controller so setX and setY get called when we update PlantImageViews in our View.
  * 
  */
-public class Controller extends Application {
-	//Model model = new Model();
-	View view = new View();
+public class Controller extends Application  {
+	Model model;
+	View view;
 	
-	//handleAddingToGarden
-	//handleMovingInGarden
-	//handleDeletionFromGarden
+	Controller() throws IOException{
+		this.model = new Model();
+	    this.view = new View();
+	}
+	
 	public void drag(MouseEvent event, PlantImageView v) {
 		Node n = (Node)event.getSource();
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
 		v.setPaneLoc("flow");
-		v.setX(event.getSceneX());
-		v.setY(event.getSceneY());
-		System.out.println("IV X: " + v.getX());
-		System.out.println("IV Y: " + v.getY());
+
 		System.out.println(event.getSceneX() + ", " + event.getSceneY());
 	}	
 	
@@ -94,8 +93,8 @@ public class Controller extends Application {
 	
 	@Override
 	public void start(Stage stage) {
-	    	setHandlerForDrag(view.iv1);
-	    	setHandlerForPress(view.iv1);
+	    	setHandlerForDrag(view.getIv1());
+	    	setHandlerForPress(view.getIv1());
 
 	    	Scene scene = new Scene(view.bp, 800, 600);
 	        stage.setScene(scene);
