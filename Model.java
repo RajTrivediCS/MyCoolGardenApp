@@ -9,7 +9,7 @@ public class Model implements java.io.Serializable {
 	static final int SOILSPOT = 2;
 	Garden garden;
 	ArrayList<Plant> trashBin;
-	ArrayList<Plant> hotBarPlants;
+	List<Plant> hotBarPlants;
 	
 	Model() throws IOException{
 		this.garden = new Garden();
@@ -30,7 +30,46 @@ public class Model implements java.io.Serializable {
 		return plantsList;
 	}
 	
+	public void sortFlowersByCriteria(int criteria) {
+		if(criteria == NAMESPOT)
+			sortFlowersByName(hotBarPlants);
+		else if(criteria == SUNSPOT)
+			sortFlowersByLight(hotBarPlants);
+		else if(criteria == SOILSPOT)
+			sortFlowersBySoil(hotBarPlants);
+		else
+			System.out.println("Invalid criteria to sort flowers...");
+	}
 	
+	public void sortFlowersByName(List<Plant> flowers) {
+		Collections.sort(flowers,new Comparator<Plant>(){
+			@Override
+			public int compare(Plant p1, Plant p2) {
+				return p1.name.compareTo(p2.name);
+			}
+			
+		});
+		
+	}
+	
+	public void sortFlowersByLight(List<Plant> flowers) {
+		Collections.sort(flowers,new Comparator<Plant>(){
+			@Override
+			public int compare(Plant p1, Plant p2) {
+				return p1.plantLight.compareTo(p2.plantLight);
+			}
+			
+		});
+	}
+	public void sortFlowersBySoil(List<Plant> flowers) {
+		Collections.sort(flowers,new Comparator<Plant>(){
+			@Override
+			public int compare(Plant p1, Plant p2) {
+				return p1.plantSoil.compareTo(p2.plantSoil);
+			}
+			
+		});
+	}
 
 	public Plant selectPlant(double x, double y) {
 		Plant tba = new Plant("if you are seeing this you done goofed", 99, 99); // tba == to be added
