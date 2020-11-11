@@ -36,14 +36,12 @@ public class View {
 	FlowPane fp;
 	BorderPane bp;
 	
-<<<<<<< HEAD
 	MenuButton sortBy;
-	FlowPane root;
-=======
+
 	public PlantImageView getIv1() {
 		return iv1;
 	}
->>>>>>> refs/remotes/origin/main
+
 
 	/**
 	 * Simple constructor that sets initial imageview and controller.
