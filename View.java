@@ -23,10 +23,10 @@ import javafx.stage.Stage;
 
 
 public class View {
-	double xMinLeftBar, yMinLeftBar;
-	double xMaxLeftBar, yMaxLeftBar;
-	double xMinWorkSpace, yMinWorkSpace;
-	double xMaxWorkSpace, yMaxWorkSpace;
+	double xMinLeftBar = 200, yMinLeftBar = 0;
+	double xMaxLeftBar = 300, yMaxLeftBar = 900;
+	double xMinWorkSpace = 300, yMinWorkSpace = 0;
+	double xMaxWorkSpace = 1300, yMaxWorkSpace = 900;
 	double xMinWasteBasket;
 	double yMinWasteBasket;
 	double xMaxWasteBasket;
@@ -77,6 +77,14 @@ public class View {
     	tp.setStyle("-fx-background-color: #ADD8E6");
     	fp = new FlowPane();
     	fp.setStyle("-fx-background-color: #BFFF00");
+        tp.setMinWidth(xMinLeftBar);
+	tp.setMaxWidth(xMaxLeftBar);
+	tp.setMinHeight(yMinLeftBar);
+	tp.setMaxHeight(yMaxLeftBar);
+	fp.setMinWidth(xMinWorkSpace);
+	fp.setMaxWidth(xMaxWorkSpace);
+	fp.setMinHeight(yMinWorkSpace);
+	fp.setMaxHeight(yMaxWorkSpace);	
     	bp = new BorderPane();
     	bp.setCenter(fp);
     	bp.setLeft(tp);
