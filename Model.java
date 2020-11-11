@@ -17,16 +17,19 @@ public class Model {
 		this.hotBarPlants = getPlantsListFromFile("plants.txt");
 	}
 	
-	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException { //try with resources
+	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException {
+		List<Integer> lineNumbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14);
 		ArrayList<Plant> plantsList = new ArrayList<>();
-		//FIXME: use iterator
-		for(int i = 0; i < 14; i++) {
-			String currLine = Files.readAllLines(Paths.get(filename)).get(i);
+		ListIterator<Integer> itr = lineNumbers.listIterator();
+		while(itr.hasNext()) {
+			int index = itr.next();
+			String currLine = Files.readAllLines(Paths.get(filename)).get(index-1);
 			String[] parts = currLine.split("-");
-			plantsList.add(new Plant(parts[NAMESPOT],0,i,parts[SUNSPOT],parts[SOILSPOT]));
-		}	
+			plantsList.add(new Plant(parts[NAMESPOT],0,index-1,parts[SUNSPOT],parts[SOILSPOT]));
+		}
 		return plantsList;
 	}
+	
 	
 
 	public Plant selectPlant(double x, double y) {
