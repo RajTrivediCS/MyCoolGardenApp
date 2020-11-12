@@ -25,4 +25,8 @@ public class Garden {
 	public String sumGarden() {
 		return "";
 	}
+	
+	public void setGardensPlants(ArrayList<Plant> plants) {
+		this.gardensPlants = plants;
+	}
 }

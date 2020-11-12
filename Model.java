@@ -130,4 +130,8 @@ public class Model implements java.io.Serializable  {
 	public ArrayList<Plant> getHotBarPlants() {
 		return this.hotBarPlants;
 	}
+
+	public Object getGarden() {
+		return this.garden;
+	}
 }

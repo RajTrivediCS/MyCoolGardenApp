@@ -28,4 +28,19 @@ public class Plant {
 		xLoc = gX;
 		yLoc = gY;
 	}
+	
+	public double getXLoc() {
+		return this.xLoc;
+	}
+	
+	public double getYLoc() {
+		return this.yLoc;
+	}
+	
+	public void setXLoc(double d) {
+		this.xLoc = d;
+	}
+	public void setYLoc(double d) {
+		this.yLoc = d;
+	}
 }

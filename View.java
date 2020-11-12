@@ -3,6 +3,7 @@ import java.util.List;
 
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -97,6 +98,18 @@ public class View {
     	bp = new BorderPane();
     	bp.setCenter(fp);
     	bp.setLeft(sp);
+	}
+
+
+
+	public Parent getBP() {
+		return this.bp;
+	}
+
+
+
+	public TilePane getTP() {
+		return this.tp;
 	}
 }
 

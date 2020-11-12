@@ -31,7 +31,7 @@ public class Controller extends Application  {
 	View view= new View(model.getHotBarPlants());
 	
 	public ArrayList<Plant> updateGarden(){
-		ArrayList<Plant>gard = new ArrayList();
+		ArrayList<Plant>gard = new ArrayList<Plant>();
 		for(PlantImageView p : view.plantsInGarden) {
 			gard.add(p.plant);
 		}
@@ -65,21 +65,21 @@ public class Controller extends Application  {
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
 		v.setPaneLoc("flow");
-		v.plant.xLoc = v.getTranslateX();
-		v.plant.yLoc = v.getTranslateY();
+		v.plant.setXLoc(v.getTranslateX());
+		v.plant.setYLoc(v.getTranslateY());
 	}	
 	
 	public void enter(MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("tile")) {
 			view.fp.getChildren().add(v);
-			handleReplaceImgView(view.tp, v);
+			handleReplaceImgView(view.getTP(), v);
 			view.plantsInGarden.add(v);
 		}
 	}
 	
 	public void setHandlerForDrag(PlantImageView iv1) {
 		iv1.setOnMouseDragged(event -> drag(event, iv1));
-		model.garden.gardensPlants = updateGarden();
+		model.garden.setGardensPlants(updateGarden());
 	}
 	
 	public void setHandlerForPress(PlantImageView v) {
@@ -106,7 +106,7 @@ public class Controller extends Application  {
 			setHandlerForDrag(v);
 	    	setHandlerForPress(v);
 	    }
-	    Scene scene = new Scene(view.bp, 800, 600);
+	    Scene scene = new Scene(view.getBP(), 800, 600);
 	    stage.setScene(scene);
 	    stage.show();
 	}
