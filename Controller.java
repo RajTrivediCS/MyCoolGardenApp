@@ -30,6 +30,14 @@ public class Controller extends Application  {
 	Model model = new Model();	
 	View view= new View(model.getHotBarPlants());
 	
+	public ArrayList<Plant> updateGarden(){
+		ArrayList<Plant>gard = new ArrayList();
+		for(PlantImageView p : view.plantsInGarden) {
+			gard.add(p.plant);
+		}
+		return gard;
+	}
+	
 	public void serializeGarden(Model m) {
 		try {
 			FileOutputStream fos = new FileOutputStream("tempdata.ser");
@@ -71,6 +79,7 @@ public class Controller extends Application  {
 	
 	public void setHandlerForDrag(PlantImageView iv1) {
 		iv1.setOnMouseDragged(event -> drag(event, iv1));
+		model.garden.gardensPlants = updateGarden();
 	}
 	
 	public void setHandlerForPress(PlantImageView v) {
