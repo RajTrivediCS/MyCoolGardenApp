@@ -36,6 +36,7 @@ public class View {
 	double yMaxWasteBasket;
 	
 	ArrayList<PlantImageView> sideView;
+	ArrayList<PlantImageView> plantsInGarden;
 	
 	TilePane tp;
 	FlowPane fp;
@@ -51,8 +52,9 @@ public class View {
 	 */
 
 	public View(ArrayList<Plant> plants){		
-		Image im1 = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
+		Image im1 = new Image(getClass().getResourceAsStream("img/commonMilkweed.png"));
 		sideView = new ArrayList<PlantImageView>();
+		plantsInGarden = new ArrayList<PlantImageView>();
     	tp = new TilePane();
     	tp.setMaxWidth(1);
 		sortBy = new MenuButton("Sort by");

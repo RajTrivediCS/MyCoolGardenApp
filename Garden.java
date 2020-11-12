@@ -13,12 +13,15 @@ public class Garden {
 	public void deletePlant(Plant p) {
 		gardensPlants.remove(p);
 	}
+	
 	public int tallyGardenScore() {
 		return 0;
 	}
+	
 	public String writeGardenScore() {
 		return "";
 	}
+	
 	public String sumGarden() {
 		return "";
 	}

@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -55,16 +56,16 @@ public class Controller extends Application  {
 		Node n = (Node)event.getSource();
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
-		model.addToGarden(event.getX(),event.getY(),v.plant);
 		v.setPaneLoc("flow");
-
-		System.out.println(event.getSceneX() + ", " + event.getSceneY());
+		v.plant.xLoc = v.getTranslateX();
+		v.plant.yLoc = v.getTranslateY();
 	}	
 	
 	public void enter(MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("tile")) {
 			view.fp.getChildren().add(v);
 			handleReplaceImgView(view.tp, v);
+			view.plantsInGarden.add(v);
 		}
 	}
 	
