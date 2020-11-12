@@ -86,22 +86,13 @@ public class Model implements java.io.Serializable  {
 		});
 	}
 
-	public Plant selectPlant(double x, double y) {
-		Plant tba = new Plant("if you are seeing this you done goofed", 99, 99); // tba == to be added
-		for(Plant p : hotBarPlants) {
-			if(p.yLoc==y) {
-				tba=p;
-			}
-		}
-		return tba;
-	}
 	
 	public void addToGarden(double gX, double gY, Plant tba) {
 		garden.addPlant(tba, gX, gY);
 		//add more info as we work more with the new View
 	}
 	
-	public Plant selectPlantInGarden(int x, int y) {
+	public Plant selectPlantInGarden(double x, double y) {
 		Plant tbm = new Plant("no plant", 99, 99);
 		for(Plant p : garden.gardensPlants) {
 			if(p.xLoc == x && p.yLoc == y) {

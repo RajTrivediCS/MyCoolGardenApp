@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
@@ -49,7 +50,7 @@ public class View {
 	 * Simple constructor that sets initial imageview and controller.
 	 */
 
-	public View(ArrayList<Plant> plants){
+	public View(ArrayList<Plant> plants){		
 		Image im1 = new Image(getClass().getResourceAsStream("commonMilkweed.png"));
 		sideView = new ArrayList<PlantImageView>();
     	tp = new TilePane();
@@ -79,7 +80,6 @@ public class View {
     	tp.setPrefColumns(1);
     	tp.setStyle("-fx-background-color: #ADD8E6");
     	tp.setMaxWidth(1);
-
     	hbox = new HBox();
     	hbox.getChildren().add(tp);
     	sp = new ScrollPane();

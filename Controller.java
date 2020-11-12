@@ -55,6 +55,7 @@ public class Controller extends Application  {
 		Node n = (Node)event.getSource();
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
+		model.addToGarden(event.getX(),event.getY(),v.plant);
 		v.setPaneLoc("flow");
 
 		System.out.println(event.getSceneX() + ", " + event.getSceneY());
@@ -102,5 +103,4 @@ public class Controller extends Application  {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 }
