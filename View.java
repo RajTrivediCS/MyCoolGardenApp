@@ -52,7 +52,7 @@ public class View {
 	 */
 
 	public View(ArrayList<Plant> plants){		
-		Image im1 = new Image(getClass().getResourceAsStream("img/commonMilkweed.png"));
+		int i = 0;
 		sideView = new ArrayList<PlantImageView>();
 		plantsInGarden = new ArrayList<PlantImageView>();
     	tp = new TilePane();
@@ -69,6 +69,7 @@ public class View {
 		flowersItem.setHideOnClick(false);
 		tp.getChildren().add(sortBy);
     	for(Plant p : plants) {
+    		Image im1 = new Image(getClass().getResourceAsStream("img/"+i+".png"));
     		PlantImageView piv = new PlantImageView(p);
     		piv.setImage(im1); //write function to change to a plant later
         	piv.setPreserveRatio(true);
@@ -78,6 +79,7 @@ public class View {
         	piv.setPaneLoc("tile");
     		sideView.add(piv);
         	tp.getChildren().add(piv);
+        	i++;
     	}
     	tp.setPrefColumns(1);
     	tp.setStyle("-fx-background-color: #ADD8E6");
