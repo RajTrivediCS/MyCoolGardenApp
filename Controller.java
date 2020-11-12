@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
@@ -76,7 +77,10 @@ public class Controller extends Application  {
 	
 	public void handleReplaceImgView(TilePane tile, PlantImageView v) {
 		Image im = v.getImage();
-		PlantImageView iv = new PlantImageView(im);
+		PlantImageView iv = new PlantImageView(v.plant);
+		iv.setImage(im);
+		Tooltip tooltip =  new Tooltip("This is "+iv.plant.name);
+    	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
     	iv.setFitHeight(100);
     	setHandlerForDrag(iv);
