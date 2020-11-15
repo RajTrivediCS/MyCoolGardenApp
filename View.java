@@ -36,8 +36,8 @@ public class View {
 	double xMaxWasteBasket;
 	double yMaxWasteBasket;
 	
-	ArrayList<PlantImageView> sideView;
-	ArrayList<PlantImageView> plantsInGarden;
+	ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;
+	ArrayList<PlantImageView> plantsInGarden = new ArrayList<PlantImageView>();
 	
 	TilePane tp;
 	FlowPane fp;
@@ -45,17 +45,30 @@ public class View {
 	ScrollPane sp;
 	MenuButton sortBy;
 	HBox hbox;
-	Button newGardenButton;
-	Button loadGardenButton;
-
+	//Button newGardenButton; FIXME: Move this to a different Scene/View
+	//Button loadGardenButton;
+	public void plantIVAdder(ArrayList<Plant> plants) {
+		int i=0;
+		for(Plant p : plants) {
+			Image im1 = new Image(getClass().getResourceAsStream("img/"+i+".png"));
+			PlantImageView piv = new PlantImageView(p);
+			piv.setImage(im1); //write function to change to a plant later
+	    	piv.setPreserveRatio(true);
+	    	piv.setFitHeight(100);
+	    	Tooltip tooltip =  new Tooltip("This is "+p.name);
+	    	Tooltip.install(piv, tooltip);
+	    	piv.setPaneLoc("tile");
+			sideView.add(piv);
+	    	tp.getChildren().add(piv);
+	    	i++;
+	    }
+	}
 	/**
 	 * Simple constructor that sets initial imageview and controller.
 	 */
 
 	public View(ArrayList<Plant> plants){		
 		int i = 0;
-		sideView = new ArrayList<PlantImageView>();
-		plantsInGarden = new ArrayList<PlantImageView>();
     	tp = new TilePane();
     	tp.setMaxWidth(1);
 		sortBy = new MenuButton("Sort by");
@@ -69,19 +82,9 @@ public class View {
 		sortBy.getItems().add(flowersItem);
 		flowersItem.setHideOnClick(false);
 		tp.getChildren().add(sortBy);
-    	for(Plant p : plants) {
-    		Image im1 = new Image(getClass().getResourceAsStream("img/"+i+".png"));
-    		PlantImageView piv = new PlantImageView(p);
-    		piv.setImage(im1); //write function to change to a plant later
-        	piv.setPreserveRatio(true);
-        	piv.setFitHeight(100);
-        	Tooltip tooltip =  new Tooltip("This is "+p.name);
-        	Tooltip.install(piv, tooltip);
-        	piv.setPaneLoc("tile");
-    		sideView.add(piv);
-        	tp.getChildren().add(piv);
-        	i++;
-    	}
+    	
+		plantIVAdder(plants);
+		
     	tp.setPrefColumns(1);
     	tp.setStyle("-fx-background-color: #ADD8E6");
     	tp.setMaxWidth(1);
@@ -93,6 +96,8 @@ public class View {
     	
     	fp = new FlowPane();
     	fp.setStyle("-fx-background-color: #BFFF00");
+    	
+    	/*FIXME: THIS NEEDS TO GO SOMEWHERE ELSE. NOT PART OF THIS SCENE/VIEW
     	newGardenButton = new Button(" (+) New Garden");
     	newGardenButton.setTranslateX(70);
     	newGardenButton.setTranslateY(40);
@@ -105,7 +110,8 @@ public class View {
     	loadGardenButton.setPrefWidth(150);
     	fp.getChildren().add(newGardenButton);
     	fp.getChildren().add(loadGardenButton);
-        
+        */
+    	
     	bp = new BorderPane();
     	bp.setCenter(fp);
     	bp.setLeft(sp);

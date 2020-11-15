@@ -25,10 +25,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
-/* TO-DO
- * Change View/Controller so setX and setY get called when we update PlantImageViews in our View.
- * 
- */
+
+ 
 public class Controller extends Application  {
 	Model model = new Model();	
 	View view= new View(model.getHotBarPlants());
@@ -120,8 +118,9 @@ public class Controller extends Application  {
             	stage.setScene(sceneMap.get(SceneName.SCENE1));
             } 
         };
-	    view.loadGardenButton.setOnAction(event);
-	    view.newGardenButton.setOnAction(event);
+        
+	    //view.loadGardenButton.setOnAction(event); FIXME: this needs to go in a different controller
+	    //view.newGardenButton.setOnAction(event);
 	    
 	    Scene scene = new Scene(view.getBP(), 800, 600);
 	    stage.setScene(scene);
