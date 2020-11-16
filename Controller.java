@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
@@ -72,9 +73,9 @@ public class Controller extends Application  {
 	}	
 	
 	public void enter(MouseEvent event, PlantImageView v) {
-		if(v.getPaneLoc().equals("tile")) {
+		if(v.getPaneLoc().equals("grid")) {
 			view.fp.getChildren().add(v);
-			handleReplaceImgView(view.getTP(), v);
+			handleReplaceImgView(view.gp, v);
 			view.plantsInGarden.add(v);
 		}
 	}
@@ -88,7 +89,7 @@ public class Controller extends Application  {
 		v.setOnMousePressed(event->enter(event, v));
 	}
 	
-	public void handleReplaceImgView(TilePane tile, PlantImageView v) {
+	public void handleReplaceImgView(GridPane grid, PlantImageView v) {
 		Image im = v.getImage();
 		PlantImageView iv = new PlantImageView(v.plant);
 		iv.setImage(im);
@@ -98,8 +99,9 @@ public class Controller extends Application  {
     	iv.setFitHeight(100);
     	setHandlerForDrag(iv);
     	setHandlerForPress(iv);
-		tile.getChildren().add(iv);
-		iv.setPaneLoc("tile");
+    	int i = grid.getRowIndex(v);
+		grid.add(iv, 0, i); // add index to add at
+		iv.setPaneLoc("grid");
 	}
 	
 	@Override
