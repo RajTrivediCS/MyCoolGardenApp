@@ -48,7 +48,7 @@ public class View {
 			piv.setImage(im1); //write function to change to a plant later
 	    	piv.setPreserveRatio(true);
 	    	piv.setFitHeight(100);
-	    	Tooltip tooltip =  new Tooltip("This is "+p.name);
+	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+".");
 	    	Tooltip.install(piv, tooltip);
 	    	piv.setPaneLoc("grid");
 			sideView.add(piv);
@@ -56,6 +56,11 @@ public class View {
 	    	i++;
 	    }
 	}
+	
+	public void plantImageSorter(String sortMode) { // convert to enum in the future
+		//grab the plant image view. 
+	}
+	
 	/**
 	 * Simple constructor that sets initial imageview and controller.
 	 */
