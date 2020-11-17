@@ -56,7 +56,7 @@ public class Controller extends Application  {
 		return null;
 	}
 	
-	
+	//replaces image that was in the sidebar with an exact copy
 	public void handleReplaceImgView(GridPane grid, PlantImageView v) {
 		Image im = v.getImage();
 		PlantImageView iv = new PlantImageView(v.plant);
@@ -73,7 +73,7 @@ public class Controller extends Application  {
 		view.sideView.add(iv);
 	}
 	
-	
+	//called when an item is added to the garden or deleted
 	public ArrayList<Plant> updateGarden(){
 		ArrayList<Plant>gard = new ArrayList<Plant>();
 		for(PlantImageView p : view.plantsInGarden) {
@@ -82,6 +82,7 @@ public class Controller extends Application  {
 		return gard;
 	}
 	
+	//handle dragging a plant image view to the flow pane
 	public void drag(MouseEvent event, PlantImageView v) {
 		Node n = (Node)event.getSource();
 		n.setTranslateX(n.getTranslateX() + event.getX());
@@ -109,6 +110,7 @@ public class Controller extends Application  {
 		v.setOnMousePressed(event->enter(event, v));
 	}
 	
+	//sorts the sideView on click
 	public void sortButtonHandler() {
 		view.nameButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
@@ -132,7 +134,6 @@ public class Controller extends Application  {
 	public void start(Stage stage) {
 		sceneMap = new SceneContainer(stage).getSceneMap();
 		sortButtonHandler();
-		
 	    for(PlantImageView v : view.sideView) {
 			setHandlerForDrag(v);
 	    	setHandlerForPress(v);

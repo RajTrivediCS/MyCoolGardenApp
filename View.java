@@ -11,6 +11,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
@@ -25,6 +26,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -43,6 +45,7 @@ public class View {
 	Button soilButton;
 	Button sunButton;
 	HBox hbox;
+	VBox vbox;
 	//Button newGardenButton; FIXME: Move this to a different Scene/View
 	//Button loadGardenButton;
 	public void buttonMaker(GridPane grid) {		
@@ -65,6 +68,17 @@ public class View {
 		grid.getChildren().add(sortBy);
 	}
 	
+	public void topMenuMaker() {
+		Menu fileMenu = new Menu("File");
+		Menu viewMenu = new Menu("View");
+		
+		MenuBar topBar = new MenuBar();
+		
+		topBar.getMenus().add(fileMenu);
+		topBar.getMenus().add(viewMenu);
+		vbox = new VBox(topBar);
+	}
+	
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {
@@ -81,48 +95,60 @@ public class View {
 	    	i++;
 	    }
 	}
-	
-	public void sideViewSortHelper(String sortMode) { // convert to enum in the future
-		if (sortMode.equals("name")) {
-			Collections.sort(sideView,new Comparator<PlantImageView>(){
-				@Override
-				public int compare(PlantImageView p1, PlantImageView p2) {
+	//sort by name type
+	public void nameSort() {
+		Collections.sort(sideView,new Comparator<PlantImageView>(){
+			@Override
+			public int compare(PlantImageView p1, PlantImageView p2) {
+				return p1.plant.name.compareTo(p2.plant.name);
+			}
+		});
+	}
+	//sort by sun type
+	public void sunSort() {
+		Collections.sort(sideView,new Comparator<PlantImageView>(){
+			@Override
+			public int compare(PlantImageView p1, PlantImageView p2) {
+				int i = p1.plant.plantLight.compareTo(p2.plant.plantLight);
+				if(i==0) {
 					return p1.plant.name.compareTo(p2.plant.name);
 				}
-				
-			});
+				else {
+					return i;
+				}
+			}
+		});
+	}
+	//sort by soil type
+	public void soilSort() {
+		Collections.sort(sideView,new Comparator<PlantImageView>(){
+			@Override
+			public int compare(PlantImageView p1, PlantImageView p2) {
+				int i = p1.plant.plantSoil.compareTo(p2.plant.plantSoil);
+				if(i==0) {
+					return p1.plant.name.compareTo(p2.plant.name);
+				}
+				else {
+					return i;
+				}
+			}				
+		});
+	}
+	
+	//uses sortmode to sort the sideview plant image views ArrayList
+	public void sideViewSortHelper(String sortMode) { // convert to enum in the future
+		if (sortMode.equals("name")) {
+			nameSort();
 		}
 		else if (sortMode.equals("sun")) {
-			Collections.sort(sideView,new Comparator<PlantImageView>(){
-				@Override
-				public int compare(PlantImageView p1, PlantImageView p2) {
-					int i = p1.plant.plantLight.compareTo(p2.plant.plantLight);
-					if(i==0) {
-						return p1.plant.name.compareTo(p2.plant.name);
-					}
-					else {
-						return i;
-					}
-				}
-				
-			});
+			sunSort();
 		}
 		else if (sortMode.equals("soil")) {
-			Collections.sort(sideView,new Comparator<PlantImageView>(){
-				@Override
-				public int compare(PlantImageView p1, PlantImageView p2) {
-					int i = p1.plant.plantSoil.compareTo(p2.plant.plantSoil);
-					if(i==0) {
-						return p1.plant.name.compareTo(p2.plant.name);
-					}
-					else {
-						return i;
-					}
-				}				
-			});
+			soilSort();
 		}
 	}
 	
+	//sorts the ImageViews in the sideBar based on the sort mode
 	public void sortSideView(String sortMode) {
 		for(PlantImageView p: sideView) {
 			gp.getChildren().remove(p);
@@ -135,7 +161,6 @@ public class View {
 		int i = 0;
     	for(PlantImageView p: sideView) {
     		gp.add(p,0,i+1);
-    		System.out.println(p);
     		i++;
     	}
 	}
@@ -146,6 +171,7 @@ public class View {
 	 */
 
 	public View(ArrayList<Plant> plants){	
+		topMenuMaker();
     	gp = new GridPane();
     	gp.setMaxWidth(1);
     	gp.setStyle("-fx-background-color: #ADD8E6");
@@ -177,6 +203,7 @@ public class View {
         */
     	
     	bp = new BorderPane();
+    	bp.setTop(vbox);
     	bp.setCenter(fp);
     	bp.setLeft(sp);
 	}
