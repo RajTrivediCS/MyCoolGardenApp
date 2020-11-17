@@ -33,14 +33,6 @@ public class Controller extends Application  {
 	View view= new View(model.getHotBarPlants());
 	Map<SceneName,Scene> sceneMap;
 	
-	public ArrayList<Plant> updateGarden(){
-		ArrayList<Plant>gard = new ArrayList<Plant>();
-		for(PlantImageView p : view.plantsInGarden) {
-			gard.add(p.plant);
-		}
-		return gard;
-	}
-	
 	public void serializeGarden(Model m) {
 		try {
 			FileOutputStream fos = new FileOutputStream("tempdata.ser");
@@ -63,6 +55,32 @@ public class Controller extends Application  {
 		}
 		return null;
 	}
+	
+	
+	public void handleReplaceImgView(GridPane grid, PlantImageView v) {
+		Image im = v.getImage();
+		PlantImageView iv = new PlantImageView(v.plant);
+		iv.setImage(im);
+		Tooltip tooltip =  new Tooltip("This is "+iv.plant.name);
+    	Tooltip.install(iv, tooltip);
+		iv.setPreserveRatio(true);
+    	iv.setFitHeight(100);
+    	setHandlerForDrag(iv);
+    	setHandlerForPress(iv);
+    	int i = grid.getRowIndex(v);
+		grid.add(iv, 0, i); // add index to add at
+		iv.setPaneLoc("grid");
+	}
+	
+	
+	public ArrayList<Plant> updateGarden(){
+		ArrayList<Plant>gard = new ArrayList<Plant>();
+		for(PlantImageView p : view.plantsInGarden) {
+			gard.add(p.plant);
+		}
+		return gard;
+	}
+	
 	public void drag(MouseEvent event, PlantImageView v) {
 		Node n = (Node)event.getSource();
 		n.setTranslateX(n.getTranslateX() + event.getX());
@@ -89,24 +107,29 @@ public class Controller extends Application  {
 		v.setOnMousePressed(event->enter(event, v));
 	}
 	
-	public void handleReplaceImgView(GridPane grid, PlantImageView v) {
-		Image im = v.getImage();
-		PlantImageView iv = new PlantImageView(v.plant);
-		iv.setImage(im);
-		Tooltip tooltip =  new Tooltip("This is "+iv.plant.name);
-    	Tooltip.install(iv, tooltip);
-		iv.setPreserveRatio(true);
-    	iv.setFitHeight(100);
-    	setHandlerForDrag(iv);
-    	setHandlerForPress(iv);
-    	int i = grid.getRowIndex(v);
-		grid.add(iv, 0, i); // add index to add at
-		iv.setPaneLoc("grid");
+	public void sortButtonHandler() {
+		view.nameButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        view.sortSideView("name");
+		    }
+		});
+		view.sunButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        view.sortSideView("sun");
+		    }
+		});
+		view.soilButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        view.sortSideView("soil");
+		    }
+		});
 	}
+
 	
 	@Override
 	public void start(Stage stage) {
 		sceneMap = new SceneContainer(stage).getSceneMap();
+		sortButtonHandler();
 		
 	    for(PlantImageView v : view.sideView) {
 			setHandlerForDrag(v);

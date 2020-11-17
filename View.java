@@ -39,17 +39,26 @@ public class View {
 	BorderPane bp;
 	ScrollPane sp;
 	MenuButton sortBy;
+	Button nameButton;
+	Button soilButton;
+	Button sunButton;
 	HBox hbox;
 	//Button newGardenButton; FIXME: Move this to a different Scene/View
 	//Button loadGardenButton;
 	public void buttonMaker(GridPane grid) {		
     	sortBy = new MenuButton("Sort by");
-		Button soilButton = new Button("Soil");
+    	
+    	nameButton = new Button("Name");
+		CustomMenuItem nameItem = new CustomMenuItem(nameButton);
+		sortBy.getItems().add(nameItem);
+		nameItem.setHideOnClick(false);
+    	
+		soilButton = new Button("Soil");
 		CustomMenuItem soilItem = new CustomMenuItem(soilButton);
 		sortBy.getItems().add(soilItem);
 		soilItem.setHideOnClick(false);
 		
-		Button sunButton = new Button("Sun");
+		sunButton = new Button("Sun");
 		CustomMenuItem sunItem = new CustomMenuItem(sunButton);
 		sortBy.getItems().add(sunItem);
 		sunItem.setHideOnClick(false);
@@ -170,7 +179,6 @@ public class View {
     	bp = new BorderPane();
     	bp.setCenter(fp);
     	bp.setLeft(sp);
-    	sortSideView("sun");
 	}
 
 
