@@ -61,15 +61,16 @@ public class Controller extends Application  {
 		Image im = v.getImage();
 		PlantImageView iv = new PlantImageView(v.plant);
 		iv.setImage(im);
-		Tooltip tooltip =  new Tooltip("This is "+iv.plant.name);
+		Tooltip tooltip =  new Tooltip("This is "+v.plant.name+".\n"+"It needs "+v.plant.plantLight+" and "+v.plant.plantSoil+".");
     	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
     	iv.setFitHeight(100);
     	setHandlerForDrag(iv);
     	setHandlerForPress(iv);
     	int i = grid.getRowIndex(v);
-		grid.add(iv, 0, i); // add index to add at
+		grid.add(iv, 0, i);
 		iv.setPaneLoc("grid");
+		view.sideView.add(iv);
 	}
 	
 	
@@ -93,6 +94,7 @@ public class Controller extends Application  {
 	public void enter(MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("grid")) {
 			view.fp.getChildren().add(v);
+			view.sideView.remove(v);
 			handleReplaceImgView(view.gp, v);
 			view.plantsInGarden.add(v);
 		}
