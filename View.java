@@ -115,6 +115,9 @@ public class View {
 	}
 	
 	public void sortSideView(String sortMode) {
+		for(PlantImageView p: sideView) {
+			gp.getChildren().remove(p);
+		}
 		sideViewSortHelper(sortMode);
 		GridPane sortedGrid = new GridPane();
     	sortedGrid.setMaxWidth(1);
@@ -122,10 +125,10 @@ public class View {
 		buttonMaker(sortedGrid);
 		int i = 0;
     	for(PlantImageView p: sideView) {
-    		sortedGrid.add(p,0,i+1);
+    		gp.add(p,0,i+1);
     		System.out.println(p);
+    		i++;
     	}
-    	gp = sortedGrid;
 	}
 	
 	
@@ -167,6 +170,7 @@ public class View {
     	bp = new BorderPane();
     	bp.setCenter(fp);
     	bp.setLeft(sp);
+    	sortSideView("sun");
 	}
 
 
