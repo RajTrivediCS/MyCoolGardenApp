@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.geometry.Insets;
@@ -40,6 +42,20 @@ public class View {
 	HBox hbox;
 	//Button newGardenButton; FIXME: Move this to a different Scene/View
 	//Button loadGardenButton;
+	public void buttonMaker(GridPane grid) {		
+    	sortBy = new MenuButton("Sort by");
+		Button soilButton = new Button("Soil");
+		CustomMenuItem soilItem = new CustomMenuItem(soilButton);
+		sortBy.getItems().add(soilItem);
+		soilItem.setHideOnClick(false);
+		
+		Button sunButton = new Button("Sun");
+		CustomMenuItem sunItem = new CustomMenuItem(sunButton);
+		sortBy.getItems().add(sunItem);
+		sunItem.setHideOnClick(false);
+		grid.getChildren().add(sortBy);
+	}
+	
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {
@@ -57,32 +73,73 @@ public class View {
 	    }
 	}
 	
-	public void plantImageSorter(String sortMode) { // convert to enum in the future
-		//grab the plant image view. 
+	public void sideViewSortHelper(String sortMode) { // convert to enum in the future
+		if (sortMode.equals("name")) {
+			Collections.sort(sideView,new Comparator<PlantImageView>(){
+				@Override
+				public int compare(PlantImageView p1, PlantImageView p2) {
+					return p1.plant.name.compareTo(p2.plant.name);
+				}
+				
+			});
+		}
+		else if (sortMode.equals("sun")) {
+			Collections.sort(sideView,new Comparator<PlantImageView>(){
+				@Override
+				public int compare(PlantImageView p1, PlantImageView p2) {
+					int i = p1.plant.plantLight.compareTo(p2.plant.plantLight);
+					if(i==0) {
+						return p1.plant.name.compareTo(p2.plant.name);
+					}
+					else {
+						return i;
+					}
+				}
+				
+			});
+		}
+		else if (sortMode.equals("soil")) {
+			Collections.sort(sideView,new Comparator<PlantImageView>(){
+				@Override
+				public int compare(PlantImageView p1, PlantImageView p2) {
+					int i = p1.plant.plantSoil.compareTo(p2.plant.plantSoil);
+					if(i==0) {
+						return p1.plant.name.compareTo(p2.plant.name);
+					}
+					else {
+						return i;
+					}
+				}				
+			});
+		}
 	}
+	
+	public void sortSideView(String sortMode) {
+		sideViewSortHelper(sortMode);
+		GridPane sortedGrid = new GridPane();
+    	sortedGrid.setMaxWidth(1);
+    	sortedGrid.setStyle("-fx-background-color: #ADD8E6");
+		buttonMaker(sortedGrid);
+		int i = 0;
+    	for(PlantImageView p: sideView) {
+    		sortedGrid.add(p,0,i+1);
+    		System.out.println(p);
+    	}
+    	gp = sortedGrid;
+	}
+	
 	
 	/**
 	 * Simple constructor that sets initial imageview and controller.
 	 */
 
-	public View(ArrayList<Plant> plants){		
+	public View(ArrayList<Plant> plants){	
     	gp = new GridPane();
     	gp.setMaxWidth(1);
-		sortBy = new MenuButton("Sort by");
-		Button colorButton = new Button("Color");
-		CustomMenuItem colorItem = new CustomMenuItem(colorButton);
-		sortBy.getItems().add(colorItem);
-		colorItem.setHideOnClick(false);
-		
-		Button flowersButton = new Button("Flowers");
-		CustomMenuItem flowersItem = new CustomMenuItem(flowersButton);
-		sortBy.getItems().add(flowersItem);
-		flowersItem.setHideOnClick(false);
-		gp.getChildren().add(sortBy);
-    	
-		plantIVAdder(plants);
-		
     	gp.setStyle("-fx-background-color: #ADD8E6");
+		buttonMaker(gp);
+		plantIVAdder(plants);
+
     	hbox = new HBox();
     	hbox.getChildren().add(gp);
     	sp = new ScrollPane();
