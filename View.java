@@ -38,8 +38,7 @@ public class View {
 	ScrollPane sp;
 	MenuButton sortBy;
 	HBox hbox;
-	//Button newGardenButton; FIXME: Move this to a different Scene/View
-	//Button loadGardenButton;
+
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {
@@ -85,23 +84,7 @@ public class View {
     	sp.setContent(hbox);
     	
     	fp = new FlowPane();
-    	fp.setStyle("-fx-background-color: #BFFF00");
-    	
-    	/*FIXME: THIS NEEDS TO GO SOMEWHERE ELSE. NOT PART OF THIS SCENE/VIEW
-    	newGardenButton = new Button(" (+) New Garden");
-    	newGardenButton.setTranslateX(70);
-    	newGardenButton.setTranslateY(40);
-    	loadGardenButton = new Button("Load Garden");
-    	loadGardenButton.setTranslateX(90);
-    	loadGardenButton.setTranslateY(40);
-    	newGardenButton.setPrefHeight(50);
-    	newGardenButton.setPrefWidth(150);
-    	loadGardenButton.setPrefHeight(50);
-    	loadGardenButton.setPrefWidth(150);
-    	fp.getChildren().add(newGardenButton);
-    	fp.getChildren().add(loadGardenButton);
-        */
-    	
+    	fp.setStyle("-fx-background-color: #BFFF00");    	
     	bp = new BorderPane();
     	bp.setCenter(fp);
     	bp.setLeft(sp);

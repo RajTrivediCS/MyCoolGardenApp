@@ -1,5 +1,4 @@
-package MultipleScenesHandler;
-import java.util.*;
+package GardenMenus;
 
 public class Plant {
 	String name;

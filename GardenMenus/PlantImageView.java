@@ -1,4 +1,4 @@
-package MultipleScenesHandler;
+package GardenMenus;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 

@@ -1,4 +1,3 @@
-import MultipleScenesHandler.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,6 +7,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
+import GardenMenus.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,7 +31,6 @@ import javafx.stage.Stage;
 public class Controller extends Application  {
 	Model model = new Model();	
 	View view= new View(model.getHotBarPlants());
-	Map<SceneName,Scene> sceneMap;
 	
 	public ArrayList<Plant> updateGarden(){
 		ArrayList<Plant>gard = new ArrayList<Plant>();
@@ -106,24 +105,10 @@ public class Controller extends Application  {
 	
 	@Override
 	public void start(Stage stage) {
-		sceneMap = new SceneContainer(stage).getSceneMap();
-		
 	    for(PlantImageView v : view.sideView) {
 			setHandlerForDrag(v);
 	    	setHandlerForPress(v);
 	    }
-	    
-	    // action event for New Garden Button and Load Garden Button
-        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
-            public void handle(ActionEvent e) 
-            { 
-            	stage.setScene(sceneMap.get(SceneName.SCENE1));
-            } 
-        };
-        
-	    //view.loadGardenButton.setOnAction(event); FIXME: this needs to go in a different controller
-	    //view.newGardenButton.setOnAction(event);
-	    
 	    Scene scene = new Scene(view.getBP(), 800, 600);
 	    stage.setScene(scene);
 	    stage.show();
