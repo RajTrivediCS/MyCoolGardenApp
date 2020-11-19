@@ -1,4 +1,5 @@
 package InitialPackage;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -47,7 +48,7 @@ public class Model implements java.io.Serializable  {
 	}
 	
 	public void sortFlowersByName(List<Plant> flowers) {
-		Collections.sort(flowers,new Comparator<Plant>(){
+			Collections.sort(flowers,new Comparator<Plant>(){
 			@Override
 			public int compare(Plant p1, Plant p2) {
 				return p1.name.compareTo(p2.name);

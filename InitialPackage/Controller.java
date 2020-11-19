@@ -1,4 +1,5 @@
 package InitialPackage;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,7 +9,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
-import Application.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,16 +31,7 @@ import javafx.stage.Stage;
  
 public class Controller extends Application  {
 	Model model = new Model();	
-	View view = new View(model.hotBarPlants);
-	
-	public ArrayList<Plant> updateGarden(){
-		ArrayList<Plant>gard = new ArrayList<Plant>();
-		for(PlantImageView p : view.plantsInGarden) {
-			gard.add(p.plant);
-		}
-		return gard;
-	}
-	
+	View view= new View(model.getHotBarPlants());
 	public void serializeGarden(Model m) {
 		try {
 			FileOutputStream fos = new FileOutputStream("tempdata.ser");
@@ -63,6 +54,34 @@ public class Controller extends Application  {
 		}
 		return null;
 	}
+	
+	//replaces image that was in the sidebar with an exact copy
+	public void handleReplaceImgView(GridPane grid, PlantImageView v) {
+		Image im = v.getImage();
+		PlantImageView iv = new PlantImageView(v.plant);
+		iv.setImage(im);
+		Tooltip tooltip =  new Tooltip("This is "+v.plant.name+".\n"+"It needs "+v.plant.plantLight+" and "+v.plant.plantSoil+".");
+    	Tooltip.install(iv, tooltip);
+		iv.setPreserveRatio(true);
+    	iv.setFitHeight(100);
+    	setHandlerForDrag(iv);
+    	setHandlerForPress(iv);
+    	int i = grid.getRowIndex(v);
+		grid.add(iv, 0, i);
+		iv.setPaneLoc("grid");
+		view.sideView.add(iv);
+	}
+	
+	//called when an item is added to the garden or deleted
+	public ArrayList<Plant> updateGarden(){
+		ArrayList<Plant>gard = new ArrayList<Plant>();
+		for(PlantImageView p : view.plantsInGarden) {
+			gard.add(p.plant);
+		}
+		return gard;
+	}
+	
+	//handle dragging a plant image view to the flow pane
 	public void drag(MouseEvent event, PlantImageView v) {
 		Node n = (Node)event.getSource();
 		n.setTranslateX(n.getTranslateX() + event.getX());
@@ -75,6 +94,7 @@ public class Controller extends Application  {
 	public void enter(MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("grid")) {
 			view.fp.getChildren().add(v);
+			view.sideView.remove(v);
 			handleReplaceImgView(view.gp, v);
 			view.plantsInGarden.add(v);
 		}
@@ -89,23 +109,29 @@ public class Controller extends Application  {
 		v.setOnMousePressed(event->enter(event, v));
 	}
 	
-	public void handleReplaceImgView(GridPane grid, PlantImageView v) {
-		Image im = v.getImage();
-		PlantImageView iv = new PlantImageView(v.plant);
-		iv.setImage(im);
-		Tooltip tooltip =  new Tooltip("This is "+iv.plant.name);
-    	Tooltip.install(iv, tooltip);
-		iv.setPreserveRatio(true);
-    	iv.setFitHeight(100);
-    	setHandlerForDrag(iv);
-    	setHandlerForPress(iv);
-    	int i = grid.getRowIndex(v);
-		grid.add(iv, 0, i); // add index to add at
-		iv.setPaneLoc("grid");
+	//sorts the sideView on click
+	public void sortButtonHandler() {
+		view.nameButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        view.sortSideView("name");
+		    }
+		});
+		view.sunButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        view.sortSideView("sun");
+		    }
+		});
+		view.soilButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        view.sortSideView("soil");
+		    }
+		});
 	}
+
 	
 	@Override
 	public void start(Stage stage) {
+		sortButtonHandler();
 	    for(PlantImageView v : view.sideView) {
 			setHandlerForDrag(v);
 	    	setHandlerForPress(v);
