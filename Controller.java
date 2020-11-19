@@ -92,6 +92,7 @@ public class Controller extends Application  {
 		v.plant.setYLoc(v.getTranslateY());
 	}	
 	
+	//handle clicking on a plantImageView
 	public void enter(MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("grid")) {
 			view.fp.getChildren().add(v);
