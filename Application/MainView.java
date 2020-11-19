@@ -3,26 +3,15 @@ package Application;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class MainView {	
 	FlowPane fp;
 	Button newGardenButton; 
 	Button loadGardenButton;
-	GridPane gp;
-	Image undoImage = new Image("img/undoImage.png");
-	Image redoImage = new Image("img/redoImage.png");
-	ImageView undoImgView;
-	ImageView redoImgView;
-	
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
-	final static int MENU_BAR_WIDTH = 1380;
-	final static int MENU_BAR_HEIGHT = 32;
 	public MainView(Stage stage) {
 		fp = new FlowPane();
 		fp.setStyle("-fx-background-color: #BFFF00");
