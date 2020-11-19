@@ -6,7 +6,6 @@ public class PlantImageView extends ImageView{
 	Plant plant;
 	
 	PlantImageView(Plant plant){
-		super();
 		this.setPickOnBounds(true);
 		this.plant = plant;
 	}
