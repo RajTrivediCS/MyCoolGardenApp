@@ -1,3 +1,4 @@
+package InitialPackage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +40,10 @@ public class View {
 	MenuButton sortBy;
 	HBox hbox;
 
+	public View() {
+		
+	}
+	
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {

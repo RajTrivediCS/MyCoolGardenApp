@@ -1,4 +1,5 @@
-package GardenMenus;
+package InitialPackage;
+import java.util.*;
 
 public class Plant {
 	String name;
@@ -8,13 +9,13 @@ public class Plant {
 	String plantWater;
 	String plantSoil;
 	
-	Plant(String name, double xLoc, double yLoc){
+	public Plant(String name, double xLoc, double yLoc){
 		this.name = name;
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
 		//make another constructor in the future
 	}
-	Plant(String name, double xLoc, double yLoc, String pLight, String pSoil){
+	public Plant(String name, double xLoc, double yLoc, String pLight, String pSoil){
 		this.name = name;
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
@@ -27,5 +28,24 @@ public class Plant {
 	public void updatePlantLocation(double gX, double gY) {
 		xLoc = gX;
 		yLoc = gY;
+	}
+	
+	public double getXLoc() {
+		return this.xLoc;
+	}
+	
+	public double getYLoc() {
+		return this.yLoc;
+	}
+	
+	public void setXLoc(double d) {
+		this.xLoc = d;
+	}
+	public void setYLoc(double d) {
+		this.yLoc = d;
+	}
+	
+	public String toString() {
+		return name;
 	}
 }

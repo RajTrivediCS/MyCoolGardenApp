@@ -1,4 +1,4 @@
-package GardenMenus;
+package InitialPackage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -6,13 +6,13 @@ public class PlantImageView extends ImageView{
 	String paneLocation;
 	Plant plant;
 	
-	PlantImageView(Plant plant){
+	public PlantImageView(Plant plant){
 		super();
 		this.setPickOnBounds(true);
 		this.plant = plant;
 	}
 	
-	PlantImageView(Image im){
+	public PlantImageView(Image im){
 		super(im);
 		this.setPickOnBounds(true);
 	}

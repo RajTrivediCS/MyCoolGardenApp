@@ -1,3 +1,4 @@
+package InitialPackage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -7,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
-import GardenMenus.*;
+import Application.*;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,7 +31,7 @@ import javafx.stage.Stage;
  
 public class Controller extends Application  {
 	Model model = new Model();	
-	View view= new View(model.getHotBarPlants());
+	View view = new View(model.hotBarPlants);
 	
 	public ArrayList<Plant> updateGarden(){
 		ArrayList<Plant>gard = new ArrayList<Plant>();

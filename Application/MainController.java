@@ -1,4 +1,4 @@
-package GardenMenus;
+package Application;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -7,19 +7,18 @@ import javafx.stage.Stage;
 
 public class MainController extends Application {
 
-	MainScene mainScene;
-
+	MainView mainView;
 	@Override
 	public void start(Stage stage) throws Exception {
-		mainScene = new MainScene(stage);
+		mainView = new MainView(stage);
 		EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
             public void handle(ActionEvent e) 
             { 
-            	stage.setScene(new SceneContainer(stage).getSceneMap().get(SceneName.SCENE1));
+            	stage.setScene(new ViewsContainer(stage).getSceneMap().get(ViewName.SCENE1));
             } 
         };
-        mainScene.newGardenButton.setOnAction(event);
-        mainScene.loadGardenButton.setOnAction(event);
+        mainView.newGardenButton.setOnAction(event);
+        mainView.loadGardenButton.setOnAction(event);
 		
 	}
 	
