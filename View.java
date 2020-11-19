@@ -82,7 +82,7 @@ public class View {
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {
-			Image im1 = new Image(getClass().getResourceAsStream("img/"+i+".png"));
+			Image im1 = new Image(getClass().getResourceAsStream("img/"+p.name+".png"));
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(im1); //write function to change to a plant later
 	    	piv.setPreserveRatio(true);
