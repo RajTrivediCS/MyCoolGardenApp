@@ -2,7 +2,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
+import MultipleScenesHandler.SceneContainer;
+import MultipleScenesHandler.SceneName;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -28,10 +31,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
 public class View {
+	Controller controller;
+	
 	ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;
 	ArrayList<PlantImageView> plantsInGarden = new ArrayList<PlantImageView>();
 	
@@ -39,17 +45,22 @@ public class View {
 	GridPane gp;
 	FlowPane fp;
 	BorderPane bp;
+	BorderPane wp;
 	ScrollPane sp;
-	MenuButton sortBy;
 	Button nameButton;
+	Button newButton;
+	Button loadButton;
+	Button saveButton;
 	Button soilButton;
 	Button sunButton;
 	HBox hbox;
 	VBox vbox;
+	Map<SceneName,Scene> sceneMap;
+
 	//Button newGardenButton; FIXME: Move this to a different Scene/View
 	//Button loadGardenButton;
 	public void buttonMaker(GridPane grid) {		
-    	sortBy = new MenuButton("Sort by");
+    	MenuButton sortBy = new MenuButton("Sort by");
     	
     	nameButton = new Button("Name");
 		CustomMenuItem nameItem = new CustomMenuItem(nameButton);
@@ -72,11 +83,34 @@ public class View {
 		Menu fileMenu = new Menu("File");
 		Menu viewMenu = new Menu("View");
 		
+		newButton = new Button("New");
+		CustomMenuItem newItem = new CustomMenuItem(newButton);
+		fileMenu.getItems().add(newItem);
+		
+		loadButton = new Button("Load");
+		CustomMenuItem loadItem = new CustomMenuItem(loadButton);
+		fileMenu.getItems().add(loadItem);
+		
+		saveButton = new Button("Save");
+		CustomMenuItem saveItem = new CustomMenuItem(saveButton);
+		fileMenu.getItems().add(saveItem);
+		
+		
+		Button togglegridButton = new Button("Toggle Grid");
+		CustomMenuItem togglegridItem = new CustomMenuItem(togglegridButton);
+		viewMenu.getItems().add(togglegridItem);
+		
+		Button togglebackgroundButton = new Button("Toggle Background");
+		CustomMenuItem togglebackgroundItem = new CustomMenuItem(togglebackgroundButton);
+		viewMenu.getItems().add(togglebackgroundItem);
+		
 		MenuBar topBar = new MenuBar();
 		
 		topBar.getMenus().add(fileMenu);
 		topBar.getMenus().add(viewMenu);
 		vbox = new VBox(topBar);
+		
+		
 	}
 	
 	public void plantIVAdder(ArrayList<Plant> plants) {
@@ -165,6 +199,25 @@ public class View {
     	}
 	}
 	
+	/*public void openWindow() {
+		Stage newWindow = new Stage();
+		sceneMap = new SceneContainer(newWindow).getSceneMap();
+		controller.start(newWindow);
+	}*/
+	
+	public void saveGarden() {
+		Stage fileDirectory = new Stage();
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Choose Save Location");
+		fileChooser.showOpenDialog(fileDirectory);
+	}
+	
+	public void loadGarden() {
+		Stage fileDirectory = new Stage();
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Resource File");
+		fileChooser.showOpenDialog(fileDirectory);
+	}
 	
 	/**
 	 * Simple constructor that sets initial imageview and controller.
@@ -206,13 +259,24 @@ public class View {
     	bp.setTop(vbox);
     	bp.setCenter(fp);
     	bp.setLeft(sp);
+    	
+    	/*wp = new BorderPane();
+    	wp.setTop(vbox);
+    	wp.setCenter(fp);
+    	wp.setLeft(sp);*/
 	}
 
 
 
 	public Parent getBP() {
 		return this.bp;
+		
 	}
+	
+	/*public Parent getWP() {
+		return this.wp;
+		
+	}*/
 
 
 
