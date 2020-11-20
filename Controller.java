@@ -122,7 +122,7 @@ public class Controller extends Application  {
 		});
 	}
 	
-	/*public void fileButtonHandler() {
+	/*public void fileButtonHandler() { FIXME: move somewhere else
 		view.newButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	Stage newWindow = new Stage();

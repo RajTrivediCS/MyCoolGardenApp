@@ -1,18 +1,13 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-<<<<<<< HEAD
-import java.util.List;
+
 import java.util.Map;
 
-import MultipleScenesHandler.SceneContainer;
 import MultipleScenesHandler.SceneName;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
-=======
 
->>>>>>> 77b057542fbc613a235daa650e25552a0e9dddfc
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Menu;
@@ -29,13 +24,10 @@ import javafx.scene.layout.HBox;
 
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-<<<<<<< HEAD
-import javafx.scene.paint.Color;
+
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-=======
 
->>>>>>> 77b057542fbc613a235daa650e25552a0e9dddfc
 
 
 public class View {
