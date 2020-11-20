@@ -129,10 +129,9 @@ public class Controller extends Application  {
 		});
 	}
 	
-	public void fileButtonHandler() {
+	/*public void fileButtonHandler() {
 		view.newButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	//view.openWindow();
 		    	Stage newWindow = new Stage();
 		    	sceneMap = new SceneContainer(newWindow).getSceneMap();
 				sortButtonHandler();
@@ -157,7 +156,7 @@ public class Controller extends Application  {
 		       view.saveGarden(); 
 		    }
 		});
-	}
+	}*/
 	
 
 	
@@ -165,7 +164,7 @@ public class Controller extends Application  {
 	public void start(Stage stage) {
 		sceneMap = new SceneContainer(stage).getSceneMap();
 		sortButtonHandler();
-		fileButtonHandler();
+		//fileButtonHandler();
 	    for(PlantImageView v : view.sideView) {
 			setHandlerForDrag(v);
 	    	setHandlerForPress(v);
