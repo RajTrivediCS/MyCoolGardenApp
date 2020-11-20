@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+<<<<<<< HEAD
 import java.util.List;
 import java.util.Map;
 
@@ -8,9 +9,10 @@ import MultipleScenesHandler.SceneContainer;
 import MultipleScenesHandler.SceneName;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
+=======
+
+>>>>>>> 77b057542fbc613a235daa650e25552a0e9dddfc
 import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Menu;
@@ -19,20 +21,21 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
+
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+<<<<<<< HEAD
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+=======
+
+>>>>>>> 77b057542fbc613a235daa650e25552a0e9dddfc
 
 
 public class View {
@@ -116,7 +119,7 @@ public class View {
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {
-			Image im1 = new Image(getClass().getResourceAsStream("img/"+i+".png"));
+			Image im1 = new Image(getClass().getResourceAsStream("img/"+p.name+".png"));
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(im1); //write function to change to a plant later
 	    	piv.setPreserveRatio(true);
