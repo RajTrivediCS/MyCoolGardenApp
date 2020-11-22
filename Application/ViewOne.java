@@ -11,9 +11,11 @@ public class ViewOne {
 	FlowPane fp;
 	Button uploadGardenImageButton;
 	Scene scene;
+	ControllerOne controllerOne;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
 	public ViewOne(Stage stage){
+		controllerOne = new ControllerOne(stage);
 		fp = new FlowPane();
     	fp.setStyle("-fx-background-color: #BFFF00");
     	uploadGardenImageButton = new Button("Upload Garden Image");
@@ -21,13 +23,7 @@ public class ViewOne {
     	uploadGardenImageButton.setTranslateY(300);
     	uploadGardenImageButton.setPrefHeight(75);
     	uploadGardenImageButton.setPrefWidth(200);
-    	EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() { 
-            public void handle(ActionEvent e) 
-            { 
-            	stage.setScene(new ViewsContainer(stage).getSceneMap().get(ViewName.SCENE2));
-            } 
-        };
-        uploadGardenImageButton.setOnAction(event);
+    	uploadGardenImageButton.setOnMouseClicked(e -> controllerOne.handleUploadGardenButtonPress(e));
     	fp.getChildren().add(uploadGardenImageButton);
     	scene = new Scene(fp,WIDTH,HEIGHT);
     	stage.setScene(scene);

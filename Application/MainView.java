@@ -10,9 +10,13 @@ public class MainView {
 	FlowPane fp;
 	Button newGardenButton; 
 	Button loadGardenButton;
+	MainController mainController;
+	Scene scene;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
 	public MainView(Stage stage) {
+		mainController = new MainController(stage);
+		
 		fp = new FlowPane();
 		fp.setStyle("-fx-background-color: #BFFF00");
     	newGardenButton = new Button(" (+) New Garden");
@@ -25,10 +29,16 @@ public class MainView {
     	newGardenButton.setPrefWidth(150);
     	loadGardenButton.setPrefHeight(50);
     	loadGardenButton.setPrefWidth(150);
+    	newGardenButton.setOnMouseClicked(e-> mainController.handleNewGardenButtonPress(e));
+    	loadGardenButton.setOnMouseClicked(e-> mainController.handleLoadGardenButtonPress(e));
     	fp.getChildren().add(newGardenButton);
     	fp.getChildren().add(loadGardenButton);
-    	Scene scene = new Scene(fp,WIDTH,HEIGHT);
+    	scene = new Scene(fp,WIDTH,HEIGHT);
     	stage.setScene(scene);
     	stage.show();
+	}
+	
+	public Scene getScene() {
+		return scene;
 	}
 }
