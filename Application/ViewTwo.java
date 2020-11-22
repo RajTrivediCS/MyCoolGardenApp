@@ -21,6 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 
@@ -44,6 +45,9 @@ public class ViewTwo {
 	Button nameButton;
 	Button soilButton;
 	Button sunButton;
+	Button newButton;
+	Button loadButton;
+	Button saveButton;
 	HBox hbox;
 	VBox vbox;
 	Scene scene;
@@ -78,37 +82,38 @@ public class ViewTwo {
 		grid.getChildren().add(sortBy);
 	}
 	
-	public void topMenuMaker() {
-		// Undo and Redo Image View
-		undoImgView = new ImageView(undoImage);
-		redoImgView = new ImageView(redoImage);
-		undoImgView.setPreserveRatio(true);
-		redoImgView.setPreserveRatio(true);
-		undoImgView.setFitWidth(100);
-		undoImgView.setFitHeight(20);
-		redoImgView.setFitWidth(100);
-		redoImgView.setFitHeight(20);
 
-		// Creates items to be added for a Menu
-		undoItem = new MenuItem("Undo Item");
-		redoItem = new MenuItem("Redo Item");
-		 
-		fileMenu = new Menu("File");
-		viewMenu = new Menu("View");
-		undoMenu = new Menu("",undoImgView);
-		redoMenu = new Menu("",redoImgView);
-			
-		// Adds items for specific Menu
-		undoMenu.getItems().add(undoItem);
-	    redoMenu.getItems().add(redoItem);
+	public void topMenuMaker() {
+		Menu fileMenu = new Menu("File");
+		Menu viewMenu = new Menu("View");
+		
+		newButton = new Button("New");
+		CustomMenuItem newItem = new CustomMenuItem(newButton);
+		fileMenu.getItems().add(newItem);
+		
+		loadButton = new Button("Load");
+		CustomMenuItem loadItem = new CustomMenuItem(loadButton);
+		fileMenu.getItems().add(loadItem);
+		
+		saveButton = new Button("Save");
+		CustomMenuItem saveItem = new CustomMenuItem(saveButton);
+		fileMenu.getItems().add(saveItem);
+		
+		
+		Button togglegridButton = new Button("Toggle Grid");
+		CustomMenuItem togglegridItem = new CustomMenuItem(togglegridButton);
+		viewMenu.getItems().add(togglegridItem);
+		
+		Button togglebackgroundButton = new Button("Toggle Background");
+		CustomMenuItem togglebackgroundItem = new CustomMenuItem(togglebackgroundButton);
+		viewMenu.getItems().add(togglebackgroundItem);
 		
 		MenuBar topBar = new MenuBar();
 		
 		topBar.getMenus().add(fileMenu);
 		topBar.getMenus().add(viewMenu);
-		topBar.getMenus().add(undoMenu);
-		topBar.getMenus().add(redoMenu);
 		vbox = new VBox(topBar);
+		
 	}
 	
 	public void plantIVAdder(ArrayList<Plant> plants) {
@@ -124,6 +129,7 @@ public class ViewTwo {
 	    	piv.setPaneLoc("grid");
 			sideView.add(piv);
 	    	gp.add(piv, 0, i+1);
+	    	controllerTwo.setHandlerForPress(this, piv);
 	    	i++;
 	    }
 	}
@@ -197,6 +203,27 @@ public class ViewTwo {
     	}
 	}
 	
+	public void saveGarden() {
+		Stage fileDirectory = new Stage();
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Choose Save Location");
+		fileChooser.showOpenDialog(fileDirectory);
+	}
+	
+	public void loadGarden() {
+		Stage fileDirectory = new Stage();
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Resource File");
+		fileChooser.showOpenDialog(fileDirectory);
+	}
+	
+
+	/***
+	 * Empty Constructor to ensure proper communication between ViewTwo and ControllerTwo class
+	 */
+	public ViewTwo() {
+		
+	}
 	
 	/**
 	 * Simple constructor that sets initial imageview and controller.
@@ -226,11 +253,6 @@ public class ViewTwo {
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
     	stage.show();
-	}
-
-
-
-	public ViewTwo() {
 	}
 
 	public Parent getBP() {

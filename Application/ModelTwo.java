@@ -1,5 +1,6 @@
 package Application;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,14 +25,13 @@ public class ModelTwo implements java.io.Serializable  {
 	}
 	
 	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException {
-		List<Integer> lineNumbers = Arrays.asList(1,2,3,4,5,6,7,8,9,10,11,12,13,14);
+		Scanner sc = new Scanner(new File(filename));
 		ArrayList<Plant> plantsList = new ArrayList<>();
-		ListIterator<Integer> itr = lineNumbers.listIterator();
-		while(itr.hasNext()) {
-			int index = itr.next();
-			String currLine = Files.readAllLines(Paths.get(filename)).get(index-1);
+		while(sc.hasNextLine()) {
+			String currLine = sc.nextLine();
+			System.out.println(currLine);
 			String[] parts = currLine.split("-");
-			plantsList.add(new Plant(parts[NAMESPOT],0,index-1,parts[SUNSPOT],parts[SOILSPOT]));
+			plantsList.add(new Plant(parts[NAMESPOT],0,0,parts[SUNSPOT],parts[SOILSPOT]));
 		}
 		return plantsList;
 	}

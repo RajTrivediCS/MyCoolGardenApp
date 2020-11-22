@@ -47,7 +47,7 @@ public class ControllerTwo {
 	}
 	
 	//replaces image that was in the sidebar with an exact copy
-	public void handleReplaceImgView(GridPane grid, PlantImageView v) {
+	public void handleReplaceImgView(ViewTwo view, GridPane grid, PlantImageView v) {
 		Image im = v.getImage();
 		PlantImageView iv = new PlantImageView(v.plant);
 		iv.setImage(im);
@@ -56,7 +56,7 @@ public class ControllerTwo {
 		iv.setPreserveRatio(true);
     	iv.setFitHeight(100);
     	setHandlerForDrag(iv);
-    	setHandlerForPress(iv);
+     	setHandlerForPress(view,iv);
     	int i = grid.getRowIndex(v);
 		grid.add(iv, 0, i);
 		iv.setPaneLoc("grid");
@@ -82,11 +82,13 @@ public class ControllerTwo {
 		v.plant.setYLoc(v.getTranslateY());
 	}	
 	
-	public void enter(MouseEvent event, PlantImageView v) {
+	public void enter(ViewTwo view, MouseEvent event, PlantImageView v) {
+		System.out.println(v.getPaneLoc());
 		if(v.getPaneLoc().equals("grid")) {
+			setHandlerForDrag(v);
 			view.fp.getChildren().add(v);
 			view.sideView.remove(v);
-			handleReplaceImgView(view.gp, v);
+			handleReplaceImgView(view,view.gp, v);
 			view.plantsInGarden.add(v);
 		}
 	}
@@ -96,8 +98,8 @@ public class ControllerTwo {
 		model.garden.setGardensPlants(updateGarden());
 	}
 	
-	public void setHandlerForPress(PlantImageView v) {
-		v.setOnMousePressed(event->enter(event, v));
+	public void setHandlerForPress(ViewTwo view, PlantImageView v) {
+		v.setOnMousePressed(event->enter(view, event, v));
 	}
 	
 	//sorts the sideView on click
