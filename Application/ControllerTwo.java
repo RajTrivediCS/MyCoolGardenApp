@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class ControllerTwo {
 	ViewTwo view;
 	ModelTwo model;
-	
+
 	public ControllerTwo() {
 		model = new ModelTwo();
 		view = new ViewTwo();
@@ -83,7 +83,6 @@ public class ControllerTwo {
 	}	
 	
 	public void enter(ViewTwo view, MouseEvent event, PlantImageView v) {
-		System.out.println(v.getPaneLoc());
 		if(v.getPaneLoc().equals("grid")) {
 			setHandlerForDrag(v);
 			view.fp.getChildren().add(v);
@@ -102,7 +101,6 @@ public class ControllerTwo {
 		v.setOnMousePressed(event->enter(view, event, v));
 	}
 	
-	//sorts the sideView on click
 	public void sortButtonHandler(ViewTwo view) {
 		view.nameButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
@@ -120,4 +118,33 @@ public class ControllerTwo {
 		    }
 		});
 	}
+	
+	/*public void fileButtonHandler() { FIXME: move somewhere else
+		view.newButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	Stage newWindow = new Stage();
+		    	sceneMap = new SceneContainer(newWindow).getSceneMap();
+				sortButtonHandler();
+				fileButtonHandler();
+			    for(PlantImageView v : view.sideView) {
+					setHandlerForDrag(v);
+			    	setHandlerForPress(v);
+			    }
+			    
+			    Scene scene = new Scene(view.getBP(), 800, 600);
+			    newWindow.setScene(scene);
+			    newWindow.show();
+		    }
+		});
+		view.loadButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		    	view.loadGarden();
+		    }
+		});
+		view.saveButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		       view.saveGarden(); 
+		    }
+		});
+	}*/
 }
