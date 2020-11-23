@@ -116,7 +116,6 @@ public class ModelTwo implements java.io.Serializable  {
 		System.out.println("Deletion successful");
 	}
 	
-	
 	public void handleShowTrash() {
 		System.out.println("You selected the trashbin. Here's what's inside: ");
 		for(Plant p : trashBin) {
