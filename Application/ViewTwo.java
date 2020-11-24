@@ -222,7 +222,6 @@ public class ViewTwo {
 	 * Empty Constructor to ensure proper communication between ViewTwo and ControllerTwo class
 	 */
 	public ViewTwo() {
-		
 	}
 	
 	/**
@@ -252,14 +251,13 @@ public class ViewTwo {
     	bp.setLeft(sp);
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
+    	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
     	stage.show();
 	}
-
+	
 	public Parent getBP() {
 		return this.bp;
 	}
-
-
 
 	public TilePane getTP() {
 		return this.tp;

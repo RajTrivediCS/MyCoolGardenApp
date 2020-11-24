@@ -132,7 +132,7 @@ public class ModelTwo implements java.io.Serializable  {
 		return this.hotBarPlants;
 	}
 
-	public Object getGarden() {
+	public Garden getGarden() {
 		return this.garden;
 	}
 }

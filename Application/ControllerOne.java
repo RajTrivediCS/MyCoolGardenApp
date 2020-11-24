@@ -16,8 +16,7 @@ public class ControllerOne {
 	}
 
 	public void handleUploadGardenButtonPress(MouseEvent e) {
-		// TODO Auto-generated method stub
-		stage.setScene(viewTwo.getScene());
-		
+		// Earlier Version...
+		 stage.setScene(viewTwo.getScene());
 	}
 }

@@ -1,5 +1,6 @@
 package Application;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -13,29 +14,34 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class ControllerTwo {
 	ViewTwo view;
 	ModelTwo model;
-
+	FileChooser fileChooserSave;
+	File fileToSave;
+	
 	public ControllerTwo() {
 		model = new ModelTwo();
 		view = new ViewTwo();
+		fileChooserSave = new FileChooser();
 	}
-	public void serializeGarden(ModelTwo m) {
+	
+	public void serializeGarden(File file) {
 		try {
-			FileOutputStream fos = new FileOutputStream("tempdata.ser");
+			FileOutputStream fos = new FileOutputStream(file);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(m.garden);
+			oos.writeObject(model.garden);
 			oos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public Garden deserializeGarden() {
+	public Garden deserializeGarden(File file) {
 		try {
-			FileInputStream fis = new FileInputStream("tempdata.ser");
+			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			Garden garden = (Garden)ois.readObject();
 			ois.close();
@@ -118,33 +124,10 @@ public class ControllerTwo {
 		    }
 		});
 	}
-	
-	/*public void fileButtonHandler() { FIXME: move somewhere else
-		view.newButton.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override public void handle(ActionEvent e) {
-		    	Stage newWindow = new Stage();
-		    	sceneMap = new SceneContainer(newWindow).getSceneMap();
-				sortButtonHandler();
-				fileButtonHandler();
-			    for(PlantImageView v : view.sideView) {
-					setHandlerForDrag(v);
-			    	setHandlerForPress(v);
-			    }
-			    
-			    Scene scene = new Scene(view.getBP(), 800, 600);
-			    newWindow.setScene(scene);
-			    newWindow.show();
-		    }
-		});
-		view.loadButton.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override public void handle(ActionEvent e) {
-		    	view.loadGarden();
-		    }
-		});
-		view.saveButton.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override public void handle(ActionEvent e) {
-		       view.saveGarden(); 
-		    }
-		});
-	}*/
+
+	public void handleSaveButton(Stage stage) {
+		fileChooserSave.setTitle("Save Garden");
+		fileToSave = fileChooserSave.showSaveDialog(stage);
+		serializeGarden(fileToSave);
+	}
 }
