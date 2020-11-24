@@ -3,6 +3,12 @@ package Application;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
@@ -11,6 +17,8 @@ public class MainView {
 	Button newGardenButton; 
 	Button loadGardenButton;
 	MainController mainController;
+	BackgroundImage backgroundImage = new BackgroundImage(new Image("img/MainMenu.png"),BackgroundRepeat.NO_REPEAT, 
+			BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 	Scene scene;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
@@ -18,7 +26,7 @@ public class MainView {
 		mainController = new MainController(stage);
 		
 		fp = new FlowPane();
-		fp.setStyle("-fx-background-color: #BFFF00");
+		fp.setBackground(new Background(backgroundImage));
     	newGardenButton = new Button(" (+) New Garden");
     	newGardenButton.setTranslateX(500);
     	newGardenButton.setTranslateY(210);
