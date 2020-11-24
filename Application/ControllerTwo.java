@@ -118,33 +118,4 @@ public class ControllerTwo {
 		    }
 		});
 	}
-	
-	/*public void fileButtonHandler() { FIXME: move somewhere else
-		view.newButton.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override public void handle(ActionEvent e) {
-		    	Stage newWindow = new Stage();
-		    	sceneMap = new SceneContainer(newWindow).getSceneMap();
-				sortButtonHandler();
-				fileButtonHandler();
-			    for(PlantImageView v : view.sideView) {
-					setHandlerForDrag(v);
-			    	setHandlerForPress(v);
-			    }
-			    
-			    Scene scene = new Scene(view.getBP(), 800, 600);
-			    newWindow.setScene(scene);
-			    newWindow.show();
-		    }
-		});
-		view.loadButton.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override public void handle(ActionEvent e) {
-		    	view.loadGarden();
-		    }
-		});
-		view.saveButton.setOnAction(new EventHandler<ActionEvent>() {
-		    @Override public void handle(ActionEvent e) {
-		       view.saveGarden(); 
-		    }
-		});
-	}*/
 }
