@@ -203,21 +203,6 @@ public class ViewTwo {
     	}
 	}
 	
-	public void saveGarden() {
-		Stage fileDirectory = new Stage();
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Choose Save Location");
-		fileChooser.showOpenDialog(fileDirectory);
-	}
-	
-	public void loadGarden() {
-		Stage fileDirectory = new Stage();
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open Resource File");
-		fileChooser.showOpenDialog(fileDirectory);
-	}
-	
-
 	/***
 	 * Empty Constructor to ensure proper communication between ViewTwo and ControllerTwo class
 	 */
@@ -255,6 +240,11 @@ public class ViewTwo {
     	stage.show();
 	}
 	
+	/***
+	 * Overloaded constructor for Deserializing Garden object and set it on Stage
+	 * @param stage Stage
+	 * @param garden Garden to be deserialize
+	 */
 	public ViewTwo(Stage stage, Garden garden) {
 		controllerTwo = new ControllerTwo();
 		plants = model.getHotBarPlants();
@@ -278,6 +268,8 @@ public class ViewTwo {
 			piv.setImage(plantImage);
 	    	piv.setPreserveRatio(true);
 	    	piv.setFitHeight(100);
+	    	piv.setLayoutX(piv.plant.getXLoc());
+	    	piv.setLayoutY(piv.plant.getYLoc());
 	    	fp.getChildren().add(piv);
     	}
     	bp = new BorderPane();

@@ -31,9 +31,6 @@ public class MainController {
 		fileChooser.setTitle("Load Garden");
 		fileToLoad = fileChooser.showOpenDialog(stage);
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
-		for(Plant p: userSavedGarden.gardensPlants) {
-			System.out.println(p.name + " " + p.getXLoc() + " " + p.getYLoc());
-		}
 		viewTwo = new ViewTwo(stage,userSavedGarden);
 	}
 
@@ -46,10 +43,6 @@ public class MainController {
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			Garden garden = (Garden)ois.readObject();
-			System.out.println("Deserialized Plants: " + garden.gardensPlants.size());
-			for(Plant p: garden.gardensPlants) {
-				System.out.println(p.name);
-			}
 			ois.close();
 			return garden;
 		} catch (Exception e) {

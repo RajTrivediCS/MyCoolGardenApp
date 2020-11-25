@@ -114,12 +114,6 @@ public class ControllerTwo {
 	}
 
 	public void handleSaveButton(Stage stage) {
-		System.out.println();
-		System.out.println("Plants to be serialized: " + model.garden.gardensPlants.size());
-		for(Plant p: model.garden.gardensPlants) {
-			System.out.println(p.name + " " + p.getXLoc() + " " + p.getYLoc());
-		}
-		System.out.println();
 		fileChooserSave.setTitle("Save Garden");
 		fileChooserSave.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToSave = fileChooserSave.showSaveDialog(stage);
