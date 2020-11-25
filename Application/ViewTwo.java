@@ -183,14 +183,13 @@ public class ViewTwo {
 	
 	//uses sortmode to sort the sideview plant image views ArrayList
 	public void sideViewSortHelper(String sortMode) { // convert to enum in the future
-		if (sortMode.equals("name")) {
-			nameSort();
-		}
-		else if (sortMode.equals("sun")) {
-			sunSort();
-		}
-		else if (sortMode.equals("soil")) {
-			soilSort();
+		switch(sortMode) {
+			case "name": nameSort();
+			break;
+			case "sun" : sunSort();
+			break;
+			case "soil": soilSort();
+			break;
 		}
 	}
 	

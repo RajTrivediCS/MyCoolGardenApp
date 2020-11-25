@@ -37,59 +37,6 @@ public class ModelTwo implements java.io.Serializable  {
 		return plantsList;
 	}
 	
-	public void sortFlowersByCriteria(int criteria) {
-		if(criteria == NAMESPOT)
-			sortFlowersByName(hotBarPlants);
-		else if(criteria == SUNSPOT)
-			sortFlowersByLight(hotBarPlants);
-		else if(criteria == SOILSPOT)
-			sortFlowersBySoil(hotBarPlants);
-		else
-			System.out.println("Invalid criteria to sort flowers...");
-	}
-	
-	public void sortFlowersByName(List<Plant> flowers) {
-			Collections.sort(flowers,new Comparator<Plant>(){
-			@Override
-			public int compare(Plant p1, Plant p2) {
-				return p1.name.compareTo(p2.name);
-			}
-			
-		});
-		
-	}
-	
-	public void sortFlowersByLight(List<Plant> flowers) {
-		Collections.sort(flowers,new Comparator<Plant>(){
-			@Override
-			public int compare(Plant p1, Plant p2) {
-				int cmp = p1.plantLight.compareTo(p2.plantLight);
-				if(cmp == 0) {
-					return p1.name.compareTo(p2.name);
-				}
-				else {
-					return cmp;
-				}
-			}
-			
-		});
-	}
-	public void sortFlowersBySoil(List<Plant> flowers) {
-		Collections.sort(flowers,new Comparator<Plant>(){
-			@Override
-			public int compare(Plant p1, Plant p2) {
-				int cmp = p1.plantSoil.compareTo(p2.plantSoil);
-				if(cmp == 0) {
-					return p1.name.compareTo(p2.name);
-				}
-				else {
-					return cmp;
-				}
-			}
-		});
-	}
-
-	
 	public void addToGarden(double gX, double gY, Plant tba) {
 		garden.addPlant(tba, gX, gY);
 		//add more info as we work more with the new View
