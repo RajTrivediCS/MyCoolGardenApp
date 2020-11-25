@@ -255,6 +255,41 @@ public class ViewTwo {
     	stage.show();
 	}
 	
+	public ViewTwo(Stage stage, Garden garden) {
+		controllerTwo = new ControllerTwo();
+		plants = model.getHotBarPlants();
+		topMenuMaker();
+    	gp = new GridPane();
+    	gp.setMaxWidth(1);
+    	gp.setStyle("-fx-background-color: #ADD8E6");
+		buttonMaker(gp);
+		plantIVAdder(plants);
+    	hbox = new HBox();
+    	hbox.getChildren().add(gp);
+    	sp = new ScrollPane();
+    	sp.setFitToWidth(true);
+    	sp.setContent(hbox);
+    	fp = new FlowPane();
+    	fp.setStyle("-fx-background-color: #BFFF00");
+    	fp.getChildren().add(vbox);
+    	for(Plant p: garden.gardensPlants) {
+    		Image plantImage = new Image("img/"+p.name+".png");
+			PlantImageView piv = new PlantImageView(p);
+			piv.setImage(plantImage);
+	    	piv.setPreserveRatio(true);
+	    	piv.setFitHeight(100);
+	    	fp.getChildren().add(piv);
+    	}
+    	bp = new BorderPane();
+    	bp.setTop(vbox);
+    	bp.setCenter(fp);
+    	bp.setLeft(sp);
+    	scene = new Scene(bp,WIDTH,HEIGHT);
+    	stage.setScene(scene);
+    	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
+    	stage.show();
+	}
+	
 	public Parent getBP() {
 		return this.bp;
 	}

@@ -117,7 +117,7 @@ public class ControllerTwo {
 		System.out.println();
 		System.out.println("Plants to be serialized: " + model.garden.gardensPlants.size());
 		for(Plant p: model.garden.gardensPlants) {
-			System.out.println(p.name);
+			System.out.println(p.name + " " + p.getXLoc() + " " + p.getYLoc());
 		}
 		System.out.println();
 		fileChooserSave.setTitle("Save Garden");

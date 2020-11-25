@@ -38,7 +38,7 @@ public class MainView {
     	loadGardenButton.setPrefHeight(50);
     	loadGardenButton.setPrefWidth(150);
     	newGardenButton.setOnMouseClicked(e-> mainController.handleNewGardenButtonPress(e));
-    	loadGardenButton.setOnMouseClicked(e-> mainController.handleLoadGardenButtonPress(e));
+    	loadGardenButton.setOnMouseClicked(e-> mainController.handleLoadGardenButton(e));
     	fp.getChildren().add(newGardenButton);
     	fp.getChildren().add(loadGardenButton);
     	scene = new Scene(fp,WIDTH,HEIGHT);

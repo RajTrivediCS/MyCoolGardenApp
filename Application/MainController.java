@@ -20,16 +20,21 @@ public class MainController {
 	FileChooser fileChooser;
 	Desktop desktop;
 	File fileToLoad;
+	ViewTwo viewTwo;
 	public MainController(Stage stage) {
 		this.stage = stage;
 		fileChooser = new FileChooser();
 		viewOne = new ViewOne(stage);
 		desktop = Desktop.getDesktop();
 	}
-	public void handleLoadGardenButtonPress(MouseEvent e) {
+	public void handleLoadGardenButton(MouseEvent e) {
 		fileChooser.setTitle("Load Garden");
 		fileToLoad = fileChooser.showOpenDialog(stage);
-		deserializeGarden(fileToLoad);
+		Garden userSavedGarden = deserializeGarden(fileToLoad);
+		for(Plant p: userSavedGarden.gardensPlants) {
+			System.out.println(p.name + " " + p.getXLoc() + " " + p.getYLoc());
+		}
+		viewTwo = new ViewTwo(stage,userSavedGarden);
 	}
 
 	public void handleNewGardenButtonPress(MouseEvent e) {
