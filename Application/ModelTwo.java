@@ -10,6 +10,7 @@ public class ModelTwo implements java.io.Serializable  {
 	static final int NAMESPOT = 0;
 	static final int SUNSPOT = 1;
 	static final int SOILSPOT = 2;
+	static final int SIZESPOT = 3;
 	Garden garden;
 	ArrayList<Plant> trashBin;
 	ArrayList<Plant> hotBarPlants;
@@ -31,7 +32,7 @@ public class ModelTwo implements java.io.Serializable  {
 			String currLine = sc.nextLine();
 			System.out.println(currLine);
 			String[] parts = currLine.split("-");
-			plantsList.add(new Plant(parts[NAMESPOT],0,0,parts[SUNSPOT],parts[SOILSPOT]));
+			plantsList.add(new Plant(parts[NAMESPOT],0,0,parts[SUNSPOT],parts[SOILSPOT],parts[SIZESPOT]));
 		}
 		return plantsList;
 	}

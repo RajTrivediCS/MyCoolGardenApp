@@ -8,6 +8,7 @@ public class Plant {
 	String plantLight;
 	String plantWater;
 	String plantSoil;
+	String plantSize;
 	
 	public Plant(String name, double xLoc, double yLoc){
 		this.name = name;
@@ -15,14 +16,13 @@ public class Plant {
 		this.yLoc = yLoc;
 		//make another constructor in the future
 	}
-	public Plant(String name, double xLoc, double yLoc, String pLight, String pSoil){
+	public Plant(String name, double xLoc, double yLoc, String pLight, String pSoil, String pSize){
 		this.name = name;
 		this.xLoc = xLoc;
 		this.yLoc = yLoc;
 		this.plantLight = pLight;
 		this.plantSoil = pSoil;
-		
-		//make another constructor in the future
+		this.plantSize = pSize;
 	}
 	
 	public void updatePlantLocation(double gX, double gY) {

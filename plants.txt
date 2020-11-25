@@ -1,31 +1,31 @@
-autumn bentgrass-any sun-clay or loamy soil
-bushy bluestem-full or partial sun-clay or loamy or sandy soil
-crossvine-full or partial sun-clay or loamy or sandy soil
-devil's walking stick-full or partial sun-clay or loamy or sandy soil
-ebony spleenwart-any sun-clay or loamy or sandy soil
-fern (sensitive)-any sun-clay or loamy or sandy soil
-giant plumegrass-full or partial sun-loamy or sandy soil
-heart leaved aster-partial sun or shade-clay or loamy or sandy soil
-white snakeroot-any sun-clay or loamy or sandy soil
-joe_pye weed-full or partial sun-sandy soil
-tall coneflower-full or partial sun-clay or loamy or sandy soil
-yellow sneezeweed-any sun-clay or loamy or sandy soil
-red chokeberry-full or partial sun-clay or loamy or sandy soil
-purple false foxglove-full sun-sandy soil
-nodding onion-full or partial sun-loamy or sandy soil
-highbush blueberry-any sun-loamy or sandy soil
-windflower-partial sun or shade-loamy or clay or sandy soil
-northern white cedar-full sun-clay or loamy or sandy soil
-fire pink-full or partial sun-loamy soil
-northern red oak-full or partial sun-clay or loamy soil
-flame azalea-partial sun-clay or loamy soil
-sugar maple-any sun-loamy or sandy soil
-leather flower-partial sun or shade-loamy or clay soil
-black huckleberry-partial sun or shade-clay or loamy or sandy soil
-winterberry-any sun-clay or loamy or sandy soil
-phlox-any sun-clay or loamy soil
-bluestem goldenrod-any sun-clay or loamy soil
-hedge nettle-any sun-clay or sandy or loamy soil
-slippery elm-partial sun or shade-clay or loamy or sandy soil
-yellow violet-partial sun or shade-loamy soil
-netted chain fern-partial sun or shade-sandy soil
+autumn bentgrass-any sun-clay or loamy soil-small
+bushy bluestem-full or partial sun-clay or loamy or sandy soil-medium
+crossvine-full or partial sun-clay or loamy or sandy soil-medium
+devil's walking stick-full or partial sun-clay or loamy or sandy soil-medium
+ebony spleenwart-any sun-clay or loamy or sandy soil-small
+fern (sensitive)-any sun-clay or loamy or sandy soil-small
+giant plumegrass-full or partial sun-loamy or sandy soil-medium
+heart leaved aster-partial sun or shade-clay or loamy or sandy soil-small
+white snakeroot-any sun-clay or loamy or sandy soil-small
+joe_pye weed-full or partial sun-sandy soil-medium
+tall coneflower-full or partial sun-clay or loamy or sandy soil-small
+yellow sneezeweed-any sun-clay or loamy or sandy soil-small
+red chokeberry-full or partial sun-clay or loamy or sandy soil-large
+purple false foxglove-full sun-sandy soil-small
+nodding onion-full or partial sun-loamy or sandy soil-small
+highbush blueberry-any sun-loamy or sandy soil-medium
+windflower-partial sun or shade-loamy or clay or sandy soil-small
+northern white cedar-full sun-clay or loamy or sandy soil-large
+fire pink-full or partial sun-loamy soil-small
+northern red oak-full or partial sun-clay or loamy soil-large
+flame azalea-partial sun-clay or loamy soil-small
+sugar maple-any sun-loamy or sandy soil-large
+leather flower-partial sun or shade-loamy or clay soil-small
+black huckleberry-partial sun or shade-clay or loamy or sandy soil-medium
+winterberry-any sun-clay or loamy or sandy soil-medium
+phlox-any sun-clay or loamy soil-small
+bluestem goldenrod-any sun-clay or loamy soil-small
+hedge nettle-any sun-clay or sandy or loamy soil-small
+slippery elm-partial sun or shade-clay or loamy or sandy soil-large
+yellow violet-partial sun or shade-loamy soil-small
+netted chain fern-partial sun or shade-sandy soil-small

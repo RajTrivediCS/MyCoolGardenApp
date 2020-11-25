@@ -49,12 +49,21 @@ public class ControllerTwo {
 	//replaces image that was in the sidebar with an exact copy
 	public void handleReplaceImgView(ViewTwo view, GridPane grid, PlantImageView v) {
 		Image im = v.getImage();
-		PlantImageView iv = new PlantImageView(v.plant);
+		PlantImageView iv = new PlantImageView(new Plant(v.plant.name, v.plant.xLoc, v.plant.yLoc, 
+				v.plant.plantLight, v.plant.plantSoil,v.plant.plantSize)); //change to use getters later
 		iv.setImage(im);
 		Tooltip tooltip =  new Tooltip("This is "+v.plant.name+".\n"+"It needs "+v.plant.plantLight+" and "+v.plant.plantSoil+".");
     	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
-    	iv.setFitHeight(100);
+		//FIXME:USE SIZE SWITCH
+		switch (iv.plant.plantSize) {
+			case "small": iv.setFitHeight(90);
+			break;
+			case "medium": iv.setFitHeight(100);
+			break;
+			case "large": iv.setFitHeight(110);
+			break;
+		}
     	setHandlerForDrag(iv);
      	setHandlerForPress(view,iv);
     	int i = grid.getRowIndex(v);

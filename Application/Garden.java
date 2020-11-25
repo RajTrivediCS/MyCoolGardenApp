@@ -8,7 +8,7 @@ public class Garden {
 	String gardenSoil;
 	
 	public void addPlant(Plant p, double x, double y) {
-		this.gardensPlants.add(new Plant(p.name, x, y, p.plantLight, p.plantSoil));
+		this.gardensPlants.add(new Plant(p.name, x, y, p.plantLight, p.plantSoil, p.plantSize));
 	}
 
 	public void deletePlant(Plant p) {
