@@ -12,3 +12,20 @@ tall coneflower-full or partial sun-clay or loamy or sandy soil
 yellow sneezeweed-any sun-clay or loamy or sandy soil
 red chokeberry-full or partial sun-clay or loamy or sandy soil
 purple false foxglove-full sun-sandy soil
+nodding onion-full or partial sun-loamy or sandy soil
+highbush blueberry-any sun-loamy or sandy soil
+windflower-partial sun or shade-loamy or clay or sandy soil
+northern white cedar-full sun-clay or loamy or sandy soil
+fire pink-full or partial sun-loamy soil
+northern red oak-full or partial sun-clay or loamy soil
+flame azalea-partial sun-clay or loamy soil
+sugar maple-any sun-loamy or sandy soil
+leather flower-partial sun or shade-loamy or clay soil
+black huckleberry-partial sun or shade-clay or loamy or sandy soil
+winterberry-any sun-clay or loamy or sandy soil
+phlox-any sun-clay or loamy soil
+bluestem goldenrod-any sun-clay or loamy soil
+hedge nettle-any sun-clay or sandy or loamy soil
+slippery elm-partial sun or shade-clay or loamy or sandy soil
+yellow violet-partial sun or shade-loamy soil
+netted chain fern-partial sun or shade-sandy soil

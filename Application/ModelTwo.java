@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class ModelTwo implements java.io.Serializable  { 
+public class ModelTwo { 
 	static final int NAMESPOT = 0;
 	static final int SUNSPOT = 1;
 	static final int SOILSPOT = 2;

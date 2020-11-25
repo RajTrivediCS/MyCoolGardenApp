@@ -39,18 +39,6 @@ public class ControllerTwo {
 			e.printStackTrace();
 		}
 	}
-	public Garden deserializeGarden(File file) {
-		try {
-			FileInputStream fis = new FileInputStream(file);
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			Garden garden = (Garden)ois.readObject();
-			ois.close();
-			return garden;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 	
 	//replaces image that was in the sidebar with an exact copy
 	public void handleReplaceImgView(ViewTwo view, GridPane grid, PlantImageView v) {
@@ -95,12 +83,12 @@ public class ControllerTwo {
 			view.sideView.remove(v);
 			handleReplaceImgView(view,view.gp, v);
 			view.plantsInGarden.add(v);
+			model.addToGarden(v.plant.getXLoc(), v.plant.getYLoc(), v.plant);
 		}
 	}
 	
 	public void setHandlerForDrag(PlantImageView iv1) {
 		iv1.setOnMouseDragged(event -> drag(event, iv1));
-		model.garden.setGardensPlants(updateGarden());
 	}
 	
 	public void setHandlerForPress(ViewTwo view, PlantImageView v) {
@@ -126,8 +114,18 @@ public class ControllerTwo {
 	}
 
 	public void handleSaveButton(Stage stage) {
+		System.out.println();
+		System.out.println("Plants to be serialized: " + model.garden.gardensPlants.size());
+		for(Plant p: model.garden.gardensPlants) {
+			System.out.println(p.name);
+		}
+		System.out.println();
 		fileChooserSave.setTitle("Save Garden");
+		fileChooserSave.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToSave = fileChooserSave.showSaveDialog(stage);
+		if(!fileToSave.getName().contains(".")) {
+			fileToSave = new File(fileToSave.getAbsolutePath() + ".ser");
+	    }
 		serializeGarden(fileToSave);
 	}
 }
