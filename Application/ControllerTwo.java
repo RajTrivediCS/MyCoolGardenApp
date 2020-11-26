@@ -18,10 +18,12 @@ import javafx.stage.Stage;
 public class ControllerTwo {
 	ViewTwo view;
 	ModelTwo model;
+	int identifier;
 
 	public ControllerTwo() {
 		model = new ModelTwo();
 		view = new ViewTwo();
+		int identifier = 0;
 	}
 	public void serializeGarden(ModelTwo m) {
 		try {
@@ -55,7 +57,6 @@ public class ControllerTwo {
 		Tooltip tooltip =  new Tooltip("This is "+v.plant.name+".\n"+"It needs "+v.plant.plantLight+" and "+v.plant.plantSoil+".");
     	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
-		//FIXME:USE SIZE SWITCH
 		switch (iv.plant.plantSize) {
 			case "small": iv.setFitHeight(90);
 			break;
@@ -64,7 +65,7 @@ public class ControllerTwo {
 			case "large": iv.setFitHeight(110);
 			break;
 		}
-    	setHandlerForDrag(iv);
+    	setHandlerForDrag(iv, view);
      	setHandlerForPress(view,iv);
     	int i = grid.getRowIndex(v);
 		grid.add(iv, 0, i);
@@ -82,27 +83,36 @@ public class ControllerTwo {
 	}
 	
 	//handle dragging a plant image view to the flow pane
-	public void drag(MouseEvent event, PlantImageView v) {
+	public void drag(ViewTwo view, MouseEvent event, PlantImageView v) {
 		Node n = (Node)event.getSource();
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
 		v.setPaneLoc("flow");
 		v.plant.setXLoc(v.getTranslateX());
 		v.plant.setYLoc(v.getTranslateY());
+		for(PlantImageView p : view.plantsInGarden) {
+			if(p.plant.id == v.plant.id){
+				p.plant.xLoc = v.plant.xLoc;
+				p.plant.yLoc = v.plant.yLoc;
+				System.out.println(p.plant.xLoc);
+			}
+		}
 	}	
 	
 	public void enter(ViewTwo view, MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("grid")) {
-			setHandlerForDrag(v);
+			setHandlerForDrag(v, view);
 			view.fp.getChildren().add(v);
 			view.sideView.remove(v);
 			handleReplaceImgView(view,view.gp, v);
+			v.plant.id = identifier;
 			view.plantsInGarden.add(v);
+			identifier++;
 		}
 	}
 	
-	public void setHandlerForDrag(PlantImageView iv1) {
-		iv1.setOnMouseDragged(event -> drag(event, iv1));
+	public void setHandlerForDrag(PlantImageView iv1, ViewTwo view) {
+		iv1.setOnMouseDragged(event -> drag(view, event, iv1));
 		model.garden.setGardensPlants(updateGarden());
 	}
 	

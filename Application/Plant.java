@@ -9,6 +9,7 @@ public class Plant {
 	String plantWater;
 	String plantSoil;
 	String plantSize;
+	int id;
 	
 	public Plant(String name, double xLoc, double yLoc){
 		this.name = name;
