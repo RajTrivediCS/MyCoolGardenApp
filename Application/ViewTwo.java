@@ -123,7 +123,15 @@ public class ViewTwo {
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(im1); //write function to change to a plant later
 	    	piv.setPreserveRatio(true);
-	    	piv.setFitHeight(100);
+	    	//caseHandler
+	    	switch(p.plantSize) {
+	    		case "small": piv.setFitHeight(90);
+	    		break;
+	    		case "medium": piv.setFitHeight(100);
+	    		break;
+	    		case "large": piv.setFitHeight(110);
+	    		break;
+	    	}
 	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+".");
 	    	Tooltip.install(piv, tooltip);
 	    	piv.setPaneLoc("grid");
@@ -175,14 +183,13 @@ public class ViewTwo {
 	
 	//uses sortmode to sort the sideview plant image views ArrayList
 	public void sideViewSortHelper(String sortMode) { // convert to enum in the future
-		if (sortMode.equals("name")) {
-			nameSort();
-		}
-		else if (sortMode.equals("sun")) {
-			sunSort();
-		}
-		else if (sortMode.equals("soil")) {
-			soilSort();
+		switch(sortMode) {
+			case "name": nameSort();
+			break;
+			case "sun" : sunSort();
+			break;
+			case "soil": soilSort();
+			break;
 		}
 	}
 	

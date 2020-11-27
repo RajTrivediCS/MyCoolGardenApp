@@ -10,6 +10,7 @@ public class ModelTwo {
 	static final int NAMESPOT = 0;
 	static final int SUNSPOT = 1;
 	static final int SOILSPOT = 2;
+	static final int SIZESPOT = 3;
 	Garden garden;
 	ArrayList<Plant> trashBin;
 	ArrayList<Plant> hotBarPlants;
@@ -31,63 +32,10 @@ public class ModelTwo {
 			String currLine = sc.nextLine();
 			System.out.println(currLine);
 			String[] parts = currLine.split("-");
-			plantsList.add(new Plant(parts[NAMESPOT],0,0,parts[SUNSPOT],parts[SOILSPOT]));
+			plantsList.add(new Plant(parts[NAMESPOT],0,0,parts[SUNSPOT],parts[SOILSPOT],parts[SIZESPOT]));
 		}
 		return plantsList;
 	}
-	
-	public void sortFlowersByCriteria(int criteria) {
-		if(criteria == NAMESPOT)
-			sortFlowersByName(hotBarPlants);
-		else if(criteria == SUNSPOT)
-			sortFlowersByLight(hotBarPlants);
-		else if(criteria == SOILSPOT)
-			sortFlowersBySoil(hotBarPlants);
-		else
-			System.out.println("Invalid criteria to sort flowers...");
-	}
-	
-	public void sortFlowersByName(List<Plant> flowers) {
-			Collections.sort(flowers,new Comparator<Plant>(){
-			@Override
-			public int compare(Plant p1, Plant p2) {
-				return p1.name.compareTo(p2.name);
-			}
-			
-		});
-		
-	}
-	
-	public void sortFlowersByLight(List<Plant> flowers) {
-		Collections.sort(flowers,new Comparator<Plant>(){
-			@Override
-			public int compare(Plant p1, Plant p2) {
-				int cmp = p1.plantLight.compareTo(p2.plantLight);
-				if(cmp == 0) {
-					return p1.name.compareTo(p2.name);
-				}
-				else {
-					return cmp;
-				}
-			}
-			
-		});
-	}
-	public void sortFlowersBySoil(List<Plant> flowers) {
-		Collections.sort(flowers,new Comparator<Plant>(){
-			@Override
-			public int compare(Plant p1, Plant p2) {
-				int cmp = p1.plantSoil.compareTo(p2.plantSoil);
-				if(cmp == 0) {
-					return p1.name.compareTo(p2.name);
-				}
-				else {
-					return cmp;
-				}
-			}
-		});
-	}
-
 	
 	public void addToGarden(double gX, double gY, Plant tba) {
 		garden.addPlant(tba, gX, gY);
