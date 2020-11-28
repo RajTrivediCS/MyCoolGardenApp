@@ -129,7 +129,7 @@ public class ViewTwo {
 	    		break;
 	    		case "medium": piv.setFitHeight(100);
 	    		break;
-	    		case "large": piv.setFitHeight(110);
+	    		case "large": piv.setFitHeight(130);
 	    		break;
 	    	}
 	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+".");

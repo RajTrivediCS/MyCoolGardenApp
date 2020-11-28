@@ -57,7 +57,7 @@ public class ControllerTwo {
 			break;
 			case "medium": iv.setFitHeight(100);
 			break;
-			case "large": iv.setFitHeight(110);
+			case "large": iv.setFitHeight(130);
 			break;
 		}
     	setHandlerForDrag(iv, view);
