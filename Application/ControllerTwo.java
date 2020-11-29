@@ -92,6 +92,7 @@ public class ControllerTwo {
 				System.out.println(p.plant.xLoc);
 			}
 		}
+		model.garden.setGardensPlants(updateGarden());
 	}	
 	
 	public void enter(ViewTwo view, MouseEvent event, PlantImageView v) {
@@ -108,7 +109,6 @@ public class ControllerTwo {
 	
 	public void setHandlerForDrag(PlantImageView iv1, ViewTwo view) {
 		iv1.setOnMouseDragged(event -> drag(view, event, iv1));
-		model.garden.setGardensPlants(updateGarden());
 	}
 	
 	
