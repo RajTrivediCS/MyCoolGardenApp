@@ -26,7 +26,9 @@ public class MainController {
 		/*for(Plant p: userSavedGarden.gardensPlants) {
 			System.out.println(p.name + " " + p.getXLoc() + " " + p.getYLoc());
 		}*/
-		viewTwo = new ViewTwo(stage,userSavedGarden);
+		
+		//FIXME: Find a way to save the background image to the model. Maybe String of file path and then load file on the next line.
+		viewTwo = new ViewTwo(stage,userSavedGarden, null);
 	}
 
 	public void handleNewGardenButtonPress(MouseEvent e) {

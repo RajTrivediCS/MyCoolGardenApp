@@ -1,5 +1,8 @@
 package Application;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,6 +18,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -48,6 +56,7 @@ public class ViewTwo {
 	Button newButton;
 	Button loadButton;
 	Button saveButton;
+	BackgroundImage FlowPaneBG;
 	HBox hbox;
 	VBox vbox;
 	Scene scene;
@@ -210,6 +219,19 @@ public class ViewTwo {
     	}
 	}
 	
+	public BackgroundImage backgroundMaker(File file) {
+		Image image = null;
+		try {
+			image = new Image(new FileInputStream(file));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		BackgroundImage bgImage = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, 
+				BackgroundPosition.DEFAULT, new BackgroundSize(1.0, 1.0, true, true, false, false));
+		return bgImage;
+	}
+	
 	/***
 	 * Empty Constructor to ensure proper communication between ViewTwo and ControllerTwo class
 	 */
@@ -220,7 +242,7 @@ public class ViewTwo {
 	 * Simple constructor that sets initial imageview and controller.
 	 */
 
-	public ViewTwo(Stage stage){
+	public ViewTwo(Stage stage, File bg){
 		controllerTwo = new ControllerTwo();
 		plants = model.getHotBarPlants();
 		topMenuMaker();
@@ -235,7 +257,8 @@ public class ViewTwo {
     	sp.setFitToWidth(true);
     	sp.setContent(hbox);
     	fp = new FlowPane();
-    	fp.setStyle("-fx-background-color: #BFFF00");
+    	FlowPaneBG = backgroundMaker(bg);
+    	fp.setBackground(new Background(FlowPaneBG));
     	fp.getChildren().add(vbox);
     	bp = new BorderPane();
     	bp.setTop(vbox);
@@ -252,7 +275,7 @@ public class ViewTwo {
 	 * @param stage Stage
 	 * @param garden Garden to be deserialize
 	 */
-	public ViewTwo(Stage stage, Garden garden) {
+	public ViewTwo(Stage stage, Garden garden, File bg) {
 		controllerTwo = new ControllerTwo();
 		plants = model.getHotBarPlants();
 		topMenuMaker();
@@ -267,7 +290,8 @@ public class ViewTwo {
     	sp.setFitToWidth(true);
     	sp.setContent(hbox);
     	fp = new FlowPane();
-    	fp.setStyle("-fx-background-color: #BFFF00");
+    	FlowPaneBG = backgroundMaker(bg);
+    	fp.setBackground(new Background(FlowPaneBG));
     	fp.getChildren().add(vbox);
     	for(Plant p: garden.gardensPlants) {
     		Image plantImage = new Image("img/"+p.name+".png");
