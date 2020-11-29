@@ -24,7 +24,6 @@ public class MainView {
 	final static int HEIGHT = 600;
 	public MainView(Stage stage) {
 		mainController = new MainController(stage);
-		
 		fp = new FlowPane();
 		fp.setBackground(new Background(backgroundImage));
     	newGardenButton = new Button(" (+) New Garden");
