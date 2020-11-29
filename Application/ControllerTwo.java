@@ -19,7 +19,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class ControllerTwo {
-	ViewTwo view;
+	ViewTwo view2;
 	ModelTwo model;
 	FileChooser fileChooserSave;
 	File fileToSave;
@@ -27,7 +27,7 @@ public class ControllerTwo {
 	
 	public ControllerTwo() {
 		model = new ModelTwo();
-		view = new ViewTwo();
+		view2 = new ViewTwo();
 		fileChooserSave = new FileChooser();
 		identifier = 0;
 	}
@@ -72,7 +72,7 @@ public class ControllerTwo {
 	//called when an item is added to the garden or deleted
 	public ArrayList<Plant> updateGarden(){
 		ArrayList<Plant> gard = new ArrayList<Plant>();
-		for(PlantImageView p : view.plantsInGarden) {
+		for(PlantImageView p : view2.plantsInGarden) {
 			gard.add(p.plant);
 		}
 		return gard;
@@ -104,6 +104,7 @@ public class ControllerTwo {
 			handleReplaceImgView(view,view.gp, v);
 			v.plant.id = identifier;
 			view.plantsInGarden.add(v);
+            System.out.println(view.plantsInGarden);
 			setHandlerDeletePlant(v);
 			identifier++;
 		}
@@ -116,13 +117,12 @@ public class ControllerTwo {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if(button==MouseButton.SECONDARY){
-                	view.plantsInGarden.remove(iv1);
-                	view.plantsInWasteBasket.add(iv1);
+                	view2.plantsInGarden.remove(iv1);
+                	view2.plantsInWasteBasket.add(iv1);
                 	iv1.setImage(null);
                 }
                 model.garden.setGardensPlants(updateGarden());
-                System.out.println(model.garden.gardensPlants);
-                System.out.println(view.plantsInWasteBasket);
+                System.out.println(view2.plantsInWasteBasket);
             }
         });
 	}
