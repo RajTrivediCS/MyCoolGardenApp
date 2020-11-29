@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -102,8 +103,27 @@ public class ControllerTwo {
 			handleReplaceImgView(view,view.gp, v);
 			v.plant.id = identifier;
 			view.plantsInGarden.add(v);
+			setHandlerDeletePlant(v);
 			identifier++;
 		}
+	}
+	
+	public void setHandlerDeletePlant(PlantImageView iv1) {
+		iv1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                MouseButton button = event.getButton();
+                if(button==MouseButton.SECONDARY){
+                	view.plantsInGarden.remove(iv1);
+                	view.plantsInWasteBasket.add(iv1);
+                	iv1.setImage(null);
+                }
+                model.garden.setGardensPlants(updateGarden());
+                System.out.println(model.garden.gardensPlants);
+                System.out.println(view.plantsInWasteBasket);
+            }
+        });
 	}
 	
 	public void setHandlerForDrag(PlantImageView iv1, ViewTwo view) {

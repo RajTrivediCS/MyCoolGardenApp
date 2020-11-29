@@ -37,6 +37,7 @@ public class ViewTwo {
 	ModelTwo model = new ModelTwo();
 	ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;
 	ArrayList<PlantImageView> plantsInGarden = new ArrayList<PlantImageView>();	
+	ArrayList<PlantImageView> plantsInWasteBasket = new ArrayList<PlantImageView>();
 	TilePane tp;
 	GridPane gp;
 	FlowPane fp;
