@@ -257,6 +257,7 @@ public class ViewTwo {
 	public ViewTwo(Stage stage, File bg){
 		controllerTwo = new ControllerTwo();
 		controllerTwo.setViewTwo(this);
+		controllerTwo.setModelTwo(this.model);
 		plants = model.getHotBarPlants();
 		topMenuMaker();
     	gp = new GridPane();
@@ -291,6 +292,8 @@ public class ViewTwo {
 	public ViewTwo(Stage stage, Garden garden, File bg) {
 		controllerTwo = new ControllerTwo();
 		controllerTwo.setViewTwo(this);
+		this.model.garden = garden;
+		controllerTwo.setModelTwo(this.model);
 		plants = model.getHotBarPlants();
 		topMenuMaker();
     	gp = new GridPane();

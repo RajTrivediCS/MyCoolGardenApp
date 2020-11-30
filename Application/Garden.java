@@ -3,7 +3,7 @@ package Application;
 import java.util.*;
 
 public class Garden implements java.io.Serializable{
-	ArrayList<Plant> gardensPlants;
+	ArrayList<Plant> gardensPlants = new ArrayList();
 	String gardenLight;
 	String gardenWater;
 	String gardenSoil;

@@ -26,16 +26,21 @@ public class ControllerTwo {
 	int identifier;
 	
 	public ControllerTwo() {
-		model = new ModelTwo();
 		fileChooserSave = new FileChooser();
 		identifier = 0;
 	}
 	
 	public void setViewTwo(ViewTwo v2) {
 		this.view2 = v2;
-		for(PlantImageView p : view2.plantsInGarden) {
-			if(p.plant.id > identifier) {
-				identifier = p.plant.id;
+	}
+	
+	public void setModelTwo(ModelTwo m2) {
+		this.model = m2;
+		if(!m2.garden.gardensPlants.isEmpty()) {
+			for(Plant p : m2.garden.gardensPlants) {
+				if(p.id > identifier) {
+					identifier = p.id;
+				}
 			}
 		}
 	}
@@ -113,7 +118,6 @@ public class ControllerTwo {
 			handleReplaceImgView(view,view.gp, v);
 			v.plant.id = identifier;
 			view.plantsInGarden.add(v);
-            System.out.println(view.plantsInGarden);
 			setHandlerDeletePlant(v, view);
 			identifier++;
 		}
@@ -136,7 +140,6 @@ public class ControllerTwo {
                 	iv1.setImage(null);
                 }
                 model.garden.setGardensPlants(updateGarden());
-                System.out.println(view.plantsInWasteBasket);   
             }
         });
 	}
