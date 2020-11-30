@@ -20,7 +20,7 @@ public class MainController {
 		viewOne = new ViewOne(stage);
 	}
 	public void handleLoadGardenButton(MouseEvent e) {
-		fileChooser.setTitle("Load Garden");
+		fileChooser.setTitle("Load Your Garden");
 		fileToLoad = fileChooser.showOpenDialog(stage);
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
 		/*for(Plant p: userSavedGarden.gardensPlants) {

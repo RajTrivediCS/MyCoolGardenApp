@@ -244,12 +244,6 @@ public class ViewTwo {
 		return bgImage;
 	}
 	
-	/***
-	 * Empty Constructor to ensure proper communication between ViewTwo and ControllerTwo class
-	 */
-	public ViewTwo() {
-	}
-	
 	/**
 	 * Simple constructor that sets initial imageview and controller.
 	 */
