@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -64,6 +66,7 @@ public class ViewTwo {
 	ArrayList<Plant> plants;
 	Image undoImage = new Image("img/undoImage.png");
 	Image redoImage = new Image("img/redoImage.png");
+	ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
 	ImageView undoImgView;
 	ImageView redoImgView;
 	ControllerTwo controllerTwo;
@@ -126,6 +129,10 @@ public class ViewTwo {
 		
 	}
 	
+	public void updateWasteBasket(PlantImageView iv) {
+		
+	}
+	
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {
@@ -150,6 +157,10 @@ public class ViewTwo {
 	    	controllerTwo.setHandlerForPress(this, piv);
 	    	i++;
 	    }
+		wasteBasket.setFitHeight(90);
+		wasteBasket.setFitWidth(90);
+		gp.add(wasteBasket, 0, i+1);
+		
 	}
 	//sort by name type
 	public void nameSort() {

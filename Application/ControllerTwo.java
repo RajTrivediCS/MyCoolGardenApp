@@ -114,24 +114,29 @@ public class ControllerTwo {
 			v.plant.id = identifier;
 			view.plantsInGarden.add(v);
             System.out.println(view.plantsInGarden);
-			setHandlerDeletePlant(v);
+			setHandlerDeletePlant(v, view);
 			identifier++;
 		}
 	}
 	
-	public void setHandlerDeletePlant(PlantImageView iv1) {
+	public void setHandlerDeletePlant(PlantImageView iv1, ViewTwo view) {
 		iv1.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if(button==MouseButton.SECONDARY){
-                	view2.plantsInGarden.remove(iv1);
-                	view2.plantsInWasteBasket.add(iv1);
+                	view.plantsInGarden.remove(iv1);
+                	view.plantsInWasteBasket.add(iv1);
+                	String plantWaste = "";
+                	for (PlantImageView p:view.plantsInWasteBasket) {
+            			plantWaste += p.plant.name + ", ";
+            		}
+                	Tooltip.install(view.wasteBasket, new Tooltip(plantWaste +"\n"));
                 	iv1.setImage(null);
                 }
                 model.garden.setGardensPlants(updateGarden());
-                System.out.println(view2.plantsInWasteBasket);
+                System.out.println(view.plantsInWasteBasket);   
             }
         });
 	}
