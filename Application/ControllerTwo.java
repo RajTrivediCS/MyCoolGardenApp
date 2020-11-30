@@ -27,9 +27,17 @@ public class ControllerTwo {
 	
 	public ControllerTwo() {
 		model = new ModelTwo();
-		view2 = new ViewTwo();
 		fileChooserSave = new FileChooser();
 		identifier = 0;
+	}
+	
+	public void setViewTwo(ViewTwo v2) {
+		this.view2 = v2;
+		for(PlantImageView p : view2.plantsInGarden) {
+			if(p.plant.id > identifier) {
+				identifier = p.plant.id;
+			}
+		}
 	}
 	
 	public void serializeGarden(File file) {
@@ -75,6 +83,7 @@ public class ControllerTwo {
 		for(PlantImageView p : view2.plantsInGarden) {
 			gard.add(p.plant);
 		}
+		System.out.print(gard);
 		return gard;
 	}
 	
