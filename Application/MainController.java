@@ -23,12 +23,7 @@ public class MainController {
 		fileChooser.setTitle("Load Your Garden");
 		fileToLoad = fileChooser.showOpenDialog(stage);
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
-		/*for(Plant p: userSavedGarden.gardensPlants) {
-			System.out.println(p.name + " " + p.getXLoc() + " " + p.getYLoc());
-		}*/
-		
-		//FIXME: Find a way to save the background image to the model. Maybe String of file path and then load file on the next line.
-		viewTwo = new ViewTwo(stage,userSavedGarden);
+		viewTwo = new ViewTwo(stage, userSavedGarden);
 	}
 
 	public void handleNewGardenButtonPress(MouseEvent e) {

@@ -1,5 +1,4 @@
 package Application;
-import java.util.*;
 
 public class Plant implements java.io.Serializable {
 	String name;

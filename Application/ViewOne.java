@@ -1,7 +1,5 @@
 package Application;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -20,6 +18,7 @@ public class ViewOne {
 	ControllerOne controllerOne;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
+	
 	public ViewOne(Stage stage){
 		controllerOne = new ControllerOne(stage);
 		fp = new FlowPane();
