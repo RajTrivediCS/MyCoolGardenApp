@@ -288,7 +288,7 @@ public class ViewTwo {
 		controllerTwo = new ControllerTwo();
 		controllerTwo.setViewTwo(this);
 		this.model.garden = garden;
-		// controllerTwo.setModelTwo(this.model);
+		controllerTwo.setModelTwo(this.model);
 		plants = model.getHotBarPlants();
 		topMenuMaker();
     	gp = new GridPane();
@@ -311,9 +311,9 @@ public class ViewTwo {
 			piv.setImage(plantImage);
 	    	piv.setPreserveRatio(true);
 	    	piv.setFitHeight(100);
-	    	piv.setLayoutX(piv.plant.getXLoc());
-	    	piv.setLayoutY(piv.plant.getYLoc());
 	    	fp.getChildren().add(piv);
+	    	piv.setTranslateX(piv.plant.getXLoc());
+	    	piv.setTranslateY(piv.plant.getYLoc());
     	}
     	bp = new BorderPane();
     	bp.setTop(vbox);
