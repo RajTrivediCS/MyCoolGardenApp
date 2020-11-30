@@ -28,7 +28,7 @@ public class MainController {
 		}*/
 		
 		//FIXME: Find a way to save the background image to the model. Maybe String of file path and then load file on the next line.
-		viewTwo = new ViewTwo(stage,userSavedGarden, null);
+		viewTwo = new ViewTwo(stage,userSavedGarden);
 	}
 
 	public void handleNewGardenButtonPress(MouseEvent e) {

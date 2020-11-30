@@ -272,6 +272,7 @@ public class ViewTwo {
     	bp.setTop(vbox);
     	bp.setCenter(fp);
     	bp.setLeft(sp);
+    	model.garden.setBg(bg);
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
     	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
@@ -283,11 +284,11 @@ public class ViewTwo {
 	 * @param stage Stage
 	 * @param garden Garden to be deserialize
 	 */
-	public ViewTwo(Stage stage, Garden garden, File bg) {
+	public ViewTwo(Stage stage, Garden garden) {
 		controllerTwo = new ControllerTwo();
 		controllerTwo.setViewTwo(this);
 		this.model.garden = garden;
-		controllerTwo.setModelTwo(this.model);
+		// controllerTwo.setModelTwo(this.model);
 		plants = model.getHotBarPlants();
 		topMenuMaker();
     	gp = new GridPane();
@@ -301,7 +302,7 @@ public class ViewTwo {
     	sp.setFitToWidth(true);
     	sp.setContent(hbox);
     	fp = new FlowPane();
-    	FlowPaneBG = backgroundMaker(bg);
+    	FlowPaneBG = backgroundMaker(garden.getBg());
     	fp.setBackground(new Background(FlowPaneBG));
     	fp.getChildren().add(vbox);
     	for(Plant p: garden.gardensPlants) {
