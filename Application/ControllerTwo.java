@@ -172,7 +172,7 @@ public class ControllerTwo {
 	}
 
 	public void handleSaveButton(Stage stage) {
-		fileChooserSave.setTitle("Save Garden");
+		fileChooserSave.setTitle("Save Your Garden");
 		fileChooserSave.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToSave = fileChooserSave.showSaveDialog(stage);
 		if(!fileToSave.getName().contains(".")) {
