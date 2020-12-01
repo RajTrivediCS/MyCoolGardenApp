@@ -367,6 +367,8 @@ public class ViewTwo {
 	    	controllerTwo.setHandlerForDrag(piv);
 	    	controllerTwo.setHandlerDeletePlant(piv);
 	    	fp.getChildren().add(piv);
+	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+".");
+	    	Tooltip.install(piv, tooltip);
 	    	piv.setTranslateX(piv.plant.getXLoc());
 	    	piv.setTranslateY(piv.plant.getYLoc());
 	    	this.plantsInGarden.add(piv);
