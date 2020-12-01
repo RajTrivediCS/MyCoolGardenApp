@@ -56,6 +56,7 @@ public class ViewTwo {
 	Button newButton;
 	Button loadButton;
 	Button saveButton;
+	Button sizeButton;
 	Button generateReport;
 	BackgroundImage FlowPaneBG;
 	HBox hbox;
@@ -89,6 +90,11 @@ public class ViewTwo {
 		CustomMenuItem sunItem = new CustomMenuItem(sunButton);
 		sortBy.getItems().add(sunItem);
 		sunItem.setHideOnClick(false);
+		
+		sizeButton = new Button("Size");
+		CustomMenuItem sizeItem = new CustomMenuItem(sizeButton);
+		sortBy.getItems().add(sizeItem);
+		sizeItem.setHideOnClick(false);
 		
 		sortBy.setOnMouseClicked(e->controllerTwo.sortButtonHandler(this));
 		grid.getChildren().add(sortBy);
@@ -209,6 +215,45 @@ public class ViewTwo {
 		});
 	}
 	
+	public void sizeSort() {
+		Collections.sort(sideView,new Comparator<PlantImageView>(){
+			@Override
+			public int compare(PlantImageView p1, PlantImageView p2) {
+				int p1Size = 0;
+				int p2Size = 0;
+				switch(p1.plant.plantSize) {
+					case "small":
+						p1Size = 1;
+						break;
+					case "medium":
+						p1Size = 2;
+						break;
+					case "large":
+						p1Size = 3;
+						break;
+				}
+				switch(p2.plant.plantSize) {
+					case "small":
+						p2Size = 1;
+						break;
+					case "medium":
+						p2Size = 2;
+						break;
+					case "large":
+						p2Size = 3;
+						break;
+				}
+				int i = p1Size - p2Size;
+				if(i==0) {
+					return p1.plant.name.compareTo(p2.plant.name);
+				}
+				else {
+					return i;
+				}
+			}				
+		});
+	}
+	
 	//uses sortmode to sort the sideview plant image views ArrayList
 	public void sideViewSortHelper(String sortMode) { // convert to enum in the future
 		switch(sortMode) {
@@ -217,6 +262,8 @@ public class ViewTwo {
 			case "sun" : sunSort();
 			break;
 			case "soil": soilSort();
+			break;
+			case "size": sizeSort();
 			break;
 		}
 	}

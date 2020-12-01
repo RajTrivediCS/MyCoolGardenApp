@@ -169,6 +169,11 @@ public class ControllerTwo {
 		        view.sortSideView("soil");
 		    }
 		});
+		view.sizeButton.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override public void handle(ActionEvent e) {
+		        view.sortSideView("size");
+		    }
+		});
 	}
 	
 	public void handleNewButtonPress(ActionEvent e) {
@@ -276,7 +281,6 @@ public class ControllerTwo {
 					((ButtonBase) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.garden.gardenLight="shade";
-					      System.out.println(model.garden.gardenLight);
 					    }
 					});;
         	}
@@ -325,8 +329,6 @@ public class ControllerTwo {
 			report += "There are ";
 		}
 		for(Plant p : arrayCopy) {
-			System.out.print(p.name+"   ");
-			System.out.print(ignoreList+"\n");
 			int plantcount = 0;
 			for(String s : ignoreList) {
 				if(p.name.equals(s)) {
