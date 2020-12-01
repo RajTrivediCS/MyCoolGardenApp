@@ -537,6 +537,7 @@ public class ViewTwo {
     			controllerTwo.identifier = p.id;
     		}
     	}
+    	controllerTwo.identifier++;
     	bp = new BorderPane();
     	bp.setTop(vbox);
     	bp.setCenter(fp);
