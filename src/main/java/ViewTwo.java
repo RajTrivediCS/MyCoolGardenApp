@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
@@ -28,6 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -50,11 +52,14 @@ public class ViewTwo {
 	MenuBar menuBar;
 	MenuButton sortBy;
 	Button nameButton;
-	Button soilButton;
+	Button gSoilButton;
+	Button gLightButton;
 	Button sunButton;
+	Button soilButton;
 	Button newButton;
 	Button loadButton;
 	Button saveButton;
+	Button generateReport;
 	BackgroundImage FlowPaneBG;
 	HBox hbox;
 	VBox vbox;
@@ -110,6 +115,14 @@ public class ViewTwo {
 		CustomMenuItem saveItem = new CustomMenuItem(saveButton);
 		fileMenu.getItems().add(saveItem);
 		
+		gLightButton = new Button("Choose Garden Light");
+		CustomMenuItem gLightItem = new CustomMenuItem(gLightButton);
+		fileMenu.getItems().add(gLightItem);
+		
+		gSoilButton = new Button("Choose Garden Soil");
+		CustomMenuItem gSoilItem = new CustomMenuItem(gSoilButton);
+		fileMenu.getItems().add(gSoilItem);
+		
 		
 		Button togglegridButton = new Button("Toggle Grid");
 		CustomMenuItem togglegridItem = new CustomMenuItem(togglegridButton);
@@ -118,6 +131,10 @@ public class ViewTwo {
 		Button togglebackgroundButton = new Button("Toggle Background");
 		CustomMenuItem togglebackgroundItem = new CustomMenuItem(togglebackgroundButton);
 		viewMenu.getItems().add(togglebackgroundItem);
+		
+		generateReport = new Button("Generate Garden Report");
+		CustomMenuItem generateReportItem = new CustomMenuItem(generateReport);
+		viewMenu.getItems().add(generateReportItem);
 		
 		MenuBar topBar = new MenuBar();
 		
@@ -237,9 +254,107 @@ public class ViewTwo {
 		return bgImage;
 	}
 	
-	/**
-	 * Simple constructor that sets initial imageview and controller.
-	 */
+	public void setOnActionAdder() {
+    	newButton.setOnAction(e-> controllerTwo.handleNewButtonPress(e));
+    	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
+    	gSoilButton.setOnAction(e->controllerTwo.handleGSoilButton(e));
+    	gLightButton.setOnAction(e->controllerTwo.handleLightButton(e));
+    	generateReport.setOnAction(e->controllerTwo.handleGenerateReport(e));
+	}
+	
+	public void plantReadder() {
+		for(Plant p: model.garden.gardensPlants) {
+    		Image plantImage = new Image("img/"+p.name+".png");
+			PlantImageView piv = new PlantImageView(p);
+			piv.setImage(plantImage);
+	    	piv.setPreserveRatio(true);
+	    	switch(p.plantSize) {
+	    		case "small": piv.setFitHeight(90);
+	    		break;
+	    		case "medium": piv.setFitHeight(100);
+	    		break;
+	    		case "large": piv.setFitHeight(130);
+	    		break;
+	    	}
+	    	controllerTwo.setHandlerForDrag(piv, this);
+	    	controllerTwo.setHandlerDeletePlant(piv, this);
+	    	fp.getChildren().add(piv);
+	    	piv.setTranslateX(piv.plant.getXLoc());
+	    	piv.setTranslateY(piv.plant.getYLoc());
+	    	this.plantsInGarden.add(piv);
+    	}
+		for(Plant p : model.garden.gardensPlants) {
+			if(p.id > controllerTwo.identifier) {
+				controllerTwo.identifier = p.id;
+			}
+		}
+	}
+	
+	public Stage makePopUpForSunSoil(String bType) {
+		Stage popUp = new Stage();
+		if(bType.equals("light")) {
+			popUp.setTitle("Select a Light Type");
+		}
+		else {
+			popUp.setTitle("Select a SoilType");
+		}
+        popUp.initModality(Modality.WINDOW_MODAL);
+        popUp.setHeight(70);
+        popUp.setWidth(300);
+        popUp.initOwner(this.stage);
+		return popUp;
+	}
+	
+	public Stage makePopUpForReport() {
+		Stage popUp = new Stage();
+		popUp.setTitle("Here's Your Custom Generated Report");
+		popUp.initModality(Modality.WINDOW_MODAL);
+        popUp.setHeight(400);
+        popUp.setWidth(500);
+        popUp.initOwner(this.stage);
+		return popUp;
+	}
+	
+	public FlowPane makeReportPane(String report) {
+		FlowPane pane = new FlowPane();
+		Label label = new Label(report);
+		pane.getChildren().add(label);
+		return pane;
+	}
+	
+	public FlowPane addButtonsToSoilPopUp() {
+		FlowPane pane = new FlowPane();
+        Button all = new Button("All");
+        all.setUserData("All");
+        Button loamy = new Button("Loamy");
+        loamy.setUserData("Loamy");
+        Button sandy = new Button("Sandy");
+        sandy.setUserData("Sandy");
+        Button clay = new Button("Clay");
+        clay.setUserData("Clay");
+        pane.getChildren().add(all);
+        pane.getChildren().add(loamy);
+        pane.getChildren().add(sandy);
+        pane.getChildren().add(clay);
+		return pane;
+	}
+	
+	public FlowPane addButtonsToLightPopUp() {
+		 FlowPane pane = new FlowPane();
+	     Button all = new Button("All");
+	     all.setUserData("All");
+	     Button full = new Button("Full");
+	     full.setUserData("Full");
+	     Button partial = new Button("Partial");
+	     partial.setUserData("Partial");
+	     Button shade = new Button("Shade");
+	     shade.setUserData("Shade");
+	     pane.getChildren().add(all);
+	     pane.getChildren().add(full);
+	     pane.getChildren().add(partial);
+	     pane.getChildren().add(shade);
+	     return pane;
+	}
 
 	public ViewTwo(Stage stage, File bg){
 		controllerTwo = new ControllerTwo();
@@ -269,8 +384,7 @@ public class ViewTwo {
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
     	this.stage = stage;
-    	newButton.setOnAction(e-> controllerTwo.handleNewButtonPress(e));
-    	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
+    	setOnActionAdder();
     	stage.show();
 	}
 	
@@ -300,31 +414,7 @@ public class ViewTwo {
     	FlowPaneBG = backgroundMaker(garden.getBg());
     	fp.setBackground(new Background(FlowPaneBG));
     	fp.getChildren().add(vbox);
-    	for(Plant p: model.garden.gardensPlants) {
-    		Image plantImage = new Image("img/"+p.name+".png");
-			PlantImageView piv = new PlantImageView(p);
-			piv.setImage(plantImage);
-	    	piv.setPreserveRatio(true);
-	    	switch(p.plantSize) {
-	    		case "small": piv.setFitHeight(90);
-	    		break;
-	    		case "medium": piv.setFitHeight(100);
-	    		break;
-	    		case "large": piv.setFitHeight(130);
-	    		break;
-	    	}
-	    	controllerTwo.setHandlerForDrag(piv, this);
-	    	controllerTwo.setHandlerDeletePlant(piv, this);
-	    	fp.getChildren().add(piv);
-	    	piv.setTranslateX(piv.plant.getXLoc());
-	    	piv.setTranslateY(piv.plant.getYLoc());
-	    	this.plantsInGarden.add(piv);
-    	}
-		for(Plant p : model.garden.gardensPlants) {
-			if(p.id > controllerTwo.identifier) {
-				controllerTwo.identifier = p.id;
-			}
-		}
+    	plantReadder();
     	bp = new BorderPane();
     	bp.setTop(vbox);
     	bp.setCenter(fp);
@@ -332,7 +422,7 @@ public class ViewTwo {
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
     	this.stage = stage;
-    	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
+    	setOnActionAdder();
     	stage.show();
 	}
 	
