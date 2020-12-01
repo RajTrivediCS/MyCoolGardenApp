@@ -270,6 +270,7 @@ public class ViewTwo {
     	stage.setScene(scene);
     	this.stage = stage;
     	newButton.setOnAction(e-> controllerTwo.handleNewButtonPress(e));
+    	loadButton.setOnAction(e-> controllerTwo.handleLoadButtonPress(e));
     	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
     	stage.show();
 	}
@@ -332,6 +333,8 @@ public class ViewTwo {
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
     	this.stage = stage;
+    	newButton.setOnAction(e-> controllerTwo.handleNewButtonPress(e));
+    	loadButton.setOnAction(e-> controllerTwo.handleLoadButtonPress(e));
     	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
     	stage.show();
 	}
