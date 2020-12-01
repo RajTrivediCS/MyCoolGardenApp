@@ -1,3 +1,8 @@
+/***
+ * 
+ * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
+ *
+ */
 public class Plant implements java.io.Serializable {
 	String name;
 	double xLoc;

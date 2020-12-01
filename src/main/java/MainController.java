@@ -5,6 +5,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+/***
+ * 
+ * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
+ *
+ */
 public class MainController {
 
 	ViewOne viewOne;

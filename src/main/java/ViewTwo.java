@@ -30,7 +30,11 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
+/***
+ * 
+ * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
+ *
+ */
 public class ViewTwo {
 	ModelTwo model = new ModelTwo();
 	ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;

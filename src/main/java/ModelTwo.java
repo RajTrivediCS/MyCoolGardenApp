@@ -3,6 +3,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+/***
+ * 
+ * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
+ *
+ */
 public class ModelTwo { 
 	static final int NAMESPOT = 0;
 	static final int SUNSPOT = 1;

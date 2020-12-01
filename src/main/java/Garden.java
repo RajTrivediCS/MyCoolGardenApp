@@ -1,7 +1,11 @@
 import java.io.File;
 import java.util.*;
 
-
+/***
+ * 
+ * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
+ *
+ */
 public class Garden implements java.io.Serializable{
 	ArrayList<Plant> gardensPlants = new ArrayList<>();
 	String gardenLight;

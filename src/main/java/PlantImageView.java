@@ -1,6 +1,11 @@
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/***
+ * 
+ * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
+ *
+ */
 public class PlantImageView extends ImageView{
 	String paneLocation;
 	Plant plant;

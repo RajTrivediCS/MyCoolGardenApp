@@ -9,6 +9,11 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
+/***
+ * 
+ * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
+ *
+ */
 public class ViewOne {	
 	FlowPane fp;
 	Button uploadGardenImageButton;
