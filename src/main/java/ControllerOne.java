@@ -7,6 +7,7 @@ public class ControllerOne {
 
 	Stage stage;
 	ViewTwo viewTwo;
+	
 	public ControllerOne(Stage stage) {
 		this.stage = stage;
 	}
