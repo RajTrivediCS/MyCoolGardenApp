@@ -1,6 +1,7 @@
 import java.io.File;
-
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -24,12 +25,16 @@ import javafx.stage.Stage;
 public class ControllerTwo {
 	ViewTwo view2;
 	ModelTwo model;
+	FileChooser loadFileChooser;
 	FileChooser fileChooserSave;
+	File fileToLoad;
 	File fileToSave;
+	Stage stage;
 	int identifier;
 	
 	public ControllerTwo() {
-		fileChooserSave = new FileChooser();
+		loadFileChooser = new FileChooser();
+		fileChooserSave = new FileChooser(); 
 		identifier = 0;
 	}
 	
@@ -173,6 +178,27 @@ public class ControllerTwo {
 		view2 = new ViewTwo(view2.stage, model.garden.getBg());
 	}
 
+	public void handleLoadButtonPress(ActionEvent e) {
+		loadFileChooser.setTitle("Load Your Garden");
+		loadFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
+		fileToLoad = loadFileChooser.showOpenDialog(view2.stage);
+		Garden userSavedGarden = deserializeGarden(fileToLoad);
+		view2 = new ViewTwo(view2.stage, userSavedGarden);
+	}
+	
+	public Garden deserializeGarden(File file) {
+		try {
+			FileInputStream fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			Garden garden = (Garden)ois.readObject();
+			ois.close();
+			return garden;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public void handleSaveButton(Stage stage) {
 		fileChooserSave.setTitle("Save Your Garden");
 		fileChooserSave.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
