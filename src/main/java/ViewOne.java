@@ -17,6 +17,10 @@ public class ViewOne {
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
 	
+	/***
+	 * Initializes the instance variables, sets the Scene, and displays it on Stage
+	 * @param stage the Stage to display for ViewOne
+	 */
 	public ViewOne(Stage stage){
 		controllerOne = new ControllerOne(stage);
 		fp = new FlowPane();
@@ -34,6 +38,11 @@ public class ViewOne {
     	stage.setScene(scene);
     	stage.show();
 	}
+	
+	/***
+	 * Returns the most recent Scene for ViewOne
+	 * @return the current Scene for ViewOne
+	 */
 	public Scene getScene() {
 		return scene;
 	}

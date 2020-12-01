@@ -12,11 +12,21 @@ public class MainController {
 	FileChooser fileChooser;
 	File fileToLoad;
 	ViewTwo viewTwo;
+	
+	/***
+	 * Initializes the Stage to set the next Scene
+	 * @param stage the Stage
+	 */
 	public MainController(Stage stage) {
 		this.stage = stage;
 		fileChooser = new FileChooser();
 		viewOne = new ViewOne(stage);
 	}
+	
+	/***
+	 * Handles the event by setting Scene for ViewTwo after Deserializing Garden
+	 * @param e the MouseEvent for click
+	 */
 	public void handleLoadGardenButton(MouseEvent e) {
 		fileChooser.setTitle("Load Your Garden");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
@@ -25,10 +35,19 @@ public class MainController {
 		viewTwo = new ViewTwo(stage, userSavedGarden);
 	}
 
+	/***
+	 * Handles the event by setting Scene for ViewOne
+	 * @param e the MouseEvent for click
+	 */
 	public void handleNewGardenButtonPress(MouseEvent e) {
 		stage.setScene(viewOne.getScene());
 	}
 	
+	/***
+	 * Renders the Garden from Deserialization
+	 * @param file the File that needs to be deserialized
+	 * @return the Garden after deserializing
+	 */
 	public Garden deserializeGarden(File file) {
 		try {
 			FileInputStream fis = new FileInputStream(file);

@@ -71,6 +71,10 @@ public class ViewTwo {
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
 
+	/***
+	 * Creates the buttons for "Sort By" Menu and places them on the given GridPane
+	 * @param grid the GridPane to include all buttons
+	 */
 	public void buttonMaker(GridPane grid) {		
     	sortBy = new MenuButton("Sort by");
     	
@@ -89,11 +93,14 @@ public class ViewTwo {
 		sortBy.getItems().add(sunItem);
 		sunItem.setHideOnClick(false);
 		
-		sortBy.setOnMouseClicked(e->controllerTwo.sortButtonHandler(this));
+		sortBy.setOnMouseClicked(e->controllerTwo.sortButtonHandler());
 		grid.getChildren().add(sortBy);
 	}
 	
 
+	/***
+	 * Creates all the Menus for ViewTwo Scene and places all of them in the VBox at the end
+	 */
 	public void topMenuMaker() {
 		Menu fileMenu = new Menu("File");
 		Menu viewMenu = new Menu("View");
@@ -127,6 +134,10 @@ public class ViewTwo {
 		
 	}
 	
+	/***
+	 * Adds the Images for the given List of plants in the SideView with hover-over implementation
+	 * @param plants the List of plants to add Images for
+	 */
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {
@@ -148,7 +159,7 @@ public class ViewTwo {
 	    	piv.setPaneLoc("grid");
 			sideView.add(piv);
 	    	gp.add(piv, 0, i+1);
-	    	controllerTwo.setHandlerForPress(this, piv);
+	    	controllerTwo.setHandlerForPress(piv);
 	    	i++;
 	    }
 		wasteBasket.setFitHeight(90);
@@ -156,7 +167,10 @@ public class ViewTwo {
 		gp.add(wasteBasket, 0, i+1);
 		
 	}
-	//sort by name type
+	
+	/***
+	 * Sorts List of plant image view by name type
+	 */
 	public void nameSort() {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
 			@Override
@@ -165,7 +179,10 @@ public class ViewTwo {
 			}
 		});
 	}
-	//sort by sun type
+	
+	/***
+	 * Sorts List of plant image view by sun type
+	 */
 	public void sunSort() {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
 			@Override
@@ -180,7 +197,10 @@ public class ViewTwo {
 			}
 		});
 	}
-	//sort by soil type
+	
+	/***
+	 * Sorts List of plant image view by soil type
+	 */
 	public void soilSort() {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
 			@Override
@@ -196,7 +216,11 @@ public class ViewTwo {
 		});
 	}
 	
-	//uses sortmode to sort the sideview plant image views ArrayList
+	/***
+	 * Uses sort mode to sort the List of plant image view
+	 * @param sortMode the mode(either "name", "sun", or "soil") for sorting all Plants
+	 */
+	//
 	public void sideViewSortHelper(String sortMode) { // convert to enum in the future
 		switch(sortMode) {
 			case "name": nameSort();
@@ -208,7 +232,10 @@ public class ViewTwo {
 		}
 	}
 	
-	//sorts the ImageViews in the sideBar based on the sort mode
+	/***
+	 * Sorts the ImageViews in the SideBar based on the given sort mode
+	 * @param sortMode the mode(either "name", "sun", or "soil") for sorting all Plants 
+	 */
 	public void sortSideView(String sortMode) {
 		for(PlantImageView p: sideView) {
 			gp.getChildren().remove(p);
@@ -225,6 +252,11 @@ public class ViewTwo {
     	}
 	}
 	
+	/***
+	 * Sets the given file as Background Image and returns it
+	 * @param file the File that needs to be set as Background Image
+	 * @return the Background Image for the File 
+	 */
 	public BackgroundImage backgroundMaker(File file) {
 		Image image = null;
 		try {
@@ -237,10 +269,11 @@ public class ViewTwo {
 		return bgImage;
 	}
 	
-	/**
-	 * Simple constructor that sets initial imageview and controller.
+	/***
+	 * Initializes the instance variables, sets the Scene, and displays it on Stage 
+	 * @param stage the Stage
+	 * @param bg the Background Image File that user chooses for their Garden
 	 */
-
 	public ViewTwo(Stage stage, File bg){
 		controllerTwo = new ControllerTwo();
 		controllerTwo.setViewTwo(this);
@@ -276,9 +309,9 @@ public class ViewTwo {
 	}
 	
 	/***
-	 * Overloaded constructor for Deserializing Garden object and set it on Stage
-	 * @param stage Stage
-	 * @param garden Garden to be deserialize
+	 * Initializes the instance variables, sets the Scene, and displays it on Stage 
+	 * @param stage the Stage
+	 * @param garden the Garden that is deserialized
 	 */
 	public ViewTwo(Stage stage, Garden garden) {
 		controllerTwo = new ControllerTwo();
@@ -314,8 +347,8 @@ public class ViewTwo {
 	    		case "large": piv.setFitHeight(130);
 	    		break;
 	    	}
-	    	controllerTwo.setHandlerForDrag(piv, this);
-	    	controllerTwo.setHandlerDeletePlant(piv, this);
+	    	controllerTwo.setHandlerForDrag(piv);
+	    	controllerTwo.setHandlerDeletePlant(piv);
 	    	fp.getChildren().add(piv);
 	    	piv.setTranslateX(piv.plant.getXLoc());
 	    	piv.setTranslateY(piv.plant.getYLoc());
@@ -339,24 +372,34 @@ public class ViewTwo {
     	stage.show();
 	}
 	
+	/***
+	 * Returns the most recent Stage for ViewTwo
+	 * @return the Stage for ViewTwo
+	 */
 	public Stage getStage() {
 		return stage;
 	}
-
-
-	public void setStage(Stage stage) {
-		this.stage = stage;
-	}
-
-
+	
+	/***
+	 * Returns the most recent BorderPane instance
+	 * @return the current BorderPane
+	 */
 	public Parent getBP() {
 		return this.bp;
 	}
 
+	/***
+	 * Returns the most recent TilePane instance
+	 * @return the current TilePane
+	 */
 	public TilePane getTP() {
 		return this.tp;
 	}
 	
+	/***
+	 * Returns the most recent Scene for ViewTwo
+	 * @return the Scene for ViewTwo
+	 */
 	public Scene getScene() {
 		return scene;
 	}

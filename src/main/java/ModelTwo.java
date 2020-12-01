@@ -12,6 +12,9 @@ public class ModelTwo {
 	ArrayList<Plant> trashBin;
 	ArrayList<Plant> hotBarPlants;
 
+	/***
+	 * Initializes the instance variables for this class
+	 */
 	public ModelTwo(){
 		this.garden = new Garden();
 		this.trashBin = new ArrayList<>();
@@ -22,6 +25,12 @@ public class ModelTwo {
 		}
 	}
 	
+	/***
+	 * Retrieves the List of plants from text file and returns it at the end
+	 * @param filename the name of file to retrieve List of plants
+	 * @return the List of plants after retrieving from File
+	 * @throws IOException
+	 */
 	public ArrayList<Plant> getPlantsListFromFile(String filename) throws IOException {
 		Scanner sc = new Scanner(new File(filename));
 		ArrayList<Plant> plantsList = new ArrayList<>();
@@ -32,11 +41,6 @@ public class ModelTwo {
 			plantsList.add(new Plant(parts[NAMESPOT],0,0,parts[SUNSPOT],parts[SOILSPOT],parts[SIZESPOT]));
 		}
 		return plantsList;
-	}
-	
-	public void addToGarden(double gX, double gY, Plant tba) {
-		garden.addPlant(tba, gX, gY);
-		//add more info as we work more with the new View
 	}
 	
 	public Plant selectPlantInGarden(double x, double y) {
@@ -51,7 +55,6 @@ public class ModelTwo {
 	
 	public void moveInGarden(double gX, double gY, Plant tbm) {
 		tbm.updatePlantLocation(gX, gY);
-		//add more info as we work more with the new View
 	}
 	
 	public void handleDeletionInGarden(double x, double y, Plant tbm) {
@@ -69,14 +72,26 @@ public class ModelTwo {
 		System.out.println("");
 	}
 
+	/***
+	 * Sets the current List of plants in the SideView with the given List of plants
+	 * @param plants the List of plants to be set for
+	 */
 	public void setHotBar(ArrayList<Plant> plants) {
 		this.hotBarPlants = plants;
 	}
 
+	/***
+	 * Returns the most recent state of List of plants in the SideView
+	 * @return the current instance for the List of plants in the SideView
+	 */
 	public ArrayList<Plant> getHotBarPlants() {
 		return this.hotBarPlants;
 	}
 
+	/***
+	 * Returns the most recent state of Garden
+	 * @return the current instance of Garden
+	 */
 	public Garden getGarden() {
 		return this.garden;
 	}

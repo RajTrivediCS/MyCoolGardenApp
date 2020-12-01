@@ -26,20 +26,35 @@ public class ControllerTwo {
 	Stage stage;
 	int identifier;
 	
+	/***
+	 * Initializes the instance variables
+	 */
 	public ControllerTwo() {
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser(); 
 		identifier = 0;
 	}
 	
+	/***
+	 * Sets the current instance of ViewTwo with the given ViewTwo 
+	 * @param v2 the ViewTwo to be set
+	 */
 	public void setViewTwo(ViewTwo v2) {
 		this.view2 = v2;
 	}
 	
+	/***
+	 * Sets the current instance of ModelTwo with the given ModelTwo 
+	 * @param m2 the ModelTwo to be set
+	 */
 	public void setModelTwo(ModelTwo m2) {
 		this.model = m2;
 	}
 	
+	/***
+	 * Saves the most recent state of Garden to the given file input 
+	 * @param file the file that is serialized
+	 */
 	public void serializeGarden(File file) {
 		try {
 			FileOutputStream fos = new FileOutputStream(file);
@@ -52,8 +67,12 @@ public class ControllerTwo {
 	}
 	
 
-	//replaces image that was in the sidebar with an exact copy
-	public void handleReplaceImgView(ViewTwo view, GridPane grid, PlantImageView v) {
+	/***
+	 * Replaces image that was in the SideBar with an exact copy
+	 * @param grid the GridPane to add Image
+	 * @param v the PlantImageView to access the attributes of Plant 
+	 */
+	public void handleReplaceImgView(GridPane grid, PlantImageView v) {
 		Image im = v.getImage();
 		PlantImageView iv = new PlantImageView(new Plant(v.plant.name, v.plant.xLoc, v.plant.yLoc, 
 				v.plant.plantLight, v.plant.plantSoil,v.plant.plantSize)); //change to use getters later
@@ -69,15 +88,18 @@ public class ControllerTwo {
 			case "large": iv.setFitHeight(130);
 			break;
 		}
-    	setHandlerForDrag(iv, view);
-     	setHandlerForPress(view,iv);
+    	setHandlerForDrag(iv);
+     	setHandlerForPress(iv);
     	int i = grid.getRowIndex(v);
 		grid.add(iv, 0, i);
 		iv.setPaneLoc("grid");
-		view.sideView.add(iv);
+		view2.sideView.add(iv);
 	}
 	
-	//called when an item is added to the garden or deleted
+	/***
+	 * Updates the Garden upon addition or deletion of something into the Garden
+	 * @return the Garden after update
+	 */
 	public ArrayList<Plant> updateGarden(){
 		ArrayList<Plant> gard = new ArrayList<Plant>();
 		for(PlantImageView p : view2.plantsInGarden) {
@@ -87,15 +109,20 @@ public class ControllerTwo {
 		return gard;
 	}
 	
-	//handle dragging a plant image view to the flow pane
-	public void drag(ViewTwo view, MouseEvent event, PlantImageView v) {
+	/***
+	 * Handles dragging a plant image view to the flow pane
+	 * @param event the MouseEvent for drag
+	 * @param v the PlantImageView to update the location of that Plant
+	 */
+	//
+	public void drag(MouseEvent event, PlantImageView v) {
 		Node n = (Node)event.getSource();
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
 		v.setPaneLoc("flow");
 		v.plant.setXLoc(v.getTranslateX());
 		v.plant.setYLoc(v.getTranslateY());
-		for(PlantImageView p : view.plantsInGarden) {
+		for(PlantImageView p : view2.plantsInGarden) {
 			if(p.plant.id == v.plant.id){
 				p.plant.xLoc = v.plant.xLoc;
 				p.plant.yLoc = v.plant.yLoc;
@@ -105,33 +132,38 @@ public class ControllerTwo {
 		model.garden.setGardensPlants(updateGarden());
 	}	
 	
-	public void enter(ViewTwo view, MouseEvent event, PlantImageView v) {
+	/***
+	 * Handles starting the drag operation and replicating the PlantImageView in its location 
+	 * @param event the MouseEvent for press
+	 * @param v the PlantImageView to drag
+	 */
+	public void enter(MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("grid")) {
-			setHandlerForDrag(v, view);
-			view.fp.getChildren().add(v);
-			view.sideView.remove(v);
-			handleReplaceImgView(view,view.gp, v);
+			setHandlerForDrag(v);
+			view2.fp.getChildren().add(v);
+			view2.sideView.remove(v);
+			handleReplaceImgView(view2.gp, v);
 			v.plant.id = identifier;
-			view.plantsInGarden.add(v);
-			setHandlerDeletePlant(v, view);
+			view2.plantsInGarden.add(v);
+			setHandlerDeletePlant(v);
 			identifier++;
 		}
 	}
 	
-	public void setHandlerDeletePlant(PlantImageView iv1, ViewTwo view) {
+	public void setHandlerDeletePlant(PlantImageView iv1) {
 		iv1.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if(button==MouseButton.SECONDARY){
-                	view.plantsInGarden.remove(iv1);
-                	view.plantsInWasteBasket.add(iv1);
+                	view2.plantsInGarden.remove(iv1);
+                	view2.plantsInWasteBasket.add(iv1);
                 	String plantWaste = "";
-                	for (PlantImageView p:view.plantsInWasteBasket) {
+                	for (PlantImageView p:view2.plantsInWasteBasket) {
             			plantWaste += p.plant.name + ", ";
             		}
-                	Tooltip.install(view.wasteBasket, new Tooltip(plantWaste +"\n"));
+                	Tooltip.install(view2.wasteBasket, new Tooltip(plantWaste +"\n"));
                 	iv1.setImage(null);
                 }
                 model.garden.setGardensPlants(updateGarden());
@@ -139,39 +171,58 @@ public class ControllerTwo {
         });
 	}
 	
-	public void setHandlerForDrag(PlantImageView iv1, ViewTwo view) {
-		iv1.setOnMouseDragged(event -> drag(view, event, iv1));
+	/***
+	 * Starts the event for drag
+	 * @param iv1 the PlantImageView that is dragged
+	 */
+	public void setHandlerForDrag(PlantImageView iv1) {
+		iv1.setOnMouseDragged(event -> drag(event, iv1));
 	}
 	
 	
-	public void setHandlerForPress(ViewTwo view, PlantImageView v) {
-		v.setOnMousePressed(event->enter(view, event, v));
+	/***
+	 * Starts the event for press
+	 * @param v the PlantImageView that is pressed
+	 */
+	public void setHandlerForPress(PlantImageView v) {
+		v.setOnMousePressed(event->enter(event, v));
 		
 	}
 	
-	public void sortButtonHandler(ViewTwo view) {
-		view.nameButton.setOnAction(new EventHandler<ActionEvent>() {
+	/***
+	 * Sorts all the Plants depending on which button you click  
+	 */
+	public void sortButtonHandler() {
+		view2.nameButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		        view.sortSideView("name");
+		    	view2.sortSideView("name");
 		    }
 		});
-		view.sunButton.setOnAction(new EventHandler<ActionEvent>() {
+		view2.sunButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		        view.sortSideView("sun");
+		    	view2.sortSideView("sun");
 		    }
 		});
-		view.soilButton.setOnAction(new EventHandler<ActionEvent>() {
+		view2.soilButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		        view.sortSideView("soil");
+		    	view2.sortSideView("soil");
 		    }
 		});
 	}
 	
+	/***
+	 * Handles the event by creating a brand new Scene for ViewTwo
+	 * @param e the ActionEvent for pressing "New" Button(under File Menu)
+	 */
 	public void handleNewButtonPress(ActionEvent e) {
 		System.out.println("newButton press");
 		view2 = new ViewTwo(view2.stage, model.garden.getBg());
 	}
 
+	/***
+	 * Handles the event by deserializing Garden after user chooses file to open 
+	 * @param e the ActionEvent for pressing "Load" Button(under File Menu)
+	 */
 	public void handleLoadButtonPress(ActionEvent e) {
 		loadFileChooser.setTitle("Load Your Garden");
 		loadFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
@@ -180,6 +231,11 @@ public class ControllerTwo {
 		view2 = new ViewTwo(view2.stage, userSavedGarden);
 	}
 	
+	/***
+	 * Renders the Garden from Deserialization
+	 * @param file the File that needs to be deserialized
+	 * @return the Garden after deserializing
+	 */
 	public Garden deserializeGarden(File file) {
 		try {
 			FileInputStream fis = new FileInputStream(file);
@@ -193,6 +249,10 @@ public class ControllerTwo {
 		return null;
 	}
 	
+	/***
+	 * Handles the event by creating the file to save and serializing Garden to that file
+	 * @param stage the Stage
+	 */
 	public void handleSaveButton(Stage stage) {
 		fileChooserSave.setTitle("Save Your Garden");
 		fileChooserSave.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));

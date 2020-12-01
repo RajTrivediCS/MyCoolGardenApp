@@ -19,6 +19,11 @@ public class MainView {
 	Scene scene;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
+	
+	/***
+	 * Initializes the instance variables, sets the Scene, and displays it on Stage
+	 * @param stage the Stage to display for MainView
+	 */
 	public MainView(Stage stage) {
 		mainController = new MainController(stage);
 		fp = new FlowPane();
@@ -42,6 +47,10 @@ public class MainView {
     	stage.show();
 	}
 	
+	/***
+	 * Returns the most recent Scene for MainView
+	 * @return the current Scene for MainView
+	 */
 	public Scene getScene() {
 		return scene;
 	}
