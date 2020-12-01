@@ -373,17 +373,15 @@ public class ControllerTwo {
 		double overallNumber = 1;
 		for(Plant p : model.garden.gardensPlants) {
 			overallNumber++;
-				if((p.plantSoil.equals(model.garden.gardenSoil) | model.garden.gardenSoil.equals("all"))| 
-						(p.plantLight.equals(model.garden.gardenLight) | model.garden.gardenLight.equals("all"))) {
-					goodChoice++;
+				if(model.garden.gardenLight.contains(p.plantLight) | model.garden.gardenLight.contains("all")) {
+					if(model.garden.gardenSoil.contains(p.plantSoil) | model.garden.gardenSoil.contains("all")) {
+						goodChoice++;
+					}else {
+						goodChoice+=.75;
+					}
 				}
-				else if(!((p.plantSoil.equals(model.garden.gardenSoil) | model.garden.gardenSoil.equals("all")))| 
-					(p.plantLight.equals(model.garden.gardenLight) | model.garden.gardenLight.equals("all"))) {
-					goodChoice+=.65;
-				}
-				else if(((p.plantSoil.equals(model.garden.gardenSoil) | model.garden.gardenSoil.equals("all")))| 
-						!(p.plantLight.equals(model.garden.gardenLight) | model.garden.gardenLight.equals("all"))) {
-					goodChoice+=.65;
+				else if(model.garden.gardenSoil.contains(p.plantSoil) | model.garden.gardenSoil.contains("all")){
+					goodChoice+=.75;
 				}
 				else {
 					goodChoice+=.05;
