@@ -24,7 +24,7 @@ public class Garden implements java.io.Serializable{
 	}
 
 	/***
-	 * 
+	 * Returns the most recent Background Image file
 	 * @return the File with the Background Image
 	 */
 	public File getBg() {
