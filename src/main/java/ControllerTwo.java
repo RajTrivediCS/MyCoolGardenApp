@@ -154,7 +154,7 @@ public class ControllerTwo {
 			handleReplaceImgView(view2.gp, v);
 			v.plant.id = identifier;
 			view2.plantsInGarden.add(v);
-			// setHandlerDeletePlant(v);
+			setHandlerDeletePlant(v);
 			identifier++;
 		}
 	}
