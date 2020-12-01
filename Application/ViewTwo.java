@@ -284,8 +284,8 @@ public class ViewTwo {
 	public ViewTwo(Stage stage, Garden garden) {
 		controllerTwo = new ControllerTwo();
 		controllerTwo.setViewTwo(this);
-		this.model.garden = garden;
 		controllerTwo.setModelTwo(this.model);
+		this.model.garden = garden;
 		plants = model.getHotBarPlants();
 		topMenuMaker();
     	gp = new GridPane();
@@ -302,15 +302,25 @@ public class ViewTwo {
     	FlowPaneBG = backgroundMaker(garden.getBg());
     	fp.setBackground(new Background(FlowPaneBG));
     	fp.getChildren().add(vbox);
-    	for(Plant p: garden.gardensPlants) {
+    	for(Plant p: model.garden.gardensPlants) {
     		Image plantImage = new Image("img/"+p.name+".png");
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(plantImage);
 	    	piv.setPreserveRatio(true);
-	    	piv.setFitHeight(100);
+	    	switch(p.plantSize) {
+	    		case "small": piv.setFitHeight(90);
+	    		break;
+	    		case "medium": piv.setFitHeight(100);
+	    		break;
+	    		case "large": piv.setFitHeight(130);
+	    		break;
+	    	}
+	    	controllerTwo.setHandlerForDrag(piv, this);
+	    	controllerTwo.setHandlerDeletePlant(piv, this);
 	    	fp.getChildren().add(piv);
 	    	piv.setTranslateX(piv.plant.getXLoc());
 	    	piv.setTranslateY(piv.plant.getYLoc());
+	    	this.plantsInGarden.add(piv);
     	}
     	bp = new BorderPane();
     	bp.setTop(vbox);
