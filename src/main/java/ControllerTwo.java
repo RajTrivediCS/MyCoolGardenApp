@@ -161,6 +161,11 @@ public class ControllerTwo {
 		    }
 		});
 	}
+	
+	public void handleNewButtonPress(ActionEvent e) {
+		System.out.println("newButton press");
+		view2 = new ViewTwo(view2.stage, model.garden.getBg());
+	}
 
 	public void handleSaveButton(Stage stage) {
 		fileChooserSave.setTitle("Save Your Garden");
