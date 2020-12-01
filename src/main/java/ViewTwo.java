@@ -532,6 +532,11 @@ public class ViewTwo {
     	fp.setBackground(new Background(FlowPaneBG));
     	fp.getChildren().add(vbox);
     	plantReadder();
+    	for(Plant p: model.getHotBarPlants()) {
+    		if (p.id > controllerTwo.identifier) {
+    			controllerTwo.identifier = p.id;
+    		}
+    	}
     	bp = new BorderPane();
     	bp.setTop(vbox);
     	bp.setCenter(fp);
