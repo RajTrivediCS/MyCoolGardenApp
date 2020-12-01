@@ -68,6 +68,8 @@ public class ViewTwo {
 	ImageView undoImgView;
 	ImageView redoImgView;
 	ControllerTwo controllerTwo;
+	ControllerTwo controller2;
+	Stage stage;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
 
@@ -124,10 +126,6 @@ public class ViewTwo {
 		topBar.getMenus().add(fileMenu);
 		topBar.getMenus().add(viewMenu);
 		vbox = new VBox(topBar);
-		
-	}
-	
-	public void updateWasteBasket(PlantImageView iv) {
 		
 	}
 	
@@ -272,6 +270,8 @@ public class ViewTwo {
     	model.garden.setBg(bg);
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
+    	this.stage = stage;
+    	newButton.setOnAction(e-> controllerTwo.handleNewButtonPress(e));
     	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
     	stage.show();
 	}
@@ -318,10 +318,21 @@ public class ViewTwo {
     	bp.setLeft(sp);
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
+    	this.stage = stage;
     	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
     	stage.show();
 	}
 	
+	public Stage getStage() {
+		return stage;
+	}
+
+
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+
+
 	public Parent getBP() {
 		return this.bp;
 	}
