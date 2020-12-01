@@ -38,7 +38,6 @@ public class ViewTwo {
 	ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;
 	ArrayList<PlantImageView> plantsInGarden = new ArrayList<PlantImageView>();	
 	ArrayList<PlantImageView> plantsInWasteBasket = new ArrayList<PlantImageView>();
-	TilePane tp;
 	GridPane gp;
 	FlowPane fp;
 	BorderPane bp;
@@ -47,8 +46,6 @@ public class ViewTwo {
 	Menu fileMenu;
 	Menu undoMenu;
 	Menu redoMenu;
-	MenuItem undoItem;
-	MenuItem redoItem;
 	MenuBar menuBar;
 	MenuButton sortBy;
 	Button nameButton;
@@ -64,7 +61,6 @@ public class ViewTwo {
 	HBox hbox;
 	VBox vbox;
 	Scene scene;
-	ArrayList<Plant> plants;
 	Image undoImage = new Image("img/undoImage.png");
 	Image redoImage = new Image("img/redoImage.png");
 	ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
@@ -360,7 +356,7 @@ public class ViewTwo {
 		controllerTwo = new ControllerTwo();
 		controllerTwo.setViewTwo(this);
 		controllerTwo.setModelTwo(this.model);
-		plants = model.getHotBarPlants();
+		ArrayList<Plant> plants = model.getHotBarPlants();
 		topMenuMaker();
     	gp = new GridPane();
     	gp.setMaxWidth(1);
@@ -398,7 +394,7 @@ public class ViewTwo {
 		controllerTwo.setViewTwo(this);
 		controllerTwo.setModelTwo(this.model);
 		this.model.garden = garden;
-		plants = model.getHotBarPlants();
+		ArrayList<Plant> plants = model.getHotBarPlants();
 		topMenuMaker();
     	gp = new GridPane();
     	gp.setMaxWidth(1);
@@ -438,10 +434,6 @@ public class ViewTwo {
 
 	public Parent getBP() {
 		return this.bp;
-	}
-
-	public TilePane getTP() {
-		return this.tp;
 	}
 	
 	public Scene getScene() {

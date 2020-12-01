@@ -38,36 +38,6 @@ public class ModelTwo {
 		garden.addPlant(tba, gX, gY);
 		//add more info as we work more with the new View
 	}
-	
-	public Plant selectPlantInGarden(double x, double y) {
-		Plant tbm = new Plant("no plant", 99, 99);
-		for(Plant p : garden.gardensPlants) {
-			if(p.xLoc == x && p.yLoc == y) {
-				tbm=p;
-			}
-		}
-		return tbm;
-	}
-	
-	public void moveInGarden(double gX, double gY, Plant tbm) {
-		tbm.updatePlantLocation(gX, gY);
-		//add more info as we work more with the new View
-	}
-	
-	public void handleDeletionInGarden(double x, double y, Plant tbm) {
-		garden.deletePlant(tbm);
-		trashBin.add(tbm);
-		//add more info as we work more with the new View
-		System.out.println("Deletion successful");
-	}
-	
-	public void handleShowTrash() {
-		System.out.println("You selected the trashbin. Here's what's inside: ");
-		for(Plant p : trashBin) {
-			System.out.print(p.name+" ");
-		}
-		System.out.println("");
-	}
 
 	public void setHotBar(ArrayList<Plant> plants) {
 		this.hotBarPlants = plants;
