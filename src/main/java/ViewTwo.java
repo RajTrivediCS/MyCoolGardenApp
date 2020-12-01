@@ -320,6 +320,11 @@ public class ViewTwo {
 	    	piv.setTranslateY(piv.plant.getYLoc());
 	    	this.plantsInGarden.add(piv);
     	}
+		for(Plant p : model.garden.gardensPlants) {
+			if(p.id > controllerTwo.identifier) {
+				controllerTwo.identifier = p.id;
+			}
+		}
     	bp = new BorderPane();
     	bp.setTop(vbox);
     	bp.setCenter(fp);

@@ -33,13 +33,6 @@ public class ControllerTwo {
 	
 	public void setModelTwo(ModelTwo m2) {
 		this.model = m2;
-		if(!m2.garden.gardensPlants.isEmpty()) {
-			for(Plant p : m2.garden.gardensPlants) {
-				if(p.id > identifier) {
-					identifier = p.id;
-				}
-			}
-		}
 	}
 	
 	public void serializeGarden(File file) {
