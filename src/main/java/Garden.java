@@ -46,7 +46,8 @@ public class Garden implements java.io.Serializable{
 	public void deletePlant(Plant p) {
 		gardensPlants.remove(p);
 	}
-	
+
+/* NEEDS TO BE WORKED ON...
 	public int tallyGardenScore() {
 		return 0;
 	}
@@ -58,7 +59,7 @@ public class Garden implements java.io.Serializable{
 	public String sumGarden() {
 		return "";
 	}
-	
+*/	
 	/***
 	 * Sets the current List of plants with the given List of plants 
 	 * @param plants the List of plants to be initialized 

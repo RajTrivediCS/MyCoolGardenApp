@@ -47,25 +47,11 @@ public class ModelTwo {
 		}
 		return plantsList;
 	}
-	
-	public Plant selectPlantInGarden(double x, double y) {
-		Plant tbm = new Plant("no plant", 99, 99);
-		for(Plant p : garden.gardensPlants) {
-			if(p.xLoc == x && p.yLoc == y) {
-				tbm=p;
-			}
-		}
-		return tbm;
-	}
-	
-	public void moveInGarden(double gX, double gY, Plant tbm) {
-		tbm.updatePlantLocation(gX, gY);
-	}
-	
+
+/*	NEEDS TO WORKED ON...
 	public void handleDeletionInGarden(double x, double y, Plant tbm) {
 		garden.deletePlant(tbm);
 		trashBin.add(tbm);
-		//add more info as we work more with the new View
 		System.out.println("Deletion successful");
 	}
 	
@@ -75,6 +61,16 @@ public class ModelTwo {
 			System.out.print(p.name+" ");
 		}
 		System.out.println("");
+	}
+*/	
+	/***
+	 * Adds the plant with specified x and y coordinates into the Garden
+	 * @param gX the x coordinate for plant
+	 * @param gY the y coordinate for plant
+	 * @param tba the plant to be added
+	 */
+	public void addToGarden(double gX, double gY, Plant tba) {
+		garden.addPlant(tba, gX, gY);
 	}
 
 	/***

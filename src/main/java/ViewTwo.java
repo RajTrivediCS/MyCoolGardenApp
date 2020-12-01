@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CustomMenuItem;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
@@ -28,6 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /***
@@ -40,7 +42,6 @@ public class ViewTwo {
 	ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;
 	ArrayList<PlantImageView> plantsInGarden = new ArrayList<PlantImageView>();	
 	ArrayList<PlantImageView> plantsInWasteBasket = new ArrayList<PlantImageView>();
-	TilePane tp;
 	GridPane gp;
 	FlowPane fp;
 	BorderPane bp;
@@ -49,21 +50,22 @@ public class ViewTwo {
 	Menu fileMenu;
 	Menu undoMenu;
 	Menu redoMenu;
-	MenuItem undoItem;
-	MenuItem redoItem;
 	MenuBar menuBar;
 	MenuButton sortBy;
 	Button nameButton;
-	Button soilButton;
+	Button gSoilButton;
+	Button gLightButton;
 	Button sunButton;
+	Button soilButton;
 	Button newButton;
 	Button loadButton;
 	Button saveButton;
+	Button sizeButton;
+	Button generateReport;
 	BackgroundImage FlowPaneBG;
 	HBox hbox;
 	VBox vbox;
 	Scene scene;
-	ArrayList<Plant> plants;
 	Image undoImage = new Image("img/undoImage.png");
 	Image redoImage = new Image("img/redoImage.png");
 	ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
@@ -98,6 +100,11 @@ public class ViewTwo {
 		sunItem.setHideOnClick(false);
 		
 		sortBy.setOnMouseClicked(e->controllerTwo.sortButtonHandler());
+		sizeButton = new Button("Size");
+		CustomMenuItem sizeItem = new CustomMenuItem(sizeButton);
+		sortBy.getItems().add(sizeItem);
+		sizeItem.setHideOnClick(false);
+	
 		grid.getChildren().add(sortBy);
 	}
 	
@@ -121,6 +128,14 @@ public class ViewTwo {
 		CustomMenuItem saveItem = new CustomMenuItem(saveButton);
 		fileMenu.getItems().add(saveItem);
 		
+		gLightButton = new Button("Choose Garden Light");
+		CustomMenuItem gLightItem = new CustomMenuItem(gLightButton);
+		fileMenu.getItems().add(gLightItem);
+		
+		gSoilButton = new Button("Choose Garden Soil");
+		CustomMenuItem gSoilItem = new CustomMenuItem(gSoilButton);
+		fileMenu.getItems().add(gSoilItem);
+		
 		
 		Button togglegridButton = new Button("Toggle Grid");
 		CustomMenuItem togglegridItem = new CustomMenuItem(togglegridButton);
@@ -129,6 +144,10 @@ public class ViewTwo {
 		Button togglebackgroundButton = new Button("Toggle Background");
 		CustomMenuItem togglebackgroundItem = new CustomMenuItem(togglebackgroundButton);
 		viewMenu.getItems().add(togglebackgroundItem);
+		
+		generateReport = new Button("Generate Garden Report");
+		CustomMenuItem generateReportItem = new CustomMenuItem(generateReport);
+		viewMenu.getItems().add(generateReportItem);
 		
 		MenuBar topBar = new MenuBar();
 		
@@ -173,7 +192,7 @@ public class ViewTwo {
 	}
 	
 	/***
-	 * Sorts List of plant image view by name type
+	 * Sorts List of plant image view by name of plant
 	 */
 	public void nameSort() {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
@@ -185,7 +204,7 @@ public class ViewTwo {
 	}
 	
 	/***
-	 * Sorts List of plant image view by sun type
+	 * Sorts List of plant image view by amount of sunlight
 	 */
 	public void sunSort() {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
@@ -203,7 +222,7 @@ public class ViewTwo {
 	}
 	
 	/***
-	 * Sorts List of plant image view by soil type
+	 * Sorts List of plant image view by amount of soil
 	 */
 	public void soilSort() {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
@@ -221,10 +240,51 @@ public class ViewTwo {
 	}
 	
 	/***
-	 * Uses sort mode to sort the List of plant image view
-	 * @param sortMode the mode(either "name", "sun", or "soil") for sorting all Plants
+	 * Sorts List of plant image view by size
 	 */
-	//
+	public void sizeSort() {
+		Collections.sort(sideView,new Comparator<PlantImageView>(){
+			@Override
+			public int compare(PlantImageView p1, PlantImageView p2) {
+				int p1Size = 0;
+				int p2Size = 0;
+				switch(p1.plant.plantSize) {
+					case "small":
+						p1Size = 1;
+						break;
+					case "medium":
+						p1Size = 2;
+						break;
+					case "large":
+						p1Size = 3;
+						break;
+				}
+				switch(p2.plant.plantSize) {
+					case "small":
+						p2Size = 1;
+						break;
+					case "medium":
+						p2Size = 2;
+						break;
+					case "large":
+						p2Size = 3;
+						break;
+				}
+				int i = p1Size - p2Size;
+				if(i==0) {
+					return p1.plant.name.compareTo(p2.plant.name);
+				}
+				else {
+					return i;
+				}
+			}				
+		});
+	}
+	
+	/***
+	 * Uses sort mode to sort the List of plant image view
+	 * @param sortMode the mode(either "name", "sun", "soil", or "name") for sorting all Plants
+	 */
 	public void sideViewSortHelper(String sortMode) { // convert to enum in the future
 		switch(sortMode) {
 			case "name": nameSort();
@@ -233,12 +293,14 @@ public class ViewTwo {
 			break;
 			case "soil": soilSort();
 			break;
+			case "size": sizeSort();
+			break;
 		}
 	}
 	
 	/***
 	 * Sorts the ImageViews in the SideBar based on the given sort mode
-	 * @param sortMode the mode(either "name", "sun", or "soil") for sorting all Plants 
+	 * @param sortMode the mode(either "name", "sun", "soil", or "name") for sorting all Plants 
 	 */
 	public void sortSideView(String sortMode) {
 		for(PlantImageView p: sideView) {
@@ -274,71 +336,22 @@ public class ViewTwo {
 	}
 	
 	/***
-	 * Initializes the instance variables, sets the Scene, and displays it on Stage 
-	 * @param stage the Stage
-	 * @param bg the Background Image File that user chooses for their Garden
+	 * Sets the handler event for all the buttons in File Menu
 	 */
-	public ViewTwo(Stage stage, File bg){
-		controllerTwo = new ControllerTwo();
-		controllerTwo.setViewTwo(this);
-		controllerTwo.setModelTwo(this.model);
-		plants = model.getHotBarPlants();
-		topMenuMaker();
-    	gp = new GridPane();
-    	gp.setMaxWidth(1);
-    	gp.setStyle("-fx-background-color: #ADD8E6");
-		buttonMaker(gp);
-		plantIVAdder(plants);
-    	hbox = new HBox();
-    	hbox.getChildren().add(gp);
-    	sp = new ScrollPane();
-    	sp.setFitToWidth(true);
-    	sp.setContent(hbox);
-    	fp = new FlowPane();
-    	FlowPaneBG = backgroundMaker(bg);
-    	fp.setBackground(new Background(FlowPaneBG));
-    	fp.getChildren().add(vbox);
-    	bp = new BorderPane();
-    	bp.setTop(vbox);
-    	bp.setCenter(fp);
-    	bp.setLeft(sp);
-    	model.garden.setBg(bg);
-    	scene = new Scene(bp,WIDTH,HEIGHT);
-    	stage.setScene(scene);
-    	this.stage = stage;
+	public void setOnActionAdder() {
     	newButton.setOnAction(e-> controllerTwo.handleNewButtonPress(e));
     	loadButton.setOnAction(e-> controllerTwo.handleLoadButtonPress(e));
     	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
-    	stage.show();
+    	gSoilButton.setOnAction(e->controllerTwo.handleGSoilButton(e));
+    	gLightButton.setOnAction(e->controllerTwo.handleLightButton(e));
+    	generateReport.setOnAction(e->controllerTwo.handleGenerateReport(e));
 	}
 	
 	/***
-	 * Initializes the instance variables, sets the Scene, and displays it on Stage 
-	 * @param stage the Stage
-	 * @param garden the Garden that is deserialized
+	 * Reads all the plants from the List of garden plants and places them appropriately in Garden 
 	 */
-	public ViewTwo(Stage stage, Garden garden) {
-		controllerTwo = new ControllerTwo();
-		controllerTwo.setViewTwo(this);
-		controllerTwo.setModelTwo(this.model);
-		this.model.garden = garden;
-		plants = model.getHotBarPlants();
-		topMenuMaker();
-    	gp = new GridPane();
-    	gp.setMaxWidth(1);
-    	gp.setStyle("-fx-background-color: #ADD8E6");
-		buttonMaker(gp);
-		plantIVAdder(plants);
-    	hbox = new HBox();
-    	hbox.getChildren().add(gp);
-    	sp = new ScrollPane();
-    	sp.setFitToWidth(true);
-    	sp.setContent(hbox);
-    	fp = new FlowPane();
-    	FlowPaneBG = backgroundMaker(garden.getBg());
-    	fp.setBackground(new Background(FlowPaneBG));
-    	fp.getChildren().add(vbox);
-    	for(Plant p: model.garden.gardensPlants) {
+	public void plantReadder() {
+		for(Plant p: model.garden.gardensPlants) {
     		Image plantImage = new Image("img/"+p.name+".png");
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(plantImage);
@@ -363,6 +376,160 @@ public class ViewTwo {
 				controllerTwo.identifier = p.id;
 			}
 		}
+	}
+	
+	/***
+	 * Displays the Pop Up on separate Stage for given property(either "light" or "soil") of plant
+	 * @param bType the property of plant for which Pop Up will display
+	 * @return the Pop Up Stage for the given property of plant
+	 */
+	public Stage makePopUpForSunSoil(String bType) {
+		Stage popUp = new Stage();
+		if(bType.equals("light")) {
+			popUp.setTitle("Select a Light Type");
+		}
+		else {
+			popUp.setTitle("Select a SoilType");
+		}
+        popUp.initModality(Modality.WINDOW_MODAL);
+        popUp.setHeight(70);
+        popUp.setWidth(300);
+        popUp.initOwner(this.stage);
+		return popUp;
+	}
+	
+	/***
+	 * Displays the Pop Up on separate Stage for generating Garden report
+	 * @return the Pop Up Stage for generating Garden report
+	 */
+	public Stage makePopUpForReport() {
+		Stage popUp = new Stage();
+		popUp.setTitle("Here's Your Custom Generated Report");
+		popUp.initModality(Modality.WINDOW_MODAL);
+        popUp.setHeight(400);
+        popUp.setWidth(500);
+        popUp.initOwner(this.stage);
+		return popUp;
+	}
+	
+	/***
+	 * Creates the FlowPane for Garden report's text and returns it
+	 * @param report the Garden report's text that needs to be displayed on Stage
+	 * @return the FlowPane with Garden report's text in it
+	 */
+	public FlowPane makeReportPane(String report) {
+		FlowPane pane = new FlowPane();
+		Label label = new Label(report);
+		pane.getChildren().add(label);
+		return pane;
+	}
+	
+	/***
+	 * Adds the buttons for Soil Pop Up window into the FlowPane and returns the FlowPane
+	 * @return the FlowPane with added buttons for Soil Pop Up Stage
+	 */
+	public FlowPane addButtonsToSoilPopUp() {
+		FlowPane pane = new FlowPane();
+        Button all = new Button("All");
+        all.setUserData("All");
+        Button loamy = new Button("Loamy");
+        loamy.setUserData("Loamy");
+        Button sandy = new Button("Sandy");
+        sandy.setUserData("Sandy");
+        Button clay = new Button("Clay");
+        clay.setUserData("Clay");
+        pane.getChildren().add(all);
+        pane.getChildren().add(loamy);
+        pane.getChildren().add(sandy);
+        pane.getChildren().add(clay);
+		return pane;
+	}
+	
+	/***
+	 * Adds the buttons for Light Pop Up window into the FlowPane and returns the FlowPane
+	 * @return the FlowPane with added buttons for Light Pop Up Stage
+	 */
+	public FlowPane addButtonsToLightPopUp() {
+		 FlowPane pane = new FlowPane();
+	     Button all = new Button("All");
+	     all.setUserData("All");
+	     Button full = new Button("Full");
+	     full.setUserData("Full");
+	     Button partial = new Button("Partial");
+	     partial.setUserData("Partial");
+	     Button shade = new Button("Shade");
+	     shade.setUserData("Shade");
+	     pane.getChildren().add(all);
+	     pane.getChildren().add(full);
+	     pane.getChildren().add(partial);
+	     pane.getChildren().add(shade);
+	     return pane;
+	}
+
+	/***
+	 * Initializes the instance variables, sets the Scene, and displays it on Stage 
+	 * @param stage the Stage
+	 * @param bg the Background Image File that user chooses for their Garden
+	 */
+	public ViewTwo(Stage stage, File bg){
+		controllerTwo = new ControllerTwo();
+		controllerTwo.setViewTwo(this);
+		controllerTwo.setModelTwo(this.model);
+		ArrayList<Plant> plants = model.getHotBarPlants();
+		topMenuMaker();
+    	gp = new GridPane();
+    	gp.setMaxWidth(1);
+    	gp.setStyle("-fx-background-color: #ADD8E6");
+		buttonMaker(gp);
+		plantIVAdder(plants);
+    	hbox = new HBox();
+    	hbox.getChildren().add(gp);
+    	sp = new ScrollPane();
+    	sp.setFitToWidth(true);
+    	sp.setContent(hbox);
+    	fp = new FlowPane();
+    	FlowPaneBG = backgroundMaker(bg);
+    	fp.setBackground(new Background(FlowPaneBG));
+    	fp.getChildren().add(vbox);
+    	bp = new BorderPane();
+    	bp.setTop(vbox);
+    	bp.setCenter(fp);
+    	bp.setLeft(sp);
+    	model.garden.setBg(bg);
+    	scene = new Scene(bp,WIDTH,HEIGHT);
+    	stage.setScene(scene);
+    	this.stage = stage;
+    	setOnActionAdder();
+    	stage.show();
+	}
+	
+	/***
+	 * Initializes the instance variables, sets the Scene, and displays it on Stage 
+	 * @param stage the Stage
+	 * @param garden the Garden that is deserialized
+	 */
+	public ViewTwo(Stage stage, Garden garden) {
+		controllerTwo = new ControllerTwo();
+		controllerTwo.setViewTwo(this);
+		controllerTwo.setModelTwo(this.model);
+		this.model.garden = garden;
+		ArrayList<Plant> plants = model.getHotBarPlants();
+		topMenuMaker();
+    	gp = new GridPane();
+    	gp.setMaxWidth(1);
+    	gp.setStyle("-fx-background-color: #ADD8E6");
+		buttonMaker(gp);
+		plantIVAdder(plants);
+    	hbox = new HBox();
+    	hbox.getChildren().add(gp);
+    	sp = new ScrollPane();
+    	sp.setFitToWidth(true);
+    	sp.setContent(hbox);
+    	fp = new FlowPane();
+    	FlowPaneBG = backgroundMaker(garden.getBg());
+    	fp.setBackground(new Background(FlowPaneBG));
+    	fp.getChildren().add(vbox);
+    	plantReadder();
     	bp = new BorderPane();
     	bp.setTop(vbox);
     	bp.setCenter(fp);
@@ -370,9 +537,7 @@ public class ViewTwo {
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
     	this.stage = stage;
-    	newButton.setOnAction(e-> controllerTwo.handleNewButtonPress(e));
-    	loadButton.setOnAction(e-> controllerTwo.handleLoadButtonPress(e));
-    	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
+    	setOnActionAdder();
     	stage.show();
 	}
 	
@@ -392,14 +557,6 @@ public class ViewTwo {
 		return this.bp;
 	}
 
-	/***
-	 * Returns the most recent TilePane instance
-	 * @return the current TilePane
-	 */
-	public TilePane getTP() {
-		return this.tp;
-	}
-	
 	/***
 	 * Returns the most recent Scene for ViewTwo
 	 * @return the Scene for ViewTwo
