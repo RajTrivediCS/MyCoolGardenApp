@@ -1,5 +1,3 @@
-package Application;
-
 import java.io.File;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;

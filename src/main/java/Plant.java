@@ -1,5 +1,3 @@
-package Application;
-
 public class Plant implements java.io.Serializable {
 	String name;
 	double xLoc;
