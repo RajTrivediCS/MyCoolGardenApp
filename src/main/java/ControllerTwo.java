@@ -290,7 +290,7 @@ public class ControllerTwo {
 	        	case "All":
 			        ((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
-					      model.garden.gardenSoil="all";
+					      model.garden.gardenSoil="any";
 					    }
 					});;
 					break;
@@ -333,7 +333,7 @@ public class ControllerTwo {
 	        	case "All":
 			        ((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
-					      model.garden.gardenLight="all";
+					      model.garden.gardenLight="any";
 					    }
 					});;
 					break;
@@ -373,14 +373,14 @@ public class ControllerTwo {
 		double overallNumber = 1;
 		for(Plant p : model.garden.gardensPlants) {
 			overallNumber++;
-				if(model.garden.gardenLight.contains(p.plantLight) | model.garden.gardenLight.contains("all")) {
-					if(model.garden.gardenSoil.contains(p.plantSoil) | model.garden.gardenSoil.contains("all")) {
+				if(p.plantLight.contains(model.garden.gardenLight) | model.garden.gardenLight.equals("any")) {
+					if(p.plantSoil.contains(model.garden.gardenSoil) | model.garden.gardenSoil.equals("any")) {
 						goodChoice++;
 					}else {
 						goodChoice+=.75;
 					}
 				}
-				else if(model.garden.gardenSoil.contains(p.plantSoil) | model.garden.gardenSoil.contains("all")){
+				else if(p.plantSoil.contains(model.garden.gardenSoil) | model.garden.gardenSoil.equals("any")){
 					goodChoice+=.75;
 				}
 				else {
