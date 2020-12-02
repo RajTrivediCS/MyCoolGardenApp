@@ -178,7 +178,6 @@ public class ViewTwo {
 	    	piv.setPaneLoc("grid");
 			sideView.add(piv);
 	    	gp.add(piv, 0, i+1);
-	    	controllerTwo.setHandlerForPress(piv);
 	    	i++;
 	    }
 		wasteBasket.setFitHeight(90);
@@ -349,8 +348,6 @@ public class ViewTwo {
 	    		case "large": piv.setFitHeight(130);
 	    		break;
 	    	}
-	    	controllerTwo.setHandlerForDrag(piv);
-	    	controllerTwo.setHandlerDeletePlant(piv);
 	    	fp.getChildren().add(piv);
 	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+".");
 	    	Tooltip.install(piv, tooltip);
