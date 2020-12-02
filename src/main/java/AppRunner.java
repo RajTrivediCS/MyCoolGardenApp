@@ -9,11 +9,11 @@ import javafx.stage.Stage;
  */
 public class AppRunner extends Application {
 
-	MainView mainView;
+	MainController mainController;
 	
 	@Override
 	public void start(Stage stage) {
-		mainView = new MainView(stage);
+		mainController = new MainController(stage);
 	}
 
 	public static void main(String[] args) {

@@ -26,7 +26,7 @@ import javafx.stage.Stage;
  *
  */
 public class ControllerTwo {
-	ViewTwo view2;
+	ViewTwo viewTwo;
 	ModelTwo model = new ModelTwo();
 	FileChooser loadFileChooser;
 	FileChooser fileChooserSave;
@@ -49,7 +49,7 @@ public class ControllerTwo {
 	 * @param v2 the ViewTwo to be set
 	 */
 	public void setViewTwo(ViewTwo v2) {
-		this.view2 = v2;
+		this.viewTwo = v2;
 	}
 	
 	/***
@@ -102,7 +102,7 @@ public class ControllerTwo {
     	int i = grid.getRowIndex(v);
 		grid.add(iv, 0, i);
 		iv.setPaneLoc("grid");
-		view2.sideView.add(iv);
+		viewTwo.sideView.add(iv);
 	}
 	
 	/***
@@ -111,7 +111,7 @@ public class ControllerTwo {
 	 */
 	public ArrayList<Plant> updateGarden(){
 		ArrayList<Plant> gard = new ArrayList<Plant>();
-		for(PlantImageView p : view2.plantsInGarden) {
+		for(PlantImageView p : viewTwo.plantsInGarden) {
 			gard.add(p.plant);
 		}
 		System.out.print(gard);
@@ -131,7 +131,7 @@ public class ControllerTwo {
 		v.setPaneLoc("flow");
 		v.plant.setXLoc(v.getTranslateX());
 		v.plant.setYLoc(v.getTranslateY());
-		for(PlantImageView p : view2.plantsInGarden) {
+		for(PlantImageView p : viewTwo.plantsInGarden) {
 			if(p.plant.id == v.plant.id){
 				p.plant.xLoc = v.plant.xLoc;
 				p.plant.yLoc = v.plant.yLoc;
@@ -149,11 +149,11 @@ public class ControllerTwo {
 	public void enter(MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("grid")) {
 			setHandlerForDrag(v);
-			view2.fp.getChildren().add(v);
-			view2.sideView.remove(v);
-			handleReplaceImgView(view2.gp, v);
+			viewTwo.fp.getChildren().add(v);
+			viewTwo.sideView.remove(v);
+			handleReplaceImgView(viewTwo.gp, v);
 			v.plant.id = identifier;
-			view2.plantsInGarden.add(v);
+			viewTwo.plantsInGarden.add(v);
 			setHandlerDeletePlant(v);
 			identifier++;
 		}
@@ -166,13 +166,13 @@ public class ControllerTwo {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if(button==MouseButton.SECONDARY){
-                	view2.plantsInGarden.remove(iv1);
-                	view2.plantsInWasteBasket.add(iv1);
+                	viewTwo.plantsInGarden.remove(iv1);
+                	viewTwo.plantsInWasteBasket.add(iv1);
                 	String plantWaste = "";
-                	for (PlantImageView p:view2.plantsInWasteBasket) {
+                	for (PlantImageView p:viewTwo.plantsInWasteBasket) {
             			plantWaste += p.plant.name + ", ";
             		}
-                	Tooltip.install(view2.wasteBasket, new Tooltip(plantWaste +"\n"));
+                	Tooltip.install(viewTwo.wasteBasket, new Tooltip(plantWaste +"\n"));
                 	iv1.setImage(null);
                 }
                 model.garden.setGardensPlants(updateGarden());
@@ -202,24 +202,24 @@ public class ControllerTwo {
 	 * Sorts all the Plants depending on which button you click  
 	 */
 	public void sortButtonHandler() {
-		view2.nameButton.setOnAction(new EventHandler<ActionEvent>() {
+		viewTwo.nameButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	view2.sortSideView("name");
+		    	viewTwo.sortSideView("name");
 		    }
 		});
-		view2.sunButton.setOnAction(new EventHandler<ActionEvent>() {
+		viewTwo.sunButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	view2.sortSideView("sun");
+		    	viewTwo.sortSideView("sun");
 		    }
 		});
-		view2.soilButton.setOnAction(new EventHandler<ActionEvent>() {
+		viewTwo.soilButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		    	view2.sortSideView("soil");
+		    	viewTwo.sortSideView("soil");
 		    }
 		});
-		view2.sizeButton.setOnAction(new EventHandler<ActionEvent>() {
+		viewTwo.sizeButton.setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
-		        view2.sortSideView("size");
+		        viewTwo.sortSideView("size");
 		    }
 		});
 	}
@@ -230,7 +230,7 @@ public class ControllerTwo {
 	 */
 	public void handleNewButtonPress(ActionEvent e) {
 		System.out.println("newButton press");
-		view2 = new ViewTwo(view2.stage, model.garden.getBg());
+		viewTwo = new ViewTwo(viewTwo.stage, model.garden.getBg());
 	}
 
 	/***
@@ -240,9 +240,9 @@ public class ControllerTwo {
 	public void handleLoadButtonPress(ActionEvent e) {
 		loadFileChooser.setTitle("Load Your Garden");
 		loadFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
-		fileToLoad = loadFileChooser.showOpenDialog(view2.stage);
+		fileToLoad = loadFileChooser.showOpenDialog(viewTwo.stage);
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
-		view2 = new ViewTwo(view2.stage, userSavedGarden);
+		viewTwo = new ViewTwo(viewTwo.stage, userSavedGarden);
 	}
 	
 	/***
@@ -282,9 +282,9 @@ public class ControllerTwo {
 	 * @param event the ActionEvent for "Choose Garden Soil" button
 	 */
 	public void handleGSoilButton(ActionEvent event){
-		Stage popUp = view2.makePopUpForSunSoil("soil");
+		Stage popUp = viewTwo.makePopUpForSunSoil("soil");
         popUp.show();
-        FlowPane pane = view2.addButtonsToSoilPopUp();
+        FlowPane pane = viewTwo.addButtonsToSoilPopUp();
         for(Node n : pane.getChildren())
         	switch((String) n.getUserData()) {
 	        	case "All":
@@ -325,8 +325,8 @@ public class ControllerTwo {
 	 * @param event the ActionEvent for "Choose Garden Light" button
 	 */
 	public void handleLightButton(ActionEvent e){
-		Stage popUp = view2.makePopUpForSunSoil("light");
-        FlowPane pane = view2.addButtonsToLightPopUp();
+		Stage popUp = viewTwo.makePopUpForSunSoil("light");
+        FlowPane pane = viewTwo.addButtonsToLightPopUp();
         
         for(Node n : pane.getChildren())
         	switch((String) n.getUserData()) {
@@ -458,9 +458,9 @@ public class ControllerTwo {
 	 * @param e the ActionEvent for "Generate Garden Report" button
 	 */
 	public void handleGenerateReport(ActionEvent e) {
-		Stage popUp = view2.makePopUpForReport();
+		Stage popUp = viewTwo.makePopUpForReport();
 		String report = generateReportText();
-		FlowPane pane = view2.makeReportPane(report);
+		FlowPane pane = viewTwo.makeReportPane(report);
 		Scene popScene = new Scene(pane);
         popUp.setScene(popScene);
         popUp.show();

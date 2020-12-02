@@ -9,7 +9,7 @@ import javafx.stage.Stage;
  *
  */
 public class ControllerOne {
-
+	ViewOne viewOne;
 	Stage stage;
 	ViewTwo viewTwo;
 	/***
@@ -17,6 +17,8 @@ public class ControllerOne {
 	 * @param stage the Stage 
 	 */
 	public ControllerOne(Stage stage) {
+		viewOne = new ViewOne(stage); 
+	  	viewOne.uploadGardenImageButton.setOnMouseClicked(e -> handleUploadGardenButtonPress(e));
 		this.stage = stage;
 	}
 

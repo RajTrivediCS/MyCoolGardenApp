@@ -18,7 +18,7 @@ public class ViewOne {
 	FlowPane fp;
 	Button uploadGardenImageButton;
 	Scene scene;
-	ControllerOne controllerOne;
+	Stage stage;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
 	
@@ -27,7 +27,7 @@ public class ViewOne {
 	 * @param stage the Stage to display for ViewOne
 	 */
 	public ViewOne(Stage stage){
-		controllerOne = new ControllerOne(stage);
+		this.stage = stage;
 		fp = new FlowPane();
     	BackgroundImage backgroundImage = new BackgroundImage(new Image("img/LoadImageBackground.jpg"),BackgroundRepeat.NO_REPEAT, 
     			BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(1.0, 1.0, true, true, false, false));
@@ -37,13 +37,13 @@ public class ViewOne {
     	uploadGardenImageButton.setTranslateY(300);
     	uploadGardenImageButton.setPrefHeight(75);
     	uploadGardenImageButton.setPrefWidth(200);
-    	uploadGardenImageButton.setOnMouseClicked(e -> controllerOne.handleUploadGardenButtonPress(e));
     	fp.getChildren().add(uploadGardenImageButton);
     	scene = new Scene(fp,WIDTH,HEIGHT);
-    	stage.setScene(scene);
-    	stage.show();
 	}
-	
+	public void startShow() {
+		stage.setScene(scene);
+		stage.show();
+	}
 	/***
 	 * Returns the most recent Scene for ViewOne
 	 * @return the current Scene for ViewOne

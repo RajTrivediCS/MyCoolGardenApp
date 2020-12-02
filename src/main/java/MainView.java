@@ -18,7 +18,6 @@ public class MainView {
 	FlowPane fp;
 	Button newGardenButton; 
 	Button loadGardenButton;
-	MainController mainController;
 	BackgroundImage backgroundImage = new BackgroundImage(new Image("img/MainMenu.png"),BackgroundRepeat.NO_REPEAT, 
 			BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 	Scene scene;
@@ -30,7 +29,6 @@ public class MainView {
 	 * @param stage the Stage to display for MainView
 	 */
 	public MainView(Stage stage) {
-		mainController = new MainController(stage);
 		fp = new FlowPane();
 		fp.setBackground(new Background(backgroundImage));
     	newGardenButton = new Button(" (+) New Garden");
@@ -43,8 +41,6 @@ public class MainView {
     	newGardenButton.setPrefWidth(150);
     	loadGardenButton.setPrefHeight(50);
     	loadGardenButton.setPrefWidth(150);
-    	newGardenButton.setOnMouseClicked(e-> mainController.handleNewGardenButtonPress(e));
-    	loadGardenButton.setOnMouseClicked(e-> mainController.handleLoadGardenButton(e));
     	fp.getChildren().add(newGardenButton);
     	fp.getChildren().add(loadGardenButton);
     	scene = new Scene(fp,WIDTH,HEIGHT);

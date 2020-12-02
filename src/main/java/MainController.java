@@ -11,8 +11,8 @@ import javafx.stage.Stage;
  *
  */
 public class MainController {
-
-	ViewOne viewOne;
+	MainView mainView;
+	ControllerOne controllerOne;
 	Stage stage;
 	FileChooser fileChooser;
 	File fileToLoad;
@@ -23,9 +23,12 @@ public class MainController {
 	 * @param stage the Stage
 	 */
 	public MainController(Stage stage) {
+		mainView = new MainView(stage);
+		mainView.newGardenButton.setOnMouseClicked(e-> handleNewGardenButtonPress(e));
+    	mainView.loadGardenButton.setOnMouseClicked(e-> handleLoadGardenButton(e));
 		this.stage = stage;
 		fileChooser = new FileChooser();
-		viewOne = new ViewOne(stage);
+		controllerOne = new ControllerOne(stage);
 	}
 	
 	/***
@@ -33,6 +36,7 @@ public class MainController {
 	 * @param e the MouseEvent for click
 	 */
 	public void handleLoadGardenButton(MouseEvent e) {
+		System.out.println("Button is clicked");
 		fileChooser.setTitle("Load Your Garden");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToLoad = fileChooser.showOpenDialog(stage);
@@ -45,7 +49,8 @@ public class MainController {
 	 * @param e the MouseEvent for click
 	 */
 	public void handleNewGardenButtonPress(MouseEvent e) {
-		stage.setScene(viewOne.getScene());
+		stage.setScene(controllerOne.viewOne.getScene());
+		controllerOne.viewOne.startShow();
 	}
 	
 	/***
