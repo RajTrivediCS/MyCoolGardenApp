@@ -38,7 +38,6 @@ import javafx.stage.Stage;
  *
  */
 public class ViewTwo {
-	ModelTwo model = new ModelTwo();
 	ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;
 	ArrayList<PlantImageView> plantsInGarden = new ArrayList<PlantImageView>();	
 	ArrayList<PlantImageView> plantsInWasteBasket = new ArrayList<PlantImageView>();
@@ -350,8 +349,8 @@ public class ViewTwo {
 	/***
 	 * Reads all the plants from the List of garden plants and places them appropriately in Garden 
 	 */
-	public void plantReadder() {
-		for(Plant p: model.garden.gardensPlants) {
+	public void plantReadder(ArrayList<Plant> plants) {
+		for(Plant p: plants) {
     		Image plantImage = new Image("img/"+p.name+".png");
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(plantImage);
@@ -373,7 +372,7 @@ public class ViewTwo {
 	    	piv.setTranslateY(piv.plant.getYLoc());
 	    	this.plantsInGarden.add(piv);
     	}
-		for(Plant p : model.garden.gardensPlants) {
+		for(Plant p : plants) {
 			if(p.id > controllerTwo.identifier) {
 				controllerTwo.identifier = p.id;
 			}
@@ -476,8 +475,7 @@ public class ViewTwo {
 	public ViewTwo(Stage stage, File bg){
 		controllerTwo = new ControllerTwo();
 		controllerTwo.setViewTwo(this);
-		controllerTwo.setModelTwo(this.model);
-		ArrayList<Plant> plants = model.getHotBarPlants();
+		ArrayList<Plant> plants = controllerTwo.model.getHotBarPlants();
 		topMenuMaker();
     	gp = new GridPane();
     	gp.setMaxWidth(1);
@@ -497,7 +495,7 @@ public class ViewTwo {
     	bp.setTop(vbox);
     	bp.setCenter(fp);
     	bp.setLeft(sp);
-    	model.garden.setBg(bg);
+    	controllerTwo.model.garden.setBg(bg);
     	scene = new Scene(bp,WIDTH,HEIGHT);
     	stage.setScene(scene);
     	this.stage = stage;
@@ -513,9 +511,8 @@ public class ViewTwo {
 	public ViewTwo(Stage stage, Garden garden) {
 		controllerTwo = new ControllerTwo();
 		controllerTwo.setViewTwo(this);
-		controllerTwo.setModelTwo(this.model);
-		this.model.garden = garden;
-		ArrayList<Plant> plants = model.getHotBarPlants();
+		controllerTwo.model.garden = garden;
+		ArrayList<Plant> plants = controllerTwo.model.getHotBarPlants();
 		topMenuMaker();
     	gp = new GridPane();
     	gp.setMaxWidth(1);
@@ -531,8 +528,8 @@ public class ViewTwo {
     	FlowPaneBG = backgroundMaker(garden.getBg());
     	fp.setBackground(new Background(FlowPaneBG));
     	fp.getChildren().add(vbox);
-    	plantReadder();
-    	for(Plant p: model.getHotBarPlants()) {
+    	plantReadder(controllerTwo.model.getHotBarPlants());
+    	for(Plant p: controllerTwo.model.getHotBarPlants()) {
     		if (p.id > controllerTwo.identifier) {
     			controllerTwo.identifier = p.id;
     		}

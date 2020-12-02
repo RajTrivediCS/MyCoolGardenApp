@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  */
 public class ControllerTwo {
 	ViewTwo view2;
-	ModelTwo model;
+	ModelTwo model = new ModelTwo();
 	FileChooser loadFileChooser;
 	FileChooser fileChooserSave;
 	File fileToLoad;
@@ -399,7 +399,7 @@ public class ControllerTwo {
 	public String generateReportText() {
 		String report = "";
 		int score = 0;
-		ArrayList<Plant> arrayCopy = view2.model.garden.gardensPlants;
+		ArrayList<Plant> arrayCopy = model.garden.gardensPlants;
 		ArrayList<String> ignoreList = new ArrayList<String>();
 		boolean ignore = false;
 		if(arrayCopy.isEmpty()) {
