@@ -70,8 +70,6 @@ public class ViewTwo {
 	ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
 	ImageView undoImgView;
 	ImageView redoImgView;
-	ControllerTwo controllerTwo;
-	ControllerTwo controller2;
 	Stage stage;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
@@ -98,7 +96,6 @@ public class ViewTwo {
 		sortBy.getItems().add(sunItem);
 		sunItem.setHideOnClick(false);
 		
-		sortBy.setOnMouseClicked(e->controllerTwo.sortButtonHandler());
 		sizeButton = new Button("Size");
 		CustomMenuItem sizeItem = new CustomMenuItem(sizeButton);
 		sortBy.getItems().add(sizeItem);
@@ -334,18 +331,7 @@ public class ViewTwo {
 		return bgImage;
 	}
 	
-	/***
-	 * Sets the handler event for all the buttons in File Menu
-	 */
-	public void setOnActionAdder() {
-    	newButton.setOnAction(e-> controllerTwo.handleNewButtonPress(e));
-    	loadButton.setOnAction(e-> controllerTwo.handleLoadButtonPress(e));
-    	saveButton.setOnAction(e->controllerTwo.handleSaveButton(stage));
-    	gSoilButton.setOnAction(e->controllerTwo.handleGSoilButton(e));
-    	gLightButton.setOnAction(e->controllerTwo.handleLightButton(e));
-    	generateReport.setOnAction(e->controllerTwo.handleGenerateReport(e));
-	}
-	
+
 	/***
 	 * Reads all the plants from the List of garden plants and places them appropriately in Garden 
 	 */
@@ -372,11 +358,6 @@ public class ViewTwo {
 	    	piv.setTranslateY(piv.plant.getYLoc());
 	    	this.plantsInGarden.add(piv);
     	}
-		for(Plant p : plants) {
-			if(p.id > controllerTwo.identifier) {
-				controllerTwo.identifier = p.id;
-			}
-		}
 	}
 	
 	/***
@@ -472,16 +453,13 @@ public class ViewTwo {
 	 * @param stage the Stage
 	 * @param bg the Background Image File that user chooses for their Garden
 	 */
-	public ViewTwo(Stage stage, File bg){
-		controllerTwo = new ControllerTwo();
-		controllerTwo.setViewTwo(this);
-		ArrayList<Plant> plants = controllerTwo.model.getHotBarPlants();
+	public ViewTwo(Stage stage, File bg, ArrayList<Plant> sbPlants){
 		topMenuMaker();
     	gp = new GridPane();
     	gp.setMaxWidth(1);
     	gp.setStyle("-fx-background-color: #ADD8E6");
 		buttonMaker(gp);
-		plantIVAdder(plants);
+		plantIVAdder(sbPlants);
     	hbox = new HBox();
     	hbox.getChildren().add(gp);
     	sp = new ScrollPane();
@@ -495,12 +473,8 @@ public class ViewTwo {
     	bp.setTop(vbox);
     	bp.setCenter(fp);
     	bp.setLeft(sp);
-    	controllerTwo.model.garden.setBg(bg);
     	scene = new Scene(bp,WIDTH,HEIGHT);
-    	stage.setScene(scene);
     	this.stage = stage;
-    	setOnActionAdder();
-    	stage.show();
 	}
 	
 	/***
@@ -508,41 +482,33 @@ public class ViewTwo {
 	 * @param stage the Stage
 	 * @param garden the Garden that is deserialized
 	 */
-	public ViewTwo(Stage stage, Garden garden) {
-		controllerTwo = new ControllerTwo();
-		controllerTwo.setViewTwo(this);
-		controllerTwo.model.garden = garden;
-		ArrayList<Plant> plants = controllerTwo.model.getHotBarPlants();
+	public ViewTwo(Stage stage, File bg, ArrayList<Plant> sBPlants, ArrayList<Plant> gPlants) {
 		topMenuMaker();
     	gp = new GridPane();
     	gp.setMaxWidth(1);
     	gp.setStyle("-fx-background-color: #ADD8E6");
 		buttonMaker(gp);
-		plantIVAdder(plants);
+		plantIVAdder(sBPlants);
     	hbox = new HBox();
     	hbox.getChildren().add(gp);
     	sp = new ScrollPane();
     	sp.setFitToWidth(true);
     	sp.setContent(hbox);
     	fp = new FlowPane();
-    	FlowPaneBG = backgroundMaker(garden.getBg());
+    	FlowPaneBG = backgroundMaker(bg);
     	fp.setBackground(new Background(FlowPaneBG));
     	fp.getChildren().add(vbox);
-    	plantReadder(controllerTwo.model.getHotBarPlants());
-    	for(Plant p: controllerTwo.model.getHotBarPlants()) {
-    		if (p.id > controllerTwo.identifier) {
-    			controllerTwo.identifier = p.id;
-    		}
-    	}
-    	controllerTwo.identifier++;
+    	plantReadder(gPlants);
     	bp = new BorderPane();
     	bp.setTop(vbox);
     	bp.setCenter(fp);
     	bp.setLeft(sp);
     	scene = new Scene(bp,WIDTH,HEIGHT);
-    	stage.setScene(scene);
     	this.stage = stage;
-    	setOnActionAdder();
+	}
+	
+	public void startShow() {
+    	stage.setScene(scene);
     	stage.show();
 	}
 	

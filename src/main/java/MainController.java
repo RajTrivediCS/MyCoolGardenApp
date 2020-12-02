@@ -16,7 +16,7 @@ public class MainController {
 	Stage stage;
 	FileChooser fileChooser;
 	File fileToLoad;
-	ViewTwo viewTwo;
+	ControllerTwo controllerTwo;
 	
 	/***
 	 * Initializes the Stage to set the next Scene
@@ -41,7 +41,8 @@ public class MainController {
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToLoad = fileChooser.showOpenDialog(stage);
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
-		viewTwo = new ViewTwo(stage, userSavedGarden);
+		controllerTwo = new ControllerTwo(stage, userSavedGarden);
+		controllerTwo.viewTwo.startShow();
 	}
 
 	/***

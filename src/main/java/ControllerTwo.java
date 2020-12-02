@@ -38,12 +38,33 @@ public class ControllerTwo {
 	/***
 	 * Initializes the instance variables
 	 */
-	public ControllerTwo() {
+	public ControllerTwo(File bg, Stage stage) {
 		loadFileChooser = new FileChooser();
-		fileChooserSave = new FileChooser(); 
+		fileChooserSave = new FileChooser();
+		viewTwo = new ViewTwo(stage, bg, model.hotBarPlants);
+    	model.garden.setBg(bg);
+		this.stage = stage;
 		identifier = 0;
+		viewTwo.sortBy.setOnMouseClicked(e-> sortButtonHandler());
+		setOnActionAdder();
 	}
 	
+	public ControllerTwo(Stage stage, Garden userSavedGarden) {
+		model.garden = userSavedGarden; 
+		loadFileChooser = new FileChooser();
+		fileChooserSave = new FileChooser(); 
+		viewTwo = new ViewTwo(stage, model.garden.bg, model.hotBarPlants, model.garden.gardensPlants);
+		this.stage = stage;
+		for(Plant p: model.garden.gardensPlants) {
+    		if (p.id > identifier) {
+    			identifier = p.id;
+    		}
+    	}
+		identifier++;
+		viewTwo.sortBy.setOnMouseClicked(e-> sortButtonHandler());
+		setOnActionAdder();
+	}
+
 	/***
 	 * Sets the current instance of ViewTwo with the given ViewTwo 
 	 * @param v2 the ViewTwo to be set
@@ -73,6 +94,15 @@ public class ControllerTwo {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void setOnActionAdder() {
+    	viewTwo.newButton.setOnAction(e-> handleNewButtonPress(e));
+    	viewTwo.loadButton.setOnAction(e-> handleLoadButtonPress(e));
+    	viewTwo.saveButton.setOnAction(e-> handleSaveButton(stage));
+    	viewTwo.gSoilButton.setOnAction(e-> handleGSoilButton(e));
+    	viewTwo.gLightButton.setOnAction(e-> handleLightButton(e));
+    	viewTwo.generateReport.setOnAction(e-> handleGenerateReport(e));
 	}
 	
 
@@ -230,7 +260,7 @@ public class ControllerTwo {
 	 */
 	public void handleNewButtonPress(ActionEvent e) {
 		System.out.println("newButton press");
-		viewTwo = new ViewTwo(viewTwo.stage, model.garden.getBg());
+		viewTwo = new ViewTwo(viewTwo.stage, model.garden.getBg(), model.hotBarPlants);
 	}
 
 	/***
@@ -242,7 +272,14 @@ public class ControllerTwo {
 		loadFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToLoad = loadFileChooser.showOpenDialog(viewTwo.stage);
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
-		viewTwo = new ViewTwo(viewTwo.stage, userSavedGarden);
+		model.garden = userSavedGarden;
+		viewTwo = new ViewTwo(stage, model.garden.bg, model.hotBarPlants, model.garden.gardensPlants);
+		for(Plant p: model.garden.gardensPlants) {
+    		if (p.id > identifier) {
+    			identifier = p.id;
+    		}
+    	}
+		identifier++;
 	}
 	
 	/***

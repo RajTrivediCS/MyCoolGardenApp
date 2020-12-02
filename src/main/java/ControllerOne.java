@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 public class ControllerOne {
 	ViewOne viewOne;
 	Stage stage;
-	ViewTwo viewTwo;
+	ControllerTwo controllerTwo;
 	/***
 	 * Initializes the Stage to set the next Scene
 	 * @param stage the Stage 
@@ -30,7 +30,7 @@ public class ControllerOne {
 		FileChooser choose = new FileChooser();
 		choose.setTitle("Select your background image");
 		File bg = choose.showOpenDialog(stage);
-		viewTwo = new ViewTwo(stage, bg);
-		stage.setScene(viewTwo.getScene());
+		controllerTwo = new ControllerTwo(bg, stage);
+		controllerTwo.viewTwo.startShow();
 	}
 }
