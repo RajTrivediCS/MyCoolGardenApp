@@ -191,10 +191,11 @@ public class ControllerTwo {
 	 */
 	public void enter(MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("grid")) {
-			setHandlerForDrag(v);
-			AnchorPane.setTopAnchor(v, 0.0);
-	    	AnchorPane.setLeftAnchor(v, 0.0);
-			viewTwo.ap.getChildren().add(v);
+			PlantImageView nv = v;
+			setHandlerForDrag(nv);
+			AnchorPane.setTopAnchor(nv, 0.0);
+	    	AnchorPane.setLeftAnchor(nv, 0.0);
+			viewTwo.ap.getChildren().add(nv);
 			viewTwo.sideView.remove(v);
 			handleReplaceImgView(viewTwo.gp, v);
 			v.plant.id = identifier;
