@@ -198,9 +198,9 @@ public class ControllerTwo {
 			viewTwo.ap.getChildren().add(nv);
 			viewTwo.sideView.remove(v);
 			handleReplaceImgView(viewTwo.gp, v);
-			v.plant.id = identifier;
-			viewTwo.plantsInGarden.add(v);
-			setHandlerDeletePlant(v);
+			nv.plant.id = identifier;
+			viewTwo.plantsInGarden.add(nv);
+			setHandlerDeletePlant(nv);
 			identifier++;
 		}
 	}
@@ -294,6 +294,14 @@ public class ControllerTwo {
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
 		model.garden = userSavedGarden;
 		viewTwo = new ViewTwo(stage, model.garden.bg, model.hotBarPlants, model.garden.gardensPlants);
+		for(PlantImageView p : viewTwo.sideView) {
+	    	setHandlerForPress(p);
+		}
+		for(PlantImageView p : viewTwo.plantsInGarden) {
+	    	setHandlerForDrag(p);
+	    	setHandlerDeletePlant(p);
+		}
+		
 		for(Plant p: model.garden.gardensPlants) {
     		if (p.id > identifier) {
     			identifier = p.id;
