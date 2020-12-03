@@ -274,9 +274,11 @@ public class ControllerTwo {
 	 * @param e the ActionEvent for pressing "New" Button(under File Menu)
 	 */
 	public void handleNewButtonPress(ActionEvent e) {
-		System.out.println("newButton press");
-		viewTwo = new ViewTwo(stage, model.garden.getBg(), model.hotBarPlants);
+		File bGround = model.garden.getBg();
+		viewTwo = new ViewTwo(stage, bGround, model.hotBarPlants);
 		model = new ModelTwo();
+		model.garden.setBg(bGround);
+		setOnActionAdder();
 		viewTwo.startShow();
 	}
 
@@ -297,6 +299,7 @@ public class ControllerTwo {
     		}
     	}
 		identifier++;
+		setOnActionAdder();
 		viewTwo.startShow();
 	}
 	
