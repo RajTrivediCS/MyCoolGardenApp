@@ -15,6 +15,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -191,7 +192,9 @@ public class ControllerTwo {
 	public void enter(MouseEvent event, PlantImageView v) {
 		if(v.getPaneLoc().equals("grid")) {
 			setHandlerForDrag(v);
-			viewTwo.fp.getChildren().add(v);
+			AnchorPane.setTopAnchor(v, 0.0);
+	    	AnchorPane.setLeftAnchor(v, 0.0);
+			viewTwo.ap.getChildren().add(v);
 			viewTwo.sideView.remove(v);
 			handleReplaceImgView(viewTwo.gp, v);
 			v.plant.id = identifier;
