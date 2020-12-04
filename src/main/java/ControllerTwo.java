@@ -291,6 +291,10 @@ public class ControllerTwo {
 		loadFileChooser.setTitle("Load Your Garden");
 		loadFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToLoad = loadFileChooser.showOpenDialog(viewTwo.stage);
+		//this is to stop program from crashing if you exit out of filechooser.
+		if(fileToLoad == null) {
+			return;
+		}
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
 		model.garden = userSavedGarden;
 		viewTwo = new ViewTwo(stage, model.garden.bg, model.hotBarPlants, model.garden.gardensPlants);
@@ -338,6 +342,9 @@ public class ControllerTwo {
 		fileChooserSave.setTitle("Save Your Garden");
 		fileChooserSave.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToSave = fileChooserSave.showSaveDialog(stage);
+		if(fileToSave == null) {
+			return;
+		}
 		if(!fileToSave.getName().contains(".")) {
 			fileToSave = new File(fileToSave.getAbsolutePath() + ".ser");
 	    }

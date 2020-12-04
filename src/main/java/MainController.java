@@ -40,6 +40,9 @@ public class MainController {
 		fileChooser.setTitle("Load Your Garden");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToLoad = fileChooser.showOpenDialog(stage);
+		if(fileToLoad == null) {
+			return;
+		}
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
 		controllerTwo = new ControllerTwo(stage, userSavedGarden);
 		controllerTwo.viewTwo.startShow();

@@ -30,6 +30,10 @@ public class ControllerOne {
 		FileChooser choose = new FileChooser();
 		choose.setTitle("Select your background image");
 		File bg = choose.showOpenDialog(stage);
+		//this is to stop program from crashing if you exit out of filechooser.
+		if(bg == null) {
+			return;
+		}
 		controllerTwo = new ControllerTwo(bg, stage);
 		controllerTwo.viewTwo.startShow();
 	}
