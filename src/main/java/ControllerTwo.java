@@ -356,8 +356,8 @@ public class ControllerTwo {
 	 * @param event the ActionEvent for "Choose Garden Soil" button
 	 */
 	public void handleGSoilButton(ActionEvent event){
-		Stage popUp = viewTwo.makePopUpForSunSoil("soil");
-        popUp.show();
+		viewTwo.popUp = viewTwo.makePopUpForSunSoil("soil");
+		viewTwo.popUp.show();
         FlowPane pane = viewTwo.addButtonsToSoilPopUp();
         for(Node n : pane.getChildren())
         	switch((String) n.getUserData()) {
@@ -365,6 +365,7 @@ public class ControllerTwo {
 			        ((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.garden.gardenSoil="any";
+					      viewTwo.popUp.hide();
 					    }
 					});;
 					break;
@@ -372,6 +373,7 @@ public class ControllerTwo {
 	        		((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.garden.gardenSoil="loamy";
+					      viewTwo.popUp.hide();
 					    }
 					});;
 					break;
@@ -379,6 +381,7 @@ public class ControllerTwo {
 					((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.garden.gardenSoil="sandy";
+					      viewTwo.popUp.hide();
 					    }
 					});;
 					break;
@@ -386,12 +389,13 @@ public class ControllerTwo {
 					((ButtonBase) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.garden.gardenSoil="clay";
+					      viewTwo.popUp.hide();
 					    }
 					});;
         	}
         Scene popScene = new Scene(pane);
-        popUp.setScene(popScene);
-        popUp.show();
+        viewTwo.popUp.setScene(popScene);
+        viewTwo.popUp.show();
 	}
 
 	/***
@@ -399,7 +403,7 @@ public class ControllerTwo {
 	 * @param event the ActionEvent for "Choose Garden Light" button
 	 */
 	public void handleLightButton(ActionEvent e){
-		Stage popUp = viewTwo.makePopUpForSunSoil("light");
+		viewTwo.popUp = viewTwo.makePopUpForSunSoil("light");
         FlowPane pane = viewTwo.addButtonsToLightPopUp();
         
         for(Node n : pane.getChildren())
@@ -408,6 +412,7 @@ public class ControllerTwo {
 			        ((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.garden.gardenLight="any";
+					      viewTwo.popUp.hide();
 					    }
 					});;
 					break;
@@ -415,6 +420,7 @@ public class ControllerTwo {
 	        		((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.garden.gardenLight="full";
+					      viewTwo.popUp.hide();
 					    }
 					});;
 					break;
@@ -422,6 +428,7 @@ public class ControllerTwo {
 					((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.garden.gardenLight="partial";
+					      viewTwo.popUp.hide();
 					    }
 					});;
 					break;
@@ -429,13 +436,14 @@ public class ControllerTwo {
 					((ButtonBase) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.garden.gardenLight="shade";
+					      viewTwo.popUp.hide();
 					    }
 					});;
         	}
 
         Scene popScene = new Scene(pane);
-        popUp.setScene(popScene);
-        popUp.show();
+        viewTwo.popUp.setScene(popScene);
+        viewTwo.popUp.show();
 	}
 	
 	/***

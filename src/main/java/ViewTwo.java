@@ -42,6 +42,7 @@ public class ViewTwo {
 	ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;
 	ArrayList<PlantImageView> plantsInGarden = new ArrayList<PlantImageView>();	
 	ArrayList<PlantImageView> plantsInWasteBasket = new ArrayList<PlantImageView>();
+	Stage popUp;
 	GridPane gp;
 	AnchorPane ap;
 	BorderPane bp;
@@ -366,7 +367,7 @@ public class ViewTwo {
 	 * @return the Pop Up Stage for the given property of plant
 	 */
 	public Stage makePopUpForSunSoil(String bType) {
-		Stage popUp = new Stage();
+		popUp = new Stage();
 		if(bType.equals("light")) {
 			popUp.setTitle("Select a Light Type");
 		}
@@ -385,7 +386,7 @@ public class ViewTwo {
 	 * @return the Pop Up Stage for generating Garden report
 	 */
 	public Stage makePopUpForReport() {
-		Stage popUp = new Stage();
+		popUp = new Stage();
 		popUp.setTitle("Here's Your Custom Generated Report");
 		popUp.initModality(Modality.WINDOW_MODAL);
         popUp.setHeight(400);
