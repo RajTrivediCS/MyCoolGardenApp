@@ -189,14 +189,8 @@ public class ControllerTwo {
 			AnchorPane.setTopAnchor(nv, 0.0);
 	    	AnchorPane.setLeftAnchor(nv, 0.0);
 			viewTwo.ap.getChildren().add(nv);
-	    	switch(nv.plant.plantSize) {
-	    		case "small": nv.setFitHeight(90);
-	    			break;
-	    		case "medium": nv.setFitHeight(100);
-	    			break;
-	    		case "large": nv.setFitHeight(130);
-	    			break;
-	    	}	
+			int size = viewTwo.setHeightFormula(Double.parseDouble(nv.plant.plantSize));
+			nv.setFitHeight(size);
 			nv.setTranslateX(event.getX());
 			nv.setTranslateY(event.getY());
 			viewTwo.sideView.remove(v);

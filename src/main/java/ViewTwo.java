@@ -182,6 +182,12 @@ public class ViewTwo {
 		
 	}
 	
+	public int setHeightFormula(double plantWidth) {
+		int height;
+		height = (int)plantWidth * 10 + 70; 
+		return height;
+	}
+	
 	/***
 	 * Sorts List of plant image view by name of plant
 	 */
@@ -336,14 +342,8 @@ public class ViewTwo {
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(plantImage);
 	    	piv.setPreserveRatio(true);
-	    	switch(p.plantSize) {
-	    		case "small": piv.setFitHeight(90);
-	    		break;
-	    		case "medium": piv.setFitHeight(100);
-	    		break;
-	    		case "large": piv.setFitHeight(130);
-	    		break;
-	    	}
+	    	int size = setHeightFormula(Double.parseDouble(piv.plant.plantSize));
+			piv.setFitHeight(size);
 	    	AnchorPane.setTopAnchor(piv, 0.0);
 	    	AnchorPane.setLeftAnchor(piv, 0.0);
 	    	ap.getChildren().add(piv);
