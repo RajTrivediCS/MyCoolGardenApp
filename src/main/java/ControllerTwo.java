@@ -132,14 +132,7 @@ public class ControllerTwo {
 		Tooltip tooltip =  new Tooltip("This is "+v.plant.name+".\n"+"It needs "+v.plant.plantLight+" and "+v.plant.plantSoil+".");
     	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
-		switch (iv.plant.plantSize) {
-			case "small": iv.setFitHeight(90);
-			break;
-			case "medium": iv.setFitHeight(100);
-			break;
-			case "large": iv.setFitHeight(130);
-			break;
-		}
+		iv.setFitHeight(130);
     	setHandlerForDrag(iv);
      	setHandlerForPress(iv);
     	int i = grid.getRowIndex(v);
@@ -196,6 +189,14 @@ public class ControllerTwo {
 			AnchorPane.setTopAnchor(nv, 0.0);
 	    	AnchorPane.setLeftAnchor(nv, 0.0);
 			viewTwo.ap.getChildren().add(nv);
+	    	switch(nv.plant.plantSize) {
+	    		case "small": nv.setFitHeight(90);
+	    			break;
+	    		case "medium": nv.setFitHeight(100);
+	    			break;
+	    		case "large": nv.setFitHeight(130);
+	    			break;
+	    	}	
 			nv.setTranslateX(event.getX());
 			nv.setTranslateY(event.getY());
 			viewTwo.sideView.remove(v);

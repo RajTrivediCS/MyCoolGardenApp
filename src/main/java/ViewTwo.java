@@ -168,14 +168,7 @@ public class ViewTwo {
 			piv.setImage(im1); //write function to change to a plant later
 	    	piv.setPreserveRatio(true);
 	    	//caseHandler
-	    	switch(p.plantSize) {
-	    		case "small": piv.setFitHeight(90);
-	    		break;
-	    		case "medium": piv.setFitHeight(100);
-	    		break;
-	    		case "large": piv.setFitHeight(130);
-	    		break;
-	    	}
+	    	piv.setFitHeight(130);
 	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+".");
 	    	Tooltip.install(piv, tooltip);
 	    	piv.setPaneLoc("grid");
