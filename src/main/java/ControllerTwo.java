@@ -129,7 +129,7 @@ public class ControllerTwo {
 		PlantImageView iv = new PlantImageView(new Plant(v.plant.name, v.plant.xLoc, v.plant.yLoc, 
 				v.plant.plantLight, v.plant.plantSoil,v.plant.plantSize)); //change to use getters later
 		iv.setImage(im);
-		Tooltip tooltip =  new Tooltip("This is "+v.plant.name+".\n"+"It needs "+v.plant.plantLight+" and "+v.plant.plantSoil+".");
+		Tooltip tooltip =  new Tooltip("This is "+v.plant.name+".\n"+"It needs "+v.plant.plantLight+" and "+v.plant.plantSoil+". \nIt is roughly " + v.plant.plantSize + " feet in diameter.");
     	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
 		iv.setFitHeight(130);

@@ -169,7 +169,7 @@ public class ViewTwo {
 	    	piv.setPreserveRatio(true);
 	    	//caseHandler
 	    	piv.setFitHeight(130);
-	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+".");
+	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+". \nIt is roughly " + p.plantSize + " feet in diameter.");
 	    	Tooltip.install(piv, tooltip);
 	    	piv.setPaneLoc("grid");
 			sideView.add(piv);
@@ -243,34 +243,11 @@ public class ViewTwo {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
 			@Override
 			public int compare(PlantImageView p1, PlantImageView p2) {
-				int p1Size = 0;
-				int p2Size = 0;
-				switch(p1.plant.plantSize) {
-					case "small":
-						p1Size = 1;
-						break;
-					case "medium":
-						p1Size = 2;
-						break;
-					case "large":
-						p1Size = 3;
-						break;
-				}
-				switch(p2.plant.plantSize) {
-					case "small":
-						p2Size = 1;
-						break;
-					case "medium":
-						p2Size = 2;
-						break;
-					case "large":
-						p2Size = 3;
-						break;
-				}
-				int i = p1Size - p2Size;
+				int i = p1.plant.plantSize.compareTo(p2.plant.plantSize);
 				if(i==0) {
 					return p1.plant.name.compareTo(p2.plant.name);
 				}
+				
 				else {
 					return i;
 				}
@@ -347,7 +324,7 @@ public class ViewTwo {
 	    	AnchorPane.setTopAnchor(piv, 0.0);
 	    	AnchorPane.setLeftAnchor(piv, 0.0);
 	    	ap.getChildren().add(piv);
-	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+".");
+	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+". \nIt is roughly \" + p.plantSize + \" feet in diameter.");
 	    	Tooltip.install(piv, tooltip);
 	    	piv.setTranslateX(piv.plant.getXLoc());
 	    	piv.setTranslateY(piv.plant.getYLoc());
