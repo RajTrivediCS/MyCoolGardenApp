@@ -455,16 +455,18 @@ public class ControllerTwo {
 		double overallNumber = 1;
 		for(Plant p : model.garden.gardensPlants) {
 			overallNumber++;
-				if(p.plantLight.contains(model.garden.gardenLight) | model.garden.gardenLight.equals("any")) {
-					if(p.plantSoil.contains(model.garden.gardenSoil) | model.garden.gardenSoil.equals("any")) {
+				if(p.plantLight.contains(model.garden.gardenLight) | model.garden.gardenLight.equals("any")| p.plantLight.equals("any sun")) {
+					if(p.plantSoil.contains(model.garden.gardenSoil) | model.garden.gardenSoil.equals("any") | p.plantSoil.equals("any soil")) {
 						goodChoice++;
 					}else {
 						goodChoice+=.75;
 					}
 				}
-				else if(p.plantSoil.contains(model.garden.gardenSoil) | model.garden.gardenSoil.equals("any")){
+				
+				else if(p.plantSoil.contains(model.garden.gardenSoil) | model.garden.gardenSoil.equals("any")| p.plantSoil.equals("any soil")){
 					goodChoice+=.75;
 				}
+				
 				else {
 					goodChoice+=.05;
 				}
@@ -484,31 +486,36 @@ public class ControllerTwo {
 		ArrayList<Plant> arrayCopy = model.garden.gardensPlants;
 		ArrayList<String> ignoreList = new ArrayList<String>();
 		boolean ignore = false;
+		int newLineChecker = 1;
 		if(arrayCopy.isEmpty()) {
-			report += "There's nothing in the garden";
+			report += "There's nothing in the garden.";
 		}
 		else {
 			report += "There are ";
-		}
-		for(Plant p : arrayCopy) {
-			int plantcount = 0;
-			for(String s : ignoreList) {
-				if(p.name.equals(s)) {
-					ignore = true;
-				}
-			}
-			if(!ignore) {
-				for(Plant p2 : arrayCopy) {
-					if(p2.name.equals(p.name)) {
-						plantcount++;
+			for(Plant p : arrayCopy) {
+				int plantcount = 1;
+				for(String s : ignoreList) {
+					if(p.name.equals(s)) {
+						ignore = true;
 					}
 				}
-				report += p.name + ": "+plantcount+"  ";
-				ignoreList.add(p.name);
+				if(!ignore) {
+					for(Plant p2 : arrayCopy) {
+						if(p2.name.equals(p.name)) {
+							plantcount++;
+						}
+					}
+					report += plantcount + " "+p.name+" ";
+					if(newLineChecker%4 == 0) {
+						report+="\n";
+					}
+					ignoreList.add(p.name);
+				}
+				newLineChecker++;
+				ignore = false;
 			}
-			ignore = false;
+			report+= "in your garden.\n";
 		}
-		report+= "in your garden.\n";
 		if(model.garden.gardenLight == null | model.garden.gardenSoil == null) {
 			report += "You need to go into the file-menu and pick your light and soil type.\n Then we can give you a proper score.";
 		}
@@ -521,18 +528,57 @@ public class ControllerTwo {
 				report+="Great job creating your garden!";
 			}
 			else if(score<80 && score>60) {
-				report += "Your garden just needs a little more work to get into tip top shape!";
+				report += "Good job, but a few plants are unhappy.";
 			}
 			else if(score<60 && score>40) {
-				report += "Not bad, but your enviroment and garden aren't very compatible.";
+				report += "Not bad, but some plants are unhappy.";
 			}
 			else {
-				report += "Maybe you selected the wrong garden soil or sun type. Check and then run this again";
+				report += "Your garden's conditions is not suited for your plants.";
 			}
 		}
 		
 		
 		return report;
+	}
+	
+	public String getUnhappyPlants() {
+		int numUnhappy = 0;
+		String ignoreList = "";
+		String unhappyPlants = "";
+		if(model.garden.gardenLight == null | model.garden.gardenSoil == null) {
+			return "";
+		}
+		ignoreList += "\n";
+		for(Plant p : model.garden.gardensPlants) {
+			if(!ignoreList.contains(p.name)) {
+				if(p.plantLight.contains(model.garden.gardenLight) | model.garden.gardenLight.equals("any") | p.plantLight.equals("any sun")) {
+					if(p.plantSoil.contains(model.garden.gardenSoil) | model.garden.gardenSoil.equals("any soil") | p.plantSoil.equals("any soil")) {
+						System.out.println("Plant is happy");
+					}
+					
+					else {
+						unhappyPlants += "The " + p.name + " needs " + p.plantSoil + " to be happy.\n";
+					}
+				}
+				
+				else if(p.plantSoil.contains(model.garden.gardenSoil) | model.garden.gardenSoil.equals("any") | p.plantLight.equals("any soil")){
+					unhappyPlants += "The " + p.name+ " needs " + p.plantLight + " to be happy.\n";
+				}
+				
+				else {
+					unhappyPlants += "The " + p.name + " needs " + p.plantLight + " and " + p.plantSoil + " to be happy.\n";
+				}
+				numUnhappy++;
+				ignoreList+=p.name;
+			}
+		}
+		if(numUnhappy == 0) {
+			return "";
+		}
+		else {
+			return unhappyPlants;
+		}
 	}
 	
 	/***
@@ -542,7 +588,8 @@ public class ControllerTwo {
 	public void handleGenerateReport(ActionEvent e) {
 		Stage popUp = viewTwo.makePopUpForReport();
 		String report = generateReportText();
-		FlowPane pane = viewTwo.makeReportPane(report);
+		String unhappy = getUnhappyPlants();
+		FlowPane pane = viewTwo.makeReportPane(report, unhappy);
 		Scene popScene = new Scene(pane);
         popUp.setScene(popScene);
         popUp.show();

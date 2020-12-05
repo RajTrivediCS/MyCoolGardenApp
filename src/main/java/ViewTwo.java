@@ -400,10 +400,13 @@ public class ViewTwo {
 	 * @param report the Garden report's text that needs to be displayed on Stage
 	 * @return the FlowPane with Garden report's text in it
 	 */
-	public FlowPane makeReportPane(String report) {
+	public FlowPane makeReportPane(String report, String unhappy) {
 		FlowPane pane = new FlowPane();
-		Label label = new Label(report);
-		pane.getChildren().add(label);
+		pane.setStyle("-fx-background-color: #90EE90;");
+		Label labelOne = new Label(report);
+		Label labelTwo = new Label(unhappy);
+		pane.getChildren().add(labelOne);
+		pane.getChildren().add(labelTwo);
 		return pane;
 	}
 	
