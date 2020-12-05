@@ -196,6 +196,8 @@ public class ControllerTwo {
 			AnchorPane.setTopAnchor(nv, 0.0);
 	    	AnchorPane.setLeftAnchor(nv, 0.0);
 			viewTwo.ap.getChildren().add(nv);
+			nv.setTranslateX(event.getX());
+			nv.setTranslateY(event.getY());
 			viewTwo.sideView.remove(v);
 			handleReplaceImgView(viewTwo.gp, v);
 			nv.plant.id = identifier;
