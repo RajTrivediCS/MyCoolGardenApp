@@ -73,8 +73,8 @@ public class ViewTwo {
 	ImageView undoImgView;
 	ImageView redoImgView;
 	Stage stage;
-	final static int WIDTH = 800;
-	final static int HEIGHT = 600;
+	final static int WIDTH = 1600;
+	final static int HEIGHT = 1000;
 
 	/***
 	 * Creates the buttons for "Sort By" Menu and places them on the given GridPane
@@ -162,7 +162,6 @@ public class ViewTwo {
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {
-			System.out.println(p.name);
 			Image im1 = new Image("img/"+p.name+".png");
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(im1); //write function to change to a plant later
@@ -184,7 +183,7 @@ public class ViewTwo {
 	
 	public int setHeightFormula(double plantWidth) {
 		int height;
-		height = (int)plantWidth * 8 + 80; 
+		height = (int)plantWidth * 5 + 90; 
 		return height;
 	}
 	
@@ -243,7 +242,9 @@ public class ViewTwo {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
 			@Override
 			public int compare(PlantImageView p1, PlantImageView p2) {
-				int i = p1.plant.plantSize.compareTo(p2.plant.plantSize);
+				int size1 = (int) (Double.parseDouble(p1.plant.plantSize) * 10);
+				int size2 = (int) (Double.parseDouble(p2.plant.plantSize) * 10);
+				int i = size1 - size2;
 				if(i==0) {
 					return p1.plant.name.compareTo(p2.plant.name);
 				}

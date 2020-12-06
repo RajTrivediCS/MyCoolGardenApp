@@ -150,7 +150,6 @@ public class ControllerTwo {
 		for(PlantImageView p : viewTwo.plantsInGarden) {
 			gard.add(p.plant);
 		}
-		System.out.print(gard);
 		return gard;
 	}
 	
@@ -171,7 +170,6 @@ public class ControllerTwo {
 			if(p.plant.id == v.plant.id){
 				p.plant.xLoc = v.plant.xLoc;
 				p.plant.yLoc = v.plant.yLoc;
-				System.out.println(p.plant.xLoc);
 			}
 		}
 		model.garden.setGardensPlants(updateGarden());
@@ -551,7 +549,7 @@ public class ControllerTwo {
 			if(!ignoreList.contains(p.name)) {
 				if(p.plantLight.contains(model.garden.gardenLight) | model.garden.gardenLight.equals("any") | p.plantLight.equals("any sun")) {
 					if(p.plantSoil.contains(model.garden.gardenSoil) | model.garden.gardenSoil.equals("any soil") | p.plantSoil.equals("any soil")) {
-						System.out.println("Plant is happy");
+						//plant is happy; do nothing.
 					}
 					
 					else {
