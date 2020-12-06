@@ -24,8 +24,8 @@ public class MainController {
 	 */
 	public MainController(Stage stage) {
 		mainView = new MainView(stage);
-		mainView.newGardenButton.setOnMouseClicked(e-> handleNewGardenButtonPress(e));
-    	mainView.loadGardenButton.setOnMouseClicked(e-> handleLoadGardenButton(e));
+		mainView.getNewGardenButton().setOnMouseClicked(e-> handleNewGardenButtonPress(e));
+    	mainView.getLoadGardenButton().setOnMouseClicked(e-> handleLoadGardenButton(e));
 		this.stage = stage;
 		fileChooser = new FileChooser();
 		controllerOne = new ControllerOne(stage);
@@ -36,7 +36,6 @@ public class MainController {
 	 * @param e the MouseEvent for click
 	 */
 	public void handleLoadGardenButton(MouseEvent e) {
-		System.out.println("Button is clicked");
 		fileChooser.setTitle("Load Your Garden");
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToLoad = fileChooser.showOpenDialog(stage);
@@ -45,7 +44,7 @@ public class MainController {
 		}
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
 		controllerTwo = new ControllerTwo(stage, userSavedGarden);
-		controllerTwo.viewTwo.startShow();
+		controllerTwo.getViewTwo().startShow();
 	}
 
 	/***
@@ -54,7 +53,7 @@ public class MainController {
 	 */
 	public void handleNewGardenButtonPress(MouseEvent e) {
 		stage.setScene(controllerOne.viewOne.getScene());
-		controllerOne.viewOne.startShow();
+		controllerOne.getViewOne().startShow();
 	}
 	
 	/***

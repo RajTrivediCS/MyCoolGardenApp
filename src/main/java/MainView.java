@@ -1,3 +1,4 @@
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -60,5 +61,13 @@ public class MainView {
 	 */
 	public Scene getScene() {
 		return scene;
+	}
+
+	public Button getNewGardenButton() {
+		return newGardenButton;
+	}
+
+	public Button getLoadGardenButton() {
+		return loadGardenButton;
 	}
 }

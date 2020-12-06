@@ -18,7 +18,7 @@ public class ControllerOne {
 	 */
 	public ControllerOne(Stage stage) {
 		viewOne = new ViewOne(stage); 
-	  	viewOne.uploadGardenImageButton.setOnMouseClicked(e -> handleUploadGardenButtonPress(e));
+	  	viewOne.getUploadImageButton().setOnMouseClicked(e -> handleUploadGardenButtonPress(e));
 		this.stage = stage;
 	}
 
@@ -35,6 +35,10 @@ public class ControllerOne {
 			return;
 		}
 		controllerTwo = new ControllerTwo(bg, stage);
-		controllerTwo.viewTwo.startShow();
+		controllerTwo.getViewTwo().startShow();
+	}
+
+	public ViewOne getViewOne() {
+		return viewOne;
 	}
 }

@@ -589,4 +589,9 @@ public class ControllerTwo {
         popUp.setScene(popScene);
         popUp.show();
 	}
+
+	public ViewTwo getViewTwo() {
+		// TODO Auto-generated method stub
+		return viewTwo;
+	}
 }

@@ -55,4 +55,8 @@ public class ViewOne {
 	public Scene getScene() {
 		return scene;
 	}
+	public Button getUploadImageButton() {
+		// TODO Auto-generated method stub
+		return uploadGardenImageButton;
+	}
 }
