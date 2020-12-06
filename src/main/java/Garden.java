@@ -67,4 +67,17 @@ public class Garden implements java.io.Serializable{
 	public void setGardensPlants(ArrayList<Plant> plants) {
 		this.gardensPlants = plants;
 	}
+
+	public ArrayList<Plant> getGardensPlants() {
+		return gardensPlants;
+	}
+
+	public void setGardensSoil(String string) {
+		gardenSoil = string;
+		
+	}
+
+	public void setGardensLight(String string) {
+		gardenLight = string;
+	}
 }

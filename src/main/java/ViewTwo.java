@@ -5,9 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBase;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -31,6 +34,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
 
 /***
@@ -70,8 +74,6 @@ public class ViewTwo {
 	Image undoImage = new Image("img/undoImage.png");
 	Image redoImage = new Image("img/redoImage.png");
 	ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
-	ImageView undoImgView;
-	ImageView redoImgView;
 	Stage stage;
 	final static int WIDTH = 1600;
 	final static int HEIGHT = 1000;
@@ -186,6 +188,11 @@ public class ViewTwo {
 		gp.add(wasteBasket, 0, i+1);
 		
 	}
+	/**
+	 * formula for making the imageview size dynamic based on a plants diameter
+	 * @param plantWidth
+	 * @return
+	 */
 	
 	public int setHeightFormula(double plantWidth) {
 		int height;
@@ -516,5 +523,75 @@ public class ViewTwo {
 	 */
 	public Scene getScene() {
 		return scene;
+	}
+
+
+	public ArrayList<PlantImageView> getSideView() {
+		return sideView;
+	}
+
+
+	public MenuButton getSortBy() {
+		return sortBy;
+	}
+
+
+	public ArrayList<PlantImageView> getPlantsInGarden() {
+		return plantsInGarden;
+	}
+
+
+	public Button getNewButton() {
+		return newButton;
+	}
+
+
+	public Button getLoadButton() {
+		return loadButton;
+	}
+
+
+	public Button getSaveButton() {
+		return saveButton;
+	}
+
+
+	public Button getGSoilButton() {
+		return gSoilButton;
+	}
+
+
+	public Button getGLightButton() {
+		return gLightButton;
+	}
+
+
+	public Button getGenerateReport() {
+		return generateReport;
+	}
+
+
+	public AnchorPane getAP() {
+		return ap;
+	}
+
+
+	public GridPane getGP() {
+		return gp;
+	}
+
+
+	public ArrayList<PlantImageView> getPlantsInWasteBasket() {
+		return plantsInWasteBasket;
+	}
+
+
+	public void setPopUp(Stage makePopUpForSunSoil) {
+		popUp = makePopUpForSunSoil;
+	}
+
+
+	public Stage getPopUp() {
+		return popUp;
 	}
 }

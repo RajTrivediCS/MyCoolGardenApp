@@ -93,4 +93,16 @@ public class Plant implements java.io.Serializable {
 	public String toString() {
 		return name;
 	}
+
+	public int getID() {
+		return id;
+	}
+
+	public String getPlantSize() {
+		return plantSize;
+	}
+
+	public void setID(int identifier) {
+		this.id = identifier;
+	}
 }

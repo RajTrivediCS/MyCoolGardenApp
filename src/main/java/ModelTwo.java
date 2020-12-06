@@ -95,4 +95,8 @@ public class ModelTwo {
 	public Garden getGarden() {
 		return this.garden;
 	}
+
+	public void setGarden(Garden userSavedGarden) {
+		garden = userSavedGarden;
+	}
 }

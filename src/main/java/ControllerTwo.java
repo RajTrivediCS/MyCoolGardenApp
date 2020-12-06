@@ -43,13 +43,13 @@ public class ControllerTwo {
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser();
 		viewTwo = new ViewTwo(stage, bg, model.hotBarPlants);
-		for(PlantImageView p : viewTwo.sideView) {
+		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
-    	model.garden.setBg(bg);
+    	model.getGarden().setBg(bg);
 		this.stage = stage;
 		identifier = 0;
-		viewTwo.sortBy.setOnMouseClicked(e-> sortButtonHandler());
+		viewTwo.getSortBy().setOnMouseClicked(e-> sortButtonHandler());
 		setOnActionAdder();
 	}
 	
@@ -58,40 +58,24 @@ public class ControllerTwo {
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser(); 
 		viewTwo = new ViewTwo(stage, model.garden.bg, model.hotBarPlants, model.garden.gardensPlants);
-		for(PlantImageView p : viewTwo.sideView) {
+		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
 		
-		for(PlantImageView p : viewTwo.plantsInGarden) {
+		for(PlantImageView p : viewTwo.getPlantsInGarden()) {
 	    	setHandlerForDrag(p);
 	    	setHandlerDeletePlant(p);
 		}
 		
 		this.stage = stage;
-		for(Plant p: model.garden.gardensPlants) {
+		for(Plant p: model.getGarden().getGardensPlants()) {
     		if (p.id > identifier) {
     			identifier = p.id;
     		}
     	}
 		identifier++;
-		viewTwo.sortBy.setOnMouseClicked(e-> sortButtonHandler());
+		viewTwo.getSortBy().setOnMouseClicked(e-> sortButtonHandler());
 		setOnActionAdder();
-	}
-
-	/***
-	 * Sets the current instance of ViewTwo with the given ViewTwo 
-	 * @param v2 the ViewTwo to be set
-	 */
-	public void setViewTwo(ViewTwo v2) {
-		this.viewTwo = v2;
-	}
-	
-	/***
-	 * Sets the current instance of ModelTwo with the given ModelTwo 
-	 * @param m2 the ModelTwo to be set
-	 */
-	public void setModelTwo(ModelTwo m2) {
-		this.model = m2;
 	}
 	
 	/***
@@ -110,12 +94,12 @@ public class ControllerTwo {
 	}
 	
 	public void setOnActionAdder() {
-    	viewTwo.newButton.setOnAction(e-> handleNewButtonPress(e));
-    	viewTwo.loadButton.setOnAction(e-> handleLoadButtonPress(e));
-    	viewTwo.saveButton.setOnAction(e-> handleSaveButton(stage));
-    	viewTwo.gSoilButton.setOnAction(e-> handleGSoilButton(e));
-    	viewTwo.gLightButton.setOnAction(e-> handleLightButton(e));
-    	viewTwo.generateReport.setOnAction(e-> handleGenerateReport(e));
+    	viewTwo.getNewButton().setOnAction(e-> handleNewButtonPress(e));
+    	viewTwo.getLoadButton().setOnAction(e-> handleLoadButtonPress(e));
+    	viewTwo.getSaveButton().setOnAction(e-> handleSaveButton(stage));
+    	viewTwo.getGSoilButton().setOnAction(e-> handleGSoilButton(e));
+    	viewTwo.getGLightButton().setOnAction(e-> handleLightButton(e));
+    	viewTwo.getGenerateReport().setOnAction(e-> handleGenerateReport(e));
 	}
 	
 
@@ -132,13 +116,13 @@ public class ControllerTwo {
 		Tooltip tooltip =  new Tooltip("This is "+v.plant.name+".\n"+"It needs "+v.plant.plantLight+" and "+v.plant.plantSoil+". \nIt is roughly " + v.plant.plantSize + " feet in diameter.");
     	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
-		iv.setFitHeight(130);
+		iv.setFitHeight(130); //FIXME: this is a magic number
     	setHandlerForDrag(iv);
      	setHandlerForPress(iv);
     	int i = grid.getRowIndex(v);
 		grid.add(iv, 0, i);
 		iv.setPaneLoc("grid");
-		viewTwo.sideView.add(iv);
+		viewTwo.getSideView().add(iv);
 	}
 	
 	/***
@@ -147,7 +131,7 @@ public class ControllerTwo {
 	 */
 	public ArrayList<Plant> updateGarden(){
 		ArrayList<Plant> gard = new ArrayList<Plant>();
-		for(PlantImageView p : viewTwo.plantsInGarden) {
+		for(PlantImageView p : viewTwo.getPlantsInGarden()) {
 			gard.add(p.plant);
 		}
 		return gard;
@@ -164,15 +148,15 @@ public class ControllerTwo {
 		n.setTranslateX(n.getTranslateX() + event.getX());
 		n.setTranslateY(n.getTranslateY() + event.getY());
 		v.setPaneLoc("flow");
-		v.plant.setXLoc(v.getTranslateX());
-		v.plant.setYLoc(v.getTranslateY());
-		for(PlantImageView p : viewTwo.plantsInGarden) {
-			if(p.plant.id == v.plant.id){
-				p.plant.xLoc = v.plant.xLoc;
-				p.plant.yLoc = v.plant.yLoc;
+		v.getPlant().setXLoc(v.getTranslateX());
+		v.getPlant().setYLoc(v.getTranslateY());
+		for(PlantImageView p : viewTwo.getPlantsInGarden()) {
+			if(p.getPlant().getID() == v.getPlant().getID()){
+				p.getPlant().setXLoc(v.getPlant().getXLoc());
+				p.getPlant().setYLoc(v.getPlant().getYLoc());
 			}
 		}
-		model.garden.setGardensPlants(updateGarden());
+		model.getGarden().setGardensPlants(updateGarden());
 	}	
 	
 	/***
@@ -186,15 +170,15 @@ public class ControllerTwo {
 			setHandlerForDrag(nv);
 			AnchorPane.setTopAnchor(nv, 0.0);
 	    	AnchorPane.setLeftAnchor(nv, 0.0);
-			viewTwo.ap.getChildren().add(nv);
-			int size = viewTwo.setHeightFormula(Double.parseDouble(nv.plant.plantSize));
+			viewTwo.getAP().getChildren().add(nv);
+			int size = viewTwo.setHeightFormula(Double.parseDouble(nv.getPlant().getPlantSize()));
 			nv.setFitHeight(size);
 			nv.setTranslateX(event.getX());
 			nv.setTranslateY(event.getY());
-			viewTwo.sideView.remove(v);
-			handleReplaceImgView(viewTwo.gp, v);
-			nv.plant.id = identifier;
-			viewTwo.plantsInGarden.add(nv);
+			viewTwo.getSideView().remove(v);
+			handleReplaceImgView(viewTwo.getGP(), v);
+			nv.getPlant().setID(identifier);
+			viewTwo.getPlantsInGarden().add(nv);
 			setHandlerDeletePlant(nv);
 			identifier++;
 		}
@@ -207,16 +191,16 @@ public class ControllerTwo {
             public void handle(MouseEvent event) {
                 MouseButton button = event.getButton();
                 if(button==MouseButton.SECONDARY){
-                	viewTwo.plantsInGarden.remove(iv1);
-                	viewTwo.plantsInWasteBasket.add(iv1);
+                	viewTwo.getPlantsInGarden().remove(iv1);
+                	viewTwo.getPlantsInWasteBasket().add(iv1);
                 	String plantWaste = "";
-                	for (PlantImageView p:viewTwo.plantsInWasteBasket) {
+                	for (PlantImageView p:viewTwo.getPlantsInWasteBasket()) {
             			plantWaste += p.plant.name + ", ";
             		}
                 	Tooltip.install(viewTwo.wasteBasket, new Tooltip(plantWaste +"\n"));
                 	iv1.setImage(null);
                 }
-                model.garden.setGardensPlants(updateGarden());
+                model.getGarden().setGardensPlants(updateGarden());
             }
         });
 	}
@@ -270,10 +254,10 @@ public class ControllerTwo {
 	 * @param e the ActionEvent for pressing "New" Button(under File Menu)
 	 */
 	public void handleNewButtonPress(ActionEvent e) {
-		File bGround = model.garden.getBg();
+		File bGround = model.getGarden().getBg();
 		viewTwo = new ViewTwo(stage, bGround, model.hotBarPlants);
 		model = new ModelTwo();
-		model.garden.setBg(bGround);
+		model.getGarden().setBg(bGround);
 		setOnActionAdder();
 		viewTwo.startShow();
 	}
@@ -291,19 +275,19 @@ public class ControllerTwo {
 			return;
 		}
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
-		model.garden = userSavedGarden;
+		model.setGarden(userSavedGarden);
 		viewTwo = new ViewTwo(stage, model.garden.bg, model.hotBarPlants, model.garden.gardensPlants);
-		for(PlantImageView p : viewTwo.sideView) {
+		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
-		for(PlantImageView p : viewTwo.plantsInGarden) {
+		for(PlantImageView p : viewTwo.getPlantsInGarden()) {
 	    	setHandlerForDrag(p);
 	    	setHandlerDeletePlant(p);
 		}
 		
-		for(Plant p: model.garden.gardensPlants) {
-    		if (p.id > identifier) {
-    			identifier = p.id;
+		for(Plant p: model.getGarden().getGardensPlants()) {
+    		if (p.getID() > identifier) {
+    			identifier = p.getID();
     		}
     	}
 		identifier++;
@@ -351,7 +335,7 @@ public class ControllerTwo {
 	 * @param event the ActionEvent for "Choose Garden Soil" button
 	 */
 	public void handleGSoilButton(ActionEvent event){
-		viewTwo.popUp = viewTwo.makePopUpForSunSoil("soil");
+		viewTwo.setPopUp(viewTwo.makePopUpForSunSoil("soil"));
 		viewTwo.popUp.show();
         FlowPane pane = viewTwo.addButtonsToSoilPopUp();
         for(Node n : pane.getChildren())
@@ -359,7 +343,7 @@ public class ControllerTwo {
 	        	case "All":
 			        ((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
-					      model.garden.gardenSoil="any";
+					      model.getGarden().setGardensSoil("any");
 					      viewTwo.popUp.hide();
 					    }
 					});;
@@ -367,7 +351,7 @@ public class ControllerTwo {
 	        	case "Loamy":
 	        		((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
-					      model.garden.gardenSoil="loamy";
+					      model.getGarden().setGardensSoil("loamy");
 					      viewTwo.popUp.hide();
 					    }
 					});;
@@ -375,7 +359,7 @@ public class ControllerTwo {
 	        	case "Sandy":	
 					((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
-					      model.garden.gardenSoil="sandy";
+					      model.getGarden().setGardensSoil("sandy");
 					      viewTwo.popUp.hide();
 					    }
 					});;
@@ -383,14 +367,14 @@ public class ControllerTwo {
 	        	case "Clay":
 					((ButtonBase) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
-					      model.garden.gardenSoil="clay";
+					      model.getGarden().setGardensSoil("clay");
 					      viewTwo.popUp.hide();
 					    }
 					});;
         	}
         Scene popScene = new Scene(pane);
-        viewTwo.popUp.setScene(popScene);
-        viewTwo.popUp.show();
+        viewTwo.getPopUp().setScene(popScene);
+        viewTwo.getPopUp().show();
 	}
 
 	/***
@@ -398,7 +382,7 @@ public class ControllerTwo {
 	 * @param event the ActionEvent for "Choose Garden Light" button
 	 */
 	public void handleLightButton(ActionEvent e){
-		viewTwo.popUp = viewTwo.makePopUpForSunSoil("light");
+		viewTwo.setPopUp(viewTwo.makePopUpForSunSoil("light"));
         FlowPane pane = viewTwo.addButtonsToLightPopUp();
         
         for(Node n : pane.getChildren())
@@ -406,7 +390,7 @@ public class ControllerTwo {
 	        	case "All":
 			        ((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
-					      model.garden.gardenLight="any";
+					      model.getGarden().setGardensLight("any");
 					      viewTwo.popUp.hide();
 					    }
 					});;
@@ -414,7 +398,7 @@ public class ControllerTwo {
 	        	case "Full":
 	        		((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
-					      model.garden.gardenLight="full";
+					      model.getGarden().setGardensLight("full");
 					      viewTwo.popUp.hide();
 					    }
 					});;
