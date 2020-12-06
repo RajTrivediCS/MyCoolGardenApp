@@ -593,4 +593,9 @@ public class ViewTwo {
 	public Stage getPopUp() {
 		return popUp;
 	}
+
+
+	public ImageView getWasteBasketIV() {
+		return wasteBasket;
+	}
 }

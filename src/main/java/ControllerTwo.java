@@ -42,7 +42,7 @@ public class ControllerTwo {
 	public ControllerTwo(File bg, Stage stage) {
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser();
-		viewTwo = new ViewTwo(stage, bg, model.hotBarPlants);
+		viewTwo = new ViewTwo(stage, bg, model.getHotBarPlants());
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
@@ -57,7 +57,7 @@ public class ControllerTwo {
 		model.garden = userSavedGarden; 
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser(); 
-		viewTwo = new ViewTwo(stage, model.garden.bg, model.hotBarPlants, model.garden.gardensPlants);
+		viewTwo = new ViewTwo(stage, model.getGarden().getBg(), model.getHotBarPlants(), model.getGarden().getGardensPlants());
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
@@ -69,8 +69,8 @@ public class ControllerTwo {
 		
 		this.stage = stage;
 		for(Plant p: model.getGarden().getGardensPlants()) {
-    		if (p.id > identifier) {
-    			identifier = p.id;
+    		if (p.getID() > identifier) {
+    			identifier = p.getID();
     		}
     	}
 		identifier++;
@@ -110,10 +110,11 @@ public class ControllerTwo {
 	 */
 	public void handleReplaceImgView(GridPane grid, PlantImageView v) {
 		Image im = v.getImage();
-		PlantImageView iv = new PlantImageView(new Plant(v.plant.name, v.plant.xLoc, v.plant.yLoc, 
-				v.plant.plantLight, v.plant.plantSoil,v.plant.plantSize)); //change to use getters later
+		PlantImageView iv = new PlantImageView(new Plant(v.getPlant().getName(), v.getPlant().getXLoc(), v.getPlant().getYLoc(), 
+				v.getPlant().getPlantLight(), v.getPlant().getPlantSoil(),v.getPlant().getPlantSize()));
 		iv.setImage(im);
-		Tooltip tooltip =  new Tooltip("This is "+v.plant.name+".\n"+"It needs "+v.plant.plantLight+" and "+v.plant.plantSoil+". \nIt is roughly " + v.plant.plantSize + " feet in diameter.");
+		Tooltip tooltip =  new Tooltip("This is "+v.getPlant().getName() + ".\n"+"It needs "+v.getPlant().getPlantLight() + " and " +
+				v.getPlant().getPlantSoil()+". \nIt is roughly " + v.getPlant().getPlantSize() + " feet in diameter.");
     	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
 		iv.setFitHeight(130); //FIXME: this is a magic number
@@ -132,7 +133,7 @@ public class ControllerTwo {
 	public ArrayList<Plant> updateGarden(){
 		ArrayList<Plant> gard = new ArrayList<Plant>();
 		for(PlantImageView p : viewTwo.getPlantsInGarden()) {
-			gard.add(p.plant);
+			gard.add(p.getPlant());
 		}
 		return gard;
 	}
@@ -195,9 +196,9 @@ public class ControllerTwo {
                 	viewTwo.getPlantsInWasteBasket().add(iv1);
                 	String plantWaste = "";
                 	for (PlantImageView p:viewTwo.getPlantsInWasteBasket()) {
-            			plantWaste += p.plant.name + ", ";
+            			plantWaste += p.getPlant().getName() + ", ";
             		}
-                	Tooltip.install(viewTwo.wasteBasket, new Tooltip(plantWaste +"\n"));
+                	Tooltip.install(viewTwo.getWasteBasketIV(), new Tooltip(plantWaste +"\n"));
                 	iv1.setImage(null);
                 }
                 model.getGarden().setGardensPlants(updateGarden());
@@ -255,7 +256,7 @@ public class ControllerTwo {
 	 */
 	public void handleNewButtonPress(ActionEvent e) {
 		File bGround = model.getGarden().getBg();
-		viewTwo = new ViewTwo(stage, bGround, model.hotBarPlants);
+		viewTwo = new ViewTwo(stage, bGround, model.getHotBarPlants());
 		model = new ModelTwo();
 		model.getGarden().setBg(bGround);
 		setOnActionAdder();
@@ -269,14 +270,14 @@ public class ControllerTwo {
 	public void handleLoadButtonPress(ActionEvent e) {
 		loadFileChooser.setTitle("Load Your Garden");
 		loadFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
-		fileToLoad = loadFileChooser.showOpenDialog(viewTwo.stage);
+		fileToLoad = loadFileChooser.showOpenDialog(viewTwo.getStage());
 		//this is to stop program from crashing if you exit out of filechooser.
 		if(fileToLoad == null) {
 			return;
 		}
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
 		model.setGarden(userSavedGarden);
-		viewTwo = new ViewTwo(stage, model.garden.bg, model.hotBarPlants, model.garden.gardensPlants);
+		viewTwo = new ViewTwo(stage, model.getGarden().getBg(), model.getHotBarPlants(), model.getGarden().getGardensPlants());
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
@@ -336,7 +337,6 @@ public class ControllerTwo {
 	 */
 	public void handleGSoilButton(ActionEvent event){
 		viewTwo.setPopUp(viewTwo.makePopUpForSunSoil("soil"));
-		viewTwo.popUp.show();
         FlowPane pane = viewTwo.addButtonsToSoilPopUp();
         for(Node n : pane.getChildren())
         	switch((String) n.getUserData()) {
@@ -344,7 +344,7 @@ public class ControllerTwo {
 			        ((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.getGarden().setGardensSoil("any");
-					      viewTwo.popUp.hide();
+					      viewTwo.getPopUp().hide();
 					    }
 					});;
 					break;
@@ -352,7 +352,7 @@ public class ControllerTwo {
 	        		((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.getGarden().setGardensSoil("loamy");
-					      viewTwo.popUp.hide();
+					      viewTwo.getPopUp().hide();
 					    }
 					});;
 					break;
@@ -360,7 +360,7 @@ public class ControllerTwo {
 					((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.getGarden().setGardensSoil("sandy");
-					      viewTwo.popUp.hide();
+					      viewTwo.getPopUp().hide();
 					    }
 					});;
 					break;
@@ -368,7 +368,7 @@ public class ControllerTwo {
 					((ButtonBase) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.getGarden().setGardensSoil("clay");
-					      viewTwo.popUp.hide();
+					      viewTwo.getPopUp().hide();
 					    }
 					});;
         	}
@@ -384,14 +384,13 @@ public class ControllerTwo {
 	public void handleLightButton(ActionEvent e){
 		viewTwo.setPopUp(viewTwo.makePopUpForSunSoil("light"));
         FlowPane pane = viewTwo.addButtonsToLightPopUp();
-        
         for(Node n : pane.getChildren())
         	switch((String) n.getUserData()) {
 	        	case "All":
 			        ((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.getGarden().setGardensLight("any");
-					      viewTwo.popUp.hide();
+					      viewTwo.getPopUp().hide();
 					    }
 					});;
 					break;
@@ -399,7 +398,7 @@ public class ControllerTwo {
 	        		((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.getGarden().setGardensLight("full");
-					      viewTwo.popUp.hide();
+					      viewTwo.getPopUp().hide();
 					    }
 					});;
 					break;
@@ -407,7 +406,7 @@ public class ControllerTwo {
 					((Button) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.getGarden().setGardensLight("partial");
-					      viewTwo.popUp.hide();
+					      viewTwo.getPopUp().hide();
 					    }
 					});;
 					break;
@@ -415,7 +414,7 @@ public class ControllerTwo {
 					((ButtonBase) n).setOnAction(new EventHandler<ActionEvent>() {
 					    @Override public void handle(ActionEvent e) {
 					      model.getGarden().setGardensLight("shade");
-					      viewTwo.popUp.hide();
+					      viewTwo.getPopUp().hide();
 					    }
 					});;
         	}
@@ -432,7 +431,7 @@ public class ControllerTwo {
 	public int generateScore() {
 		double goodChoice = 1;
 		double overallNumber = 1;
-		for(Plant p : model.garden.gardensPlants) {
+		for(Plant p : model.getGarden().getGardensPlants()) {
 			overallNumber++;
 				if(p.getPlantLight().contains(model.getGarden().getGardensLight()) | model.getGarden().getGardensLight().equals("any")| p.getPlantLight().equals("any sun")) {
 					if(p.getPlantSoil().contains(model.getGarden().getGardensSoil()) | model.getGarden().getGardensSoil().equals("any") | p.getPlantSoil().equals("any soil")) {
