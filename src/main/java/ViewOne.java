@@ -21,6 +21,10 @@ public class ViewOne {
 	Stage stage;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
+	final static int BUTTONX = 450;
+	final static int BUTTONY = 300;
+	final static int BUTTON_HEIGHT = 75;
+	final static int BUTTON_WIDTH = 200;
 	
 	/***
 	 * Initializes the instance variables, sets the Scene, and displays it on Stage
@@ -33,10 +37,10 @@ public class ViewOne {
     			BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(1.0, 1.0, true, true, false, false));
     	fp.setBackground(new Background(backgroundImage));
     	uploadGardenImageButton = new Button("Load Garden Background Image");
-    	uploadGardenImageButton.setTranslateX(450);
-    	uploadGardenImageButton.setTranslateY(300);
-    	uploadGardenImageButton.setPrefHeight(75);
-    	uploadGardenImageButton.setPrefWidth(200);
+    	uploadGardenImageButton.setTranslateX(BUTTONX);
+    	uploadGardenImageButton.setTranslateY(BUTTONY);
+    	uploadGardenImageButton.setPrefHeight(BUTTON_HEIGHT);
+    	uploadGardenImageButton.setPrefWidth(BUTTON_WIDTH);
     	fp.getChildren().add(uploadGardenImageButton);
     	scene = new Scene(fp,WIDTH,HEIGHT);
 	}

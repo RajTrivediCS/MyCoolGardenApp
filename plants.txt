@@ -27,8 +27,8 @@ phlox-any sun-clay or loamy soil-1.8
 purple false foxglove-full sun-sandy soil-2.0
 red chokeberry-full or partial sun-clay or loamy or sandy soil-4.5
 rose mallow-full or partial sun-clay or loamy sun-7.0
-slippery elm-partial sun or shade-clay or loamy or sandy soil-35.0
-sugar maple-any sun-loamy or sandy soil-40.0
+slippery elm-partial sun or shade-clay or loamy or sandy soil-30.0
+sugar maple-any sun-loamy or sandy soil-30.0
 swamp milkweed-full or partial sun-clay or loamy soil-2.0
 tall coneflower-full or partial sun-clay or loamy or sandy soil-1.5
 wax mirtle-full or parial sun-clay or loamy or sandy soil-10.0

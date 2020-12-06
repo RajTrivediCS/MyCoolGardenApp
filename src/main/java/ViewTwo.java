@@ -75,6 +75,12 @@ public class ViewTwo {
 	Stage stage;
 	final static int WIDTH = 1600;
 	final static int HEIGHT = 1000;
+	final static int REPORT_WIDTH = 400;
+	final static int REPORT_HEIGHT = 500;
+	final static int SS_HEIGHT = 70;
+	final static int SS_WIDTH = 300;
+	final static int IMAGEVIEW_SIZE = 130;
+	final static int WASTEBASKET_SIZE = 90;
 
 	/***
 	 * Creates the buttons for "Sort By" Menu and places them on the given GridPane
@@ -167,7 +173,7 @@ public class ViewTwo {
 			piv.setImage(im1); //write function to change to a plant later
 	    	piv.setPreserveRatio(true);
 	    	//caseHandler
-	    	piv.setFitHeight(130);
+	    	piv.setFitHeight(IMAGEVIEW_SIZE);
 	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+". \nIt is roughly " + p.plantSize + " feet in diameter.");
 	    	Tooltip.install(piv, tooltip);
 	    	piv.setPaneLoc("grid");
@@ -175,8 +181,8 @@ public class ViewTwo {
 	    	gp.add(piv, 0, i+1);
 	    	i++;
 	    }
-		wasteBasket.setFitHeight(90);
-		wasteBasket.setFitWidth(90);
+		wasteBasket.setFitHeight(WASTEBASKET_SIZE);
+		wasteBasket.setFitWidth(WASTEBASKET_SIZE);
 		gp.add(wasteBasket, 0, i+1);
 		
 	}
@@ -347,8 +353,8 @@ public class ViewTwo {
 			popUp.setTitle("Select a SoilType");
 		}
         popUp.initModality(Modality.WINDOW_MODAL);
-        popUp.setHeight(70);
-        popUp.setWidth(300);
+        popUp.setHeight(SS_HEIGHT);
+        popUp.setWidth(SS_WIDTH);
         popUp.initOwner(this.stage);
 		return popUp;
 	}
@@ -361,8 +367,8 @@ public class ViewTwo {
 		popUp = new Stage();
 		popUp.setTitle("Here's Your Custom Generated Report");
 		popUp.initModality(Modality.WINDOW_MODAL);
-        popUp.setHeight(400);
-        popUp.setWidth(500);
+        popUp.setHeight(REPORT_HEIGHT);
+        popUp.setWidth(REPORT_WIDTH);
         popUp.initOwner(this.stage);
 		return popUp;
 	}

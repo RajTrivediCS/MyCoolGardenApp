@@ -23,6 +23,12 @@ public class MainView {
 	Scene scene;
 	final static int WIDTH = 800;
 	final static int HEIGHT = 600;
+	final static int NEWX = 500;
+	final static int NEWY = 210;
+	final static int LOADX = 350;
+	final static int LOADY = 300;
+	final static int BUTTON_HEIGHT = 50;
+	final static int BUTTON_WIDTH = 150;
 	
 	/***
 	 * Initializes the instance variables, sets the Scene, and displays it on Stage
@@ -32,15 +38,15 @@ public class MainView {
 		fp = new FlowPane();
 		fp.setBackground(new Background(backgroundImage));
     	newGardenButton = new Button(" (+) New Garden");
-    	newGardenButton.setTranslateX(500);
-    	newGardenButton.setTranslateY(210);
+    	newGardenButton.setTranslateX(NEWX);
+    	newGardenButton.setTranslateY(NEWY);
     	loadGardenButton = new Button("Load Garden");
-    	loadGardenButton.setTranslateX(350);
-    	loadGardenButton.setTranslateY(300);
-    	newGardenButton.setPrefHeight(50);
-    	newGardenButton.setPrefWidth(150);
-    	loadGardenButton.setPrefHeight(50);
-    	loadGardenButton.setPrefWidth(150);
+    	loadGardenButton.setTranslateX(LOADX);
+    	loadGardenButton.setTranslateY(LOADY);
+    	newGardenButton.setPrefHeight(BUTTON_HEIGHT);
+    	newGardenButton.setPrefWidth(BUTTON_WIDTH);
+    	loadGardenButton.setPrefHeight(BUTTON_HEIGHT);
+    	loadGardenButton.setPrefWidth(BUTTON_WIDTH);
     	fp.getChildren().add(newGardenButton);
     	fp.getChildren().add(loadGardenButton);
     	scene = new Scene(fp,WIDTH,HEIGHT);
