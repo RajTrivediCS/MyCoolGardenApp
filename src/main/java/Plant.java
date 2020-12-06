@@ -1,3 +1,5 @@
+import javafx.scene.Node;
+
 /***
  * 
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
@@ -104,5 +106,17 @@ public class Plant implements java.io.Serializable {
 
 	public void setID(int identifier) {
 		this.id = identifier;
+	}
+
+	public String getPlantLight() {
+		return plantLight;
+	}
+
+	public String getPlantSoil() {
+		return plantSoil;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

@@ -77,8 +77,8 @@ public class ViewTwo {
 	Stage stage;
 	final static int WIDTH = 1600;
 	final static int HEIGHT = 1000;
-	final static int REPORT_WIDTH = 400;
-	final static int REPORT_HEIGHT = 500;
+	final static int REPORT_WIDTH = 500;
+	final static int REPORT_HEIGHT = 400;
 	final static int SS_HEIGHT = 70;
 	final static int SS_WIDTH = 300;
 	final static int IMAGEVIEW_SIZE = 130;
@@ -170,13 +170,12 @@ public class ViewTwo {
 	public void plantIVAdder(ArrayList<Plant> plants) {
 		int i=0;
 		for(Plant p : plants) {
-			Image im1 = new Image("img/"+p.name+".png");
+			Image im1 = new Image("img/"+p.getName()+".png");
 			PlantImageView piv = new PlantImageView(p);
-			piv.setImage(im1); //write function to change to a plant later
+			piv.setImage(im1);
 	    	piv.setPreserveRatio(true);
-	    	//caseHandler
 	    	piv.setFitHeight(IMAGEVIEW_SIZE);
-	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+". \nIt is roughly " + p.plantSize + " feet in diameter.");
+	    	Tooltip tooltip =  new Tooltip("This is "+p.getName()+".\n"+"It needs "+p.getPlantLight()+" and "+p.getPlantSoil()+". \nIt is roughly " + p.getPlantSize() + " feet in diameter.");
 	    	Tooltip.install(piv, tooltip);
 	    	piv.setPaneLoc("grid");
 			sideView.add(piv);
@@ -196,7 +195,7 @@ public class ViewTwo {
 	
 	public int setHeightFormula(double plantWidth) {
 		int height;
-		height = (int)plantWidth * 5 + 90; 
+		height = (int)plantWidth * 4 + 70; 
 		return height;
 	}
 	
@@ -207,7 +206,7 @@ public class ViewTwo {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
 			@Override
 			public int compare(PlantImageView p1, PlantImageView p2) {
-				return p1.plant.name.compareTo(p2.plant.name);
+				return p1.getPlant().getName().compareTo(p2.getPlant().getName());
 			}
 		});
 	}
@@ -219,9 +218,9 @@ public class ViewTwo {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
 			@Override
 			public int compare(PlantImageView p1, PlantImageView p2) {
-				int i = p1.plant.plantLight.compareTo(p2.plant.plantLight);
+				int i = p1.getPlant().getPlantLight().compareTo(p2.getPlant().getPlantLight());
 				if(i==0) {
-					return p1.plant.name.compareTo(p2.plant.name);
+					return p1.getPlant().getName().compareTo(p2.getPlant().getName());
 				}
 				else {
 					return i;
@@ -237,9 +236,9 @@ public class ViewTwo {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
 			@Override
 			public int compare(PlantImageView p1, PlantImageView p2) {
-				int i = p1.plant.plantSoil.compareTo(p2.plant.plantSoil);
+				int i = p1.getPlant().getPlantSoil().compareTo(p2.getPlant().getPlantSoil());
 				if(i==0) {
-					return p1.plant.name.compareTo(p2.plant.name);
+					return p1.getPlant().getName().compareTo(p2.getPlant().getName());
 				}
 				else {
 					return i;
@@ -255,11 +254,11 @@ public class ViewTwo {
 		Collections.sort(sideView,new Comparator<PlantImageView>(){
 			@Override
 			public int compare(PlantImageView p1, PlantImageView p2) {
-				int size1 = (int) (Double.parseDouble(p1.plant.plantSize) * 10);
-				int size2 = (int) (Double.parseDouble(p2.plant.plantSize) * 10);
+				int size1 = (int) (Double.parseDouble(p1.getPlant().getPlantSize()) * 10);
+				int size2 = (int) (Double.parseDouble(p2.getPlant().getPlantSize()) * 10);
 				int i = size1 - size2;
 				if(i==0) {
-					return p1.plant.name.compareTo(p2.plant.name);
+					return p1.getPlant().getName().compareTo(p2.getPlant().getName());
 				}
 				
 				else {
@@ -329,19 +328,19 @@ public class ViewTwo {
 	 */
 	public void plantReadder(ArrayList<Plant> plants) {
 		for(Plant p: plants) {
-    		Image plantImage = new Image("img/"+p.name+".png");
+    		Image plantImage = new Image("img/"+p.getName()+".png");
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(plantImage);
 	    	piv.setPreserveRatio(true);
-	    	int size = setHeightFormula(Double.parseDouble(piv.plant.plantSize));
+	    	int size = setHeightFormula(Double.parseDouble(piv.getPlant().getPlantSize()));
 			piv.setFitHeight(size);
 	    	AnchorPane.setTopAnchor(piv, 0.0);
 	    	AnchorPane.setLeftAnchor(piv, 0.0);
 	    	ap.getChildren().add(piv);
-	    	Tooltip tooltip =  new Tooltip("This is "+p.name+".\n"+"It needs "+p.plantLight+" and "+p.plantSoil+". \nIt is roughly \" + p.plantSize + \" feet in diameter.");
+	    	Tooltip tooltip =  new Tooltip("This is "+p.getName()+".\n"+"It needs "+p.getPlantLight()+" and "+p.getPlantSoil()+". \nIt is roughly " + p.getPlantSize() + " feet in diameter.");
 	    	Tooltip.install(piv, tooltip);
-	    	piv.setTranslateX(piv.plant.getXLoc());
-	    	piv.setTranslateY(piv.plant.getYLoc());
+	    	piv.setTranslateX(piv.getPlant().getXLoc());
+	    	piv.setTranslateY(piv.getPlant().getYLoc());
 	    	this.plantsInGarden.add(piv);
     	}
 	}

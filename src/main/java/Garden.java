@@ -80,4 +80,12 @@ public class Garden implements java.io.Serializable{
 	public void setGardensLight(String string) {
 		gardenLight = string;
 	}
+
+	public String getGardensLight() {
+		return gardenLight;
+	}
+
+	public String getGardensSoil() {
+		return gardenSoil;
+	}
 }
