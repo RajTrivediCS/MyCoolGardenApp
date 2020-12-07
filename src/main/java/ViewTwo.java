@@ -530,6 +530,10 @@ public class ViewTwo {
 	}
 
 
+	/***
+	 * Returns the most recent state of "Sort By" button
+	 * @return the Menu Button "Sort By"
+	 */
 	public MenuButton getSortBy() {
 		return sortBy;
 	}
