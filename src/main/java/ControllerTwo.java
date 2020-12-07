@@ -260,6 +260,9 @@ public class ControllerTwo {
 		model = new ModelTwo();
 		model.getGarden().setBg(bGround);
 		setOnActionAdder();
+		for(PlantImageView p : viewTwo.getSideView()) {
+	    	setHandlerForPress(p);
+		}
 		viewTwo.startShow();
 	}
 
