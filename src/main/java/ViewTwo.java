@@ -75,8 +75,8 @@ public class ViewTwo {
 	Stage stage;
 	final static int WIDTH = 1600;
 	final static int HEIGHT = 1000;
-	final static int REPORT_WIDTH = 500;
-	final static int REPORT_HEIGHT = 400;
+	final static int REPORT_WIDTH = 550;
+	final static int REPORT_HEIGHT = 450;
 	final static int SS_HEIGHT = 70;
 	final static int SS_WIDTH = 300;
 	final static int IMAGEVIEW_SIZE = 130;

@@ -474,7 +474,7 @@ public class ControllerTwo {
 		else {
 			report += "There are ";
 			for(Plant p : arrayCopy) {
-				int plantcount = 1;
+				int plantcount = 0;
 				for(String s : ignoreList) {
 					if(p.name.equals(s)) {
 						ignore = true;
@@ -524,11 +524,11 @@ public class ControllerTwo {
 	public String getUnhappyPlants() {
 		int numUnhappy = 0;
 		String ignoreList = "";
-		String unhappyPlants = "";
+		String unhappyPlants = "Here are some things you could work on:\n";
 		if(model.getGarden().getGardensLight() == null | model.getGarden().getGardensSoil() == null) {
 			return "";
 		}
-		ignoreList += "\n";
+		ignoreList += "";
 		for(Plant p : model.getGarden().getGardensPlants()) {
 			if(!ignoreList.contains(p.getName())) {
 				if(p.getPlantLight().contains(model.getGarden().getGardensLight()) | model.getGarden().getGardensLight().equals("any")| p.getPlantLight().equals("any sun")) {
