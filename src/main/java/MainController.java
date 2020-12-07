@@ -42,7 +42,7 @@ public class MainController {
 		if(fileToLoad == null) {
 			return;
 		}
-		Garden userSavedGarden = deserializeGarden(fileToLoad);
+		Garden userSavedGarden = deserializeGarden(fileToLoad.getName());
 		controllerTwo = new ControllerTwo(stage, userSavedGarden);
 		controllerTwo.getViewTwo().startShow();
 	}
@@ -58,10 +58,10 @@ public class MainController {
 	
 	/***
 	 * Renders the Garden from Deserialization
-	 * @param file the File that needs to be deserialized
+	 * @param file the name of the File that needs to be deserialized
 	 * @return the Garden after deserializing
 	 */
-	public Garden deserializeGarden(File file) {
+	public Garden deserializeGarden(String file) {
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);

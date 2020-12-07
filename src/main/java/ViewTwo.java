@@ -67,6 +67,7 @@ public class ViewTwo {
 	Button saveButton;
 	Button sizeButton;
 	Button generateReport;
+	Button toggleGrid;
 	BackgroundImage FlowPaneBG;
 	HBox hbox;
 	VBox vbox;
@@ -113,7 +114,6 @@ public class ViewTwo {
 	
 		grid.getChildren().add(sortBy);
 	}
-	
 
 	/***
 	 * Creates all the Menus for ViewTwo Scene and places all of them in the VBox at the end
@@ -602,4 +602,12 @@ public class ViewTwo {
 	public ImageView getWasteBasketIV() {
 		return wasteBasket;
 	}
+	
+	/**
+	 * @return the toggleGrid
+	 */
+	public Button getToggleGrid() {
+		return toggleGrid;
+	}
+
 }

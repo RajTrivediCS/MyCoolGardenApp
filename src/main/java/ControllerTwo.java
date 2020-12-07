@@ -78,21 +78,6 @@ public class ControllerTwo {
 		setOnActionAdder();
 	}
 	
-	/***
-	 * Saves the most recent state of Garden to the given file input 
-	 * @param file the file that is serialized
-	 */
-	public void serializeGarden(File file) {
-		try {
-			FileOutputStream fos = new FileOutputStream(file);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(model.garden);
-			oos.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void setOnActionAdder() {
     	viewTwo.getNewButton().setOnAction(e-> handleNewButtonPress(e));
     	viewTwo.getLoadButton().setOnAction(e-> handleLoadButtonPress(e));
@@ -102,7 +87,6 @@ public class ControllerTwo {
     	viewTwo.getGenerateReport().setOnAction(e-> handleGenerateReport(e));
 	}
 	
-
 	/***
 	 * Replaces image that was in the SideBar with an exact copy
 	 * @param grid the GridPane to add Image
@@ -278,7 +262,7 @@ public class ControllerTwo {
 		if(fileToLoad == null) {
 			return;
 		}
-		Garden userSavedGarden = deserializeGarden(fileToLoad);
+		Garden userSavedGarden = deserializeGarden(fileToLoad.getName());
 		model.setGarden(userSavedGarden);
 		viewTwo = new ViewTwo(stage, model.getGarden().getBg(), model.getHotBarPlants(), model.getGarden().getGardensPlants());
 		for(PlantImageView p : viewTwo.getSideView()) {
@@ -301,10 +285,10 @@ public class ControllerTwo {
 	
 	/***
 	 * Renders the Garden from Deserialization
-	 * @param file the File that needs to be deserialized
+	 * @param file the name of the File that needs to be deserialized
 	 * @return the Garden after deserializing
 	 */
-	public Garden deserializeGarden(File file) {
+	public Garden deserializeGarden(String file) {
 		try {
 			FileInputStream fis = new FileInputStream(file);
 			ObjectInputStream ois = new ObjectInputStream(fis);
@@ -316,6 +300,22 @@ public class ControllerTwo {
 		}
 		return null;
 	}
+	
+	/***
+	 * Saves the most recent state of Garden to the given file input 
+	 * @param file the name of the file that is serialized
+	 */
+	public void serializeGarden(String file) {
+		try {
+			FileOutputStream fos = new FileOutputStream(file);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(model.garden);
+			oos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	/***
 	 * Handles the event by creating the file to save and serializing Garden to that file
@@ -331,7 +331,7 @@ public class ControllerTwo {
 		if(!fileToSave.getName().contains(".")) {
 			fileToSave = new File(fileToSave.getAbsolutePath() + ".ser");
 	    }
-		serializeGarden(fileToSave);
+		serializeGarden(fileToSave.getName());
 	}
 	
 	/***
