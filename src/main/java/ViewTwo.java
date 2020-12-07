@@ -71,8 +71,6 @@ public class ViewTwo {
 	HBox hbox;
 	VBox vbox;
 	Scene scene;
-	Image undoImage = new Image("img/undoImage.png");
-	Image redoImage = new Image("img/redoImage.png");
 	ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
 	Stage stage;
 	final static int WIDTH = 1600;
@@ -120,27 +118,27 @@ public class ViewTwo {
 	 */
 	public void topMenuMaker() {
 		Menu fileMenu = new Menu("File");
-		Menu viewMenu = new Menu("View");
+		Menu viewMenu = new Menu("Garden Options");
 		
 		newButton = new Button("New");
 		CustomMenuItem newItem = new CustomMenuItem(newButton);
 		fileMenu.getItems().add(newItem);
+
+		saveButton = new Button("Save");
+		CustomMenuItem saveItem = new CustomMenuItem(saveButton);
+		fileMenu.getItems().add(saveItem);
 		
 		loadButton = new Button("Load");
 		CustomMenuItem loadItem = new CustomMenuItem(loadButton);
 		fileMenu.getItems().add(loadItem);
 		
-		saveButton = new Button("Save");
-		CustomMenuItem saveItem = new CustomMenuItem(saveButton);
-		fileMenu.getItems().add(saveItem);
-		
 		gLightButton = new Button("Choose Garden Light");
 		CustomMenuItem gLightItem = new CustomMenuItem(gLightButton);
-		fileMenu.getItems().add(gLightItem);
+		viewMenu.getItems().add(gLightItem);
 		
 		gSoilButton = new Button("Choose Garden Soil");
 		CustomMenuItem gSoilItem = new CustomMenuItem(gSoilButton);
-		fileMenu.getItems().add(gSoilItem);
+		viewMenu.getItems().add(gSoilItem);
 		
 		
 		Button togglegridButton = new Button("Toggle Grid");
