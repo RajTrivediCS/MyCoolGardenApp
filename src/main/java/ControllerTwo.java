@@ -35,6 +35,7 @@ public class ControllerTwo {
 	File fileToSave;
 	Stage stage;
 	int identifier;
+	final int REPLACE_SIZE = 130;
 	
 	/***
 	 * Initializes the instance variables
@@ -117,7 +118,7 @@ public class ControllerTwo {
 				v.getPlant().getPlantSoil()+". \nIt is roughly " + v.getPlant().getPlantSize() + " feet in diameter.");
     	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
-		iv.setFitHeight(130); //FIXME: magic number  
+		iv.setFitHeight(REPLACE_SIZE);  
     	setHandlerForDrag(iv);
      	setHandlerForPress(iv);
     	int i = grid.getRowIndex(v);
@@ -469,7 +470,7 @@ public class ControllerTwo {
 		boolean ignore = false;
 		int newLineChecker = 1;
 		if(arrayCopy.isEmpty()) {
-			report += "There's nothing in the garden.";
+			report += "There's nothing in the garden.\n";
 		}
 		else {
 			report += "There are ";
@@ -486,7 +487,7 @@ public class ControllerTwo {
 							plantcount++;
 						}
 					}
-					report += plantcount + " "+p.getName()+" ";
+					report += plantcount + " "+p.getName()+" and ";
 					if(newLineChecker%4 == 0) {
 						report+="\n";
 					}
