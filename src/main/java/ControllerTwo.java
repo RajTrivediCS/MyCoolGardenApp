@@ -117,7 +117,7 @@ public class ControllerTwo {
 				v.getPlant().getPlantSoil()+". \nIt is roughly " + v.getPlant().getPlantSize() + " feet in diameter.");
     	Tooltip.install(iv, tooltip);
 		iv.setPreserveRatio(true);
-		iv.setFitHeight(130); //FIXME: this is a magic number
+		iv.setFitHeight(v.getFitHeight()); 
     	setHandlerForDrag(iv);
      	setHandlerForPress(iv);
     	int i = grid.getRowIndex(v);
