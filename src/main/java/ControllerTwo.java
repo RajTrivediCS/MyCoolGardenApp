@@ -40,7 +40,7 @@ public class ControllerTwo {
 	/***
 	 * Initializes the instance variables
 	 */
-	public ControllerTwo(File bg, Stage stage) {
+	public ControllerTwo(File bg, Stage stage, String height, String width) {
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser();
 		viewTwo = new ViewTwo(stage, bg, model.getHotBarPlants());
@@ -54,7 +54,7 @@ public class ControllerTwo {
 		setOnActionAdder();
 	}
 	
-	public ControllerTwo(Stage stage, Garden userSavedGarden) {
+	public ControllerTwo(Stage stage, Garden userSavedGarden, String height, String width) {
 		model.garden = userSavedGarden; 
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser(); 

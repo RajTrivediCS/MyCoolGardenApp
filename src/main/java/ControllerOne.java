@@ -34,7 +34,7 @@ public class ControllerOne {
 		if(bg == null) {
 			return;
 		}
-		controllerTwo = new ControllerTwo(bg, stage);
+		controllerTwo = new ControllerTwo(bg, stage, viewOne.getHeightField().getText(), viewOne.getWidthField().getText());
 		controllerTwo.getViewTwo().startShow();
 	}
 

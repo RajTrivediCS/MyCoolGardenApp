@@ -11,6 +11,8 @@ public class Garden implements java.io.Serializable{
 	String gardenLight;
 	String gardenWater;
 	String gardenSoil;
+	String gardenHeight;
+	String gardenWidth;
 	File bg;
 	
 	/***
