@@ -20,23 +20,23 @@ import javafx.stage.Stage;
  *
  */
 public class ViewOne {	
-	AnchorPane ap;
-	Button uploadGardenImageButton;
-	Button skipGardenImageButton;
-	TextField widthField;
-	TextField heightField;
-	HBox hbox = new HBox();
-	Scene scene;
-	Stage stage;
-	final static int WIDTH = 800;
-	final static int HEIGHT = 600;
-	final static int BUTTONX = 450;
-	final static int LOAD_BUTTONY = 400;
-	final static int SKIP_BUTTONY = 200;
-	final static int BUTTON_HEIGHT = 75;
-	final static int BUTTON_WIDTH = 200;
-	final static int HBOX_X = 50;
-	final static int HBOX_Y = 300;
+	private AnchorPane ap;
+	private Button uploadGardenImageButton;
+	private Button skipGardenImageButton;
+	private TextField widthField;
+	private TextField heightField;
+	private HBox hbox = new HBox();
+	private Scene scene;
+	private Stage stage;
+	final static private int WIDTH = 800;
+	final static private int HEIGHT = 600;
+	final static private int BUTTONX = 450;
+	final static private int LOAD_BUTTONY = 400;
+	final static private int SKIP_BUTTONY = 200;
+	final static private int BUTTON_HEIGHT = 75;
+	final static private int BUTTON_WIDTH = 200;
+	final static private int HBOX_X = 50;
+	final static private int HBOX_Y = 300;
 	
 	/***
 	 * Initializes the instance variables, sets the Scene, and displays it on Stage

@@ -7,13 +7,13 @@ import java.util.*;
  *
  */
 public class Garden implements java.io.Serializable{
-	ArrayList<Plant> gardensPlants = new ArrayList<>();
-	String gardenLight;
-	String gardenWater;
-	String gardenSoil;
-	int gardenHeight;
-	int gardenWidth;
-	File bg;
+	private ArrayList<Plant> gardensPlants = new ArrayList<>();
+	private String gardenLight;
+	private String gardenWater;
+	private String gardenSoil;
+	private int gardenHeight;
+	private int gardenWidth;
+	private File bg;
 	
 	/***
 	 * Adds the given Plant to a specified x and y coordinates
@@ -22,7 +22,7 @@ public class Garden implements java.io.Serializable{
 	 * @param y the y coordinate
 	 */
 	public void addPlant(Plant p, double x, double y) {
-		this.gardensPlants.add(new Plant(p.name, x, y, p.plantLight, p.plantSoil, p.plantSize));
+		this.gardensPlants.add(new Plant(p.getName(), x, y, p.getPlantLight(), p.getPlantSoil(), p.getPlantSize()));
 	}
 
 	/***

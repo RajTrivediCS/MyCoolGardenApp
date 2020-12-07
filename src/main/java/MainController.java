@@ -11,12 +11,12 @@ import javafx.stage.Stage;
  *
  */
 public class MainController {
-	MainView mainView;
-	ControllerOne controllerOne;
-	Stage stage;
-	FileChooser fileChooser;
-	File fileToLoad;
-	ControllerTwo controllerTwo;
+	private MainView mainView;
+	private ControllerOne controllerOne;
+	private Stage stage;
+	private FileChooser fileChooser;
+	private File fileToLoad;
+	private ControllerTwo controllerTwo;
 	
 	/***
 	 * Initializes the Stage to set the next Scene
@@ -52,7 +52,7 @@ public class MainController {
 	 * @param e the MouseEvent for click
 	 */
 	public void handleNewGardenButtonPress(MouseEvent e) {
-		stage.setScene(controllerOne.viewOne.getScene());
+		stage.setScene(controllerOne.getViewOne().getScene());
 		controllerOne.getViewOne().startShow();
 	}
 	

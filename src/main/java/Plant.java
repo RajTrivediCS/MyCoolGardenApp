@@ -6,14 +6,13 @@ import javafx.scene.Node;
  *
  */
 public class Plant implements java.io.Serializable {
-	String name;
-	double xLoc;
-	double yLoc;
-	String plantLight;
-	String plantWater;
-	String plantSoil;
-	String plantSize;
-	int id;
+	private String name;
+	private double xLoc;
+	private double yLoc;
+	private String plantLight;
+	private String plantSoil;
+	private String plantSize;
+	private int id;
 	
 	/***
 	 * Initializes the instance variables of Plant with the given parameters

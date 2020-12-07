@@ -9,7 +9,7 @@ import javafx.stage.Stage;
  */
 public class AppRunner extends Application {
 
-	MainController mainController;
+	private MainController mainController;
 	
 	@Override
 	public void start(Stage stage) {

@@ -27,16 +27,16 @@ import javafx.stage.Stage;
  *
  */
 public class ControllerTwo {
-	ViewTwo viewTwo;
-	ModelTwo model = new ModelTwo();
-	FileChooser loadFileChooser;
-	FileChooser fileChooserSave;
-	File fileToLoad;
-	File fileToSave;
-	Stage stage;
-	int identifier;
-	int scale;
-	final int REPLACE_SIZE = 130;
+	private ViewTwo viewTwo;
+	private ModelTwo model = new ModelTwo();
+	private FileChooser loadFileChooser;
+	private FileChooser fileChooserSave;
+	private File fileToLoad;
+	private File fileToSave;
+	private Stage stage;
+	private int identifier;
+	private int scale;
+	final private int REPLACE_SIZE = 130;
 	
 	/***
 	 * Initializes the instance variables
@@ -245,22 +245,22 @@ public class ControllerTwo {
 	 * Sorts all the Plants depending on which button you click  
 	 */
 	public void sortButtonHandler() {
-		viewTwo.nameButton.setOnAction(new EventHandler<ActionEvent>() {
+		viewTwo.getNameButton().setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	viewTwo.sortSideView("name");
 		    }
 		});
-		viewTwo.sunButton.setOnAction(new EventHandler<ActionEvent>() {
+		viewTwo.getSunButton().setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	viewTwo.sortSideView("sun");
 		    }
 		});
-		viewTwo.soilButton.setOnAction(new EventHandler<ActionEvent>() {
+		viewTwo.getSoilButton().setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		    	viewTwo.sortSideView("soil");
 		    }
 		});
-		viewTwo.sizeButton.setOnAction(new EventHandler<ActionEvent>() {
+		viewTwo.getSizeButton().setOnAction(new EventHandler<ActionEvent>() {
 		    @Override public void handle(ActionEvent e) {
 		        viewTwo.sortSideView("size");
 		    }
@@ -441,8 +441,8 @@ public class ControllerTwo {
         	}
 
         Scene popScene = new Scene(pane);
-        viewTwo.popUp.setScene(popScene);
-        viewTwo.popUp.show();
+        viewTwo.getPopUp().setScene(popScene);
+        viewTwo.getPopUp().show();
 	}
 	
 	/***
@@ -494,7 +494,7 @@ public class ControllerTwo {
 			for(Plant p : arrayCopy) {
 				int plantcount = 0;
 				for(String s : ignoreList) {
-					if(p.name.equals(s)) {
+					if(p.getName().equals(s)) {
 						ignore = true;
 					}
 				}

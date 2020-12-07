@@ -43,44 +43,42 @@ import javafx.stage.Stage;
  *
  */
 public class ViewTwo {
-	ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;
-	ArrayList<PlantImageView> plantsInGarden = new ArrayList<PlantImageView>();	
-	ArrayList<PlantImageView> plantsInWasteBasket = new ArrayList<PlantImageView>();
-	Stage popUp;
-	GridPane gp;
-	AnchorPane ap;
-	BorderPane bp;
-	ScrollPane sp;
-	Menu viewMenu;
-	Menu fileMenu;
-	Menu undoMenu;
-	Menu redoMenu;
-	MenuBar menuBar;
-	MenuButton sortBy;
-	Button nameButton;
-	Button gSoilButton;
-	Button gLightButton;
-	Button sunButton;
-	Button soilButton;
-	Button newButton;
-	Button loadButton;
-	Button saveButton;
-	Button sizeButton;
-	Button generateReport;
-	BackgroundImage FlowPaneBG;
-	HBox hbox;
-	VBox vbox;
-	Scene scene;
-	ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
-	Stage stage;
-	final static int WIDTH = 1600;
-	final static int HEIGHT = 1000;
-	final static int REPORT_WIDTH = 550;
-	final static int REPORT_HEIGHT = 450;
-	final static int SS_HEIGHT = 70;
-	final static int SS_WIDTH = 300;
-	final static int IMAGEVIEW_SIZE = 130;
-	final static int WASTEBASKET_SIZE = 90;
+	private ArrayList<PlantImageView> sideView = new ArrayList<PlantImageView>();;
+	private ArrayList<PlantImageView> plantsInGarden = new ArrayList<PlantImageView>();	
+	private ArrayList<PlantImageView> plantsInWasteBasket = new ArrayList<PlantImageView>();
+	private Stage popUp;
+	private GridPane gp;
+	private AnchorPane ap;
+	private BorderPane bp;
+	private ScrollPane sp;
+	private Menu viewMenu;
+	private Menu fileMenu;
+	private MenuBar topBar;
+	private MenuButton sortBy;
+	private Button nameButton;
+	private Button gSoilButton;
+	private Button gLightButton;
+	private Button sunButton;
+	private Button soilButton;
+	private Button newButton;
+	private Button loadButton;
+	private Button saveButton;
+	private Button sizeButton;
+	private Button generateReport;
+	private BackgroundImage FlowPaneBG;
+	private HBox hbox;
+	private VBox vbox;
+	private Scene scene;
+	private ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
+	private Stage stage;
+	final static private int WIDTH = 1600;
+	final static private int HEIGHT = 1000;
+	final static private int REPORT_WIDTH = 550;
+	final static private int REPORT_HEIGHT = 450;
+	final static private int SS_HEIGHT = 70;
+	final static private int SS_WIDTH = 300;
+	final static private int IMAGEVIEW_SIZE = 130;
+	final static private int WASTEBASKET_SIZE = 90;
 
 	/***
 	 * Creates the buttons for "Sort By" Menu and places them on the given GridPane
@@ -117,8 +115,8 @@ public class ViewTwo {
 	 * Creates all the Menus for ViewTwo Scene and places all of them in the VBox at the end
 	 */
 	public void topMenuMaker() {
-		Menu fileMenu = new Menu("File");
-		Menu viewMenu = new Menu("Garden Options");
+		fileMenu = new Menu("File");
+		viewMenu = new Menu("Garden Options");
 		
 		newButton = new Button("New");
 		CustomMenuItem newItem = new CustomMenuItem(newButton);
@@ -153,7 +151,7 @@ public class ViewTwo {
 		CustomMenuItem generateReportItem = new CustomMenuItem(generateReport);
 		viewMenu.getItems().add(generateReportItem);
 		
-		MenuBar topBar = new MenuBar();
+		topBar = new MenuBar();
 		
 		topBar.getMenus().add(fileMenu);
 		topBar.getMenus().add(viewMenu);
@@ -596,5 +594,25 @@ public class ViewTwo {
 
 	public ImageView getWasteBasketIV() {
 		return wasteBasket;
+	}
+
+
+	public Button getNameButton() {
+		return nameButton;
+	}
+
+
+	public Button getSunButton() {
+		return sunButton;
+	}
+
+
+	public Button getSoilButton() {
+		return soilButton;
+	}
+
+
+	public Button getSizeButton() {
+		return sizeButton;
 	}
 }

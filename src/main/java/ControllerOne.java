@@ -9,9 +9,9 @@ import javafx.stage.Stage;
  *
  */
 public class ControllerOne {
-	ViewOne viewOne;
-	Stage stage;
-	ControllerTwo controllerTwo;
+	private ViewOne viewOne;
+	private Stage stage;
+	private ControllerTwo controllerTwo;
 	/***
 	 * Initializes the Stage to set the next Scene
 	 * @param stage the Stage 

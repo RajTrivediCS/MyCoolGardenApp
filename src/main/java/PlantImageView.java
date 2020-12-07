@@ -7,8 +7,8 @@ import javafx.scene.image.ImageView;
  *
  */
 public class PlantImageView extends ImageView{
-	String paneLocation;
-	Plant plant;
+	private String paneLocation;
+	private Plant plant;
 	
 	/***
 	 * Initializes the instance of Plant
