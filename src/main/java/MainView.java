@@ -16,20 +16,20 @@ import javafx.stage.Stage;
  *
  */
 public class MainView {	
-	FlowPane fp;
-	Button newGardenButton; 
-	Button loadGardenButton;
-	BackgroundImage backgroundImage = new BackgroundImage(new Image("img/MainMenu.png"),BackgroundRepeat.NO_REPEAT, 
+	private FlowPane fp;
+	private Button newGardenButton; 
+	private Button loadGardenButton;
+	private BackgroundImage backgroundImage = new BackgroundImage(new Image("img/MainMenu.png"),BackgroundRepeat.NO_REPEAT, 
 			BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 	Scene scene;
-	final static int WIDTH = 800;
-	final static int HEIGHT = 600;
-	final static int NEWX = 500;
-	final static int NEWY = 210;
-	final static int LOADX = 350;
-	final static int LOADY = 300;
-	final static int BUTTON_HEIGHT = 50;
-	final static int BUTTON_WIDTH = 150;
+	final static private int WIDTH = 800;
+	final static private int HEIGHT = 600;
+	final static private int NEWX = 500;
+	final static private int NEWY = 210;
+	final static private int LOADX = 350;
+	final static private int LOADY = 300;
+	final static private int BUTTON_HEIGHT = 50;
+	final static private int BUTTON_WIDTH = 150;
 	
 	/***
 	 * Initializes the instance variables, sets the Scene, and displays it on Stage
