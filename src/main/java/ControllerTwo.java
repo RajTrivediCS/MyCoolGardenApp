@@ -46,7 +46,7 @@ public class ControllerTwo {
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
-    	model.getGarden().setBg(bg);
+    	model.getGarden().setBg(bg.getPath());
 		this.stage = stage;
 		identifier = 0;
 		viewTwo.getSortBy().setOnMouseClicked(e-> sortButtonHandler());
@@ -57,7 +57,7 @@ public class ControllerTwo {
 		model.garden = userSavedGarden; 
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser(); 
-		viewTwo = new ViewTwo(stage, model.getGarden().getBg(), model.getHotBarPlants(), model.getGarden().getGardensPlants());
+		viewTwo = new ViewTwo(stage,new File(model.getGarden().getBg()), model.getHotBarPlants(), model.getGarden().getGardensPlants());
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
@@ -239,8 +239,8 @@ public class ControllerTwo {
 	 * @param e the ActionEvent for pressing "New" Button(under File Menu)
 	 */
 	public void handleNewButtonPress(ActionEvent e) {
-		File bGround = model.getGarden().getBg();
-		viewTwo = new ViewTwo(stage, bGround, model.getHotBarPlants());
+		String bGround = model.getGarden().getBg();
+		viewTwo = new ViewTwo(stage, new File(bGround), model.getHotBarPlants());
 		model = new ModelTwo();
 		model.getGarden().setBg(bGround);
 		setOnActionAdder();
@@ -264,7 +264,7 @@ public class ControllerTwo {
 		}
 		Garden userSavedGarden = deserializeGarden(fileToLoad.getName());
 		model.setGarden(userSavedGarden);
-		viewTwo = new ViewTwo(stage, model.getGarden().getBg(), model.getHotBarPlants(), model.getGarden().getGardensPlants());
+		viewTwo = new ViewTwo(stage, new File(model.getGarden().getBg()), model.getHotBarPlants(), model.getGarden().getGardensPlants());
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
