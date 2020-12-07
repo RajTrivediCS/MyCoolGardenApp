@@ -191,9 +191,10 @@ public class ViewTwo {
 	 * @return
 	 */
 	
-	public int setHeightFormula(double plantWidth) {
+	public int setHeightFormula(double plantWidth, int scale) {
 		int height;
 		height = (int)plantWidth * 4 + 70; 
+		height = (int) (height * 250000 / scale);
 		return height;
 	}
 	
@@ -324,13 +325,13 @@ public class ViewTwo {
 	/***
 	 * Reads all the plants from the List of garden plants and places them appropriately in Garden 
 	 */
-	public void plantReadder(ArrayList<Plant> plants) {
+	public void plantReadder(ArrayList<Plant> plants, int scale) {
 		for(Plant p: plants) {
     		Image plantImage = new Image("img/"+p.getName()+".png");
 			PlantImageView piv = new PlantImageView(p);
 			piv.setImage(plantImage);
 	    	piv.setPreserveRatio(true);
-	    	int size = setHeightFormula(Double.parseDouble(piv.getPlant().getPlantSize()));
+	    	int size = setHeightFormula(Double.parseDouble(piv.getPlant().getPlantSize()), scale);
 			piv.setFitHeight(size);
 	    	AnchorPane.setTopAnchor(piv, 0.0);
 	    	AnchorPane.setLeftAnchor(piv, 0.0);
@@ -439,7 +440,7 @@ public class ViewTwo {
 	 * @param stage the Stage
 	 * @param bg the Background Image File that user chooses for their Garden
 	 */
-	public ViewTwo(Stage stage, File bg, ArrayList<Plant> sbPlants){
+	public ViewTwo(Stage stage, File bg, ArrayList<Plant> sbPlants, int scale){
 		topMenuMaker();
     	gp = new GridPane();
     	gp.setMaxWidth(1);
@@ -468,7 +469,7 @@ public class ViewTwo {
 	 * @param stage the Stage
 	 * @param garden the Garden that is deserialized
 	 */
-	public ViewTwo(Stage stage, File bg, ArrayList<Plant> sBPlants, ArrayList<Plant> gPlants) {
+	public ViewTwo(Stage stage, File bg, ArrayList<Plant> sBPlants, ArrayList<Plant> gPlants, int scale) {
 		topMenuMaker();
     	gp = new GridPane();
     	gp.setMaxWidth(1);
@@ -484,7 +485,7 @@ public class ViewTwo {
     	FlowPaneBG = backgroundMaker(bg);
     	ap.setBackground(new Background(FlowPaneBG));
     	ap.getChildren().add(vbox);
-    	plantReadder(gPlants);
+    	plantReadder(gPlants, scale);
     	bp = new BorderPane();
     	bp.setTop(vbox);
     	bp.setCenter(ap);

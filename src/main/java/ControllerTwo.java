@@ -35,15 +35,21 @@ public class ControllerTwo {
 	File fileToSave;
 	Stage stage;
 	int identifier;
+	int scale;
 	final int REPLACE_SIZE = 130;
 	
 	/***
 	 * Initializes the instance variables
 	 */
 	public ControllerTwo(File bg, Stage stage, String height, String width) {
+		int h = numChecker(height);
+		int w = numChecker(width);
+		model.getGarden().setHeight(h);
+		model.getGarden().setWidth(w);
+		scale = h*w; 
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser();
-		viewTwo = new ViewTwo(stage, bg, model.getHotBarPlants());
+		viewTwo = new ViewTwo(stage, bg, model.getHotBarPlants(), scale);
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
@@ -54,11 +60,12 @@ public class ControllerTwo {
 		setOnActionAdder();
 	}
 	
-	public ControllerTwo(Stage stage, Garden userSavedGarden, String height, String width) {
-		model.garden = userSavedGarden; 
+	public ControllerTwo(Stage stage, Garden userSavedGarden) {
+		model.setGarden(userSavedGarden); 
+		scale = model.getGarden().getHeight() * model.getGarden().getWidth(); 
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser(); 
-		viewTwo = new ViewTwo(stage, model.getGarden().getBg(), model.getHotBarPlants(), model.getGarden().getGardensPlants());
+		viewTwo = new ViewTwo(stage, model.getGarden().getBg(), model.getHotBarPlants(), model.getGarden().getGardensPlants(), scale);
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
@@ -77,6 +84,15 @@ public class ControllerTwo {
 		identifier++;
 		viewTwo.getSortBy().setOnMouseClicked(e-> sortButtonHandler());
 		setOnActionAdder();
+	}
+	
+	public int numChecker(String s) {
+		try {
+			int i = Integer.parseInt(s);
+			return i;
+		}catch (NumberFormatException e){
+			return 500;
+		}
 	}
 	
 	/***
@@ -173,7 +189,7 @@ public class ControllerTwo {
 			AnchorPane.setTopAnchor(nv, 0.0);
 	    	AnchorPane.setLeftAnchor(nv, 0.0);
 			viewTwo.getAP().getChildren().add(nv);
-			int size = viewTwo.setHeightFormula(Double.parseDouble(nv.getPlant().getPlantSize()));
+			int size = viewTwo.setHeightFormula(Double.parseDouble(nv.getPlant().getPlantSize()), scale);
 			nv.setFitHeight(size);
 			nv.setTranslateX(event.getX());
 			nv.setTranslateY(event.getY());
@@ -257,7 +273,7 @@ public class ControllerTwo {
 	 */
 	public void handleNewButtonPress(ActionEvent e) {
 		File bGround = model.getGarden().getBg();
-		viewTwo = new ViewTwo(stage, bGround, model.getHotBarPlants());
+		viewTwo = new ViewTwo(stage, bGround, model.getHotBarPlants(), scale);
 		model = new ModelTwo();
 		model.getGarden().setBg(bGround);
 		setOnActionAdder();
@@ -281,7 +297,8 @@ public class ControllerTwo {
 		}
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
 		model.setGarden(userSavedGarden);
-		viewTwo = new ViewTwo(stage, model.getGarden().getBg(), model.getHotBarPlants(), model.getGarden().getGardensPlants());
+		scale = model.getGarden().getHeight() * model.getGarden().getWidth(); 
+		viewTwo = new ViewTwo(stage, model.getGarden().getBg(), model.getHotBarPlants(), model.getGarden().getGardensPlants(), scale);
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}

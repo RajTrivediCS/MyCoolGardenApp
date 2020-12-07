@@ -11,8 +11,8 @@ public class Garden implements java.io.Serializable{
 	String gardenLight;
 	String gardenWater;
 	String gardenSoil;
-	String gardenHeight;
-	String gardenWidth;
+	int gardenHeight;
+	int gardenWidth;
 	File bg;
 	
 	/***
@@ -89,5 +89,22 @@ public class Garden implements java.io.Serializable{
 
 	public String getGardensSoil() {
 		return gardenSoil;
+	}
+
+	public int getHeight() {
+		return gardenHeight;
+	}
+
+	public int getWidth() {
+		return gardenWidth;
+	}
+
+	public void setHeight(int h) {
+		gardenHeight = h;
+		
+	}
+
+	public void setWidth(int w) {
+		gardenWidth = w;
 	}
 }
