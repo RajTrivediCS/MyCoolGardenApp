@@ -13,7 +13,7 @@ public class Garden implements java.io.Serializable{
 	private String gardenSoil;
 	private int gardenHeight;
 	private int gardenWidth;
-	private File bg;
+	private String bg;
 	
 	/***
 	 * Adds the given Plant to a specified x and y coordinates
@@ -29,7 +29,7 @@ public class Garden implements java.io.Serializable{
 	 * Returns the most recent Background Image file
 	 * @return the File with the Background Image
 	 */
-	public File getBg() {
+	public String getBg() {
 		return bg;
 	}
 
@@ -37,7 +37,7 @@ public class Garden implements java.io.Serializable{
 	 * Sets the current Background Image file with the given Background Image File
 	 * @param bg the File to set as a Background Image for a Garden
 	 */
-	public void setBg(File bg) {
+	public void setBg(String bg) {
 		this.bg = bg;
 	}
 
