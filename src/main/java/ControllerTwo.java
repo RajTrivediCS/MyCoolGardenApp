@@ -37,6 +37,7 @@ public class ControllerTwo {
 	private int identifier;
 	private int scale;
 	final private int REPLACE_SIZE = 130;
+	final private int HIDE = 5000;
 	
 	/***
 	 * Initializes the instance variables
@@ -191,8 +192,8 @@ public class ControllerTwo {
 			viewTwo.getAP().getChildren().add(nv);
 			int size = viewTwo.setHeightFormula(Double.parseDouble(nv.getPlant().getPlantSize()), scale);
 			nv.setFitHeight(size);
-			nv.setTranslateX(event.getX());
-			nv.setTranslateY(event.getY());
+			nv.setTranslateX(HIDE);
+			nv.setTranslateY(HIDE);
 			viewTwo.getSideView().remove(v);
 			handleReplaceImgView(viewTwo.getGP(), v);
 			nv.getPlant().setID(identifier);
@@ -513,6 +514,7 @@ public class ControllerTwo {
 				newLineChecker++;
 				ignore = false;
 			}
+			report = report.substring(0, report.length() -5); //getting rid of " and " at the end
 			report+= "in your garden.\n";
 		}
 		if(model.getGarden().getGardensLight() == null | model.getGarden().getGardensSoil() == null) {
