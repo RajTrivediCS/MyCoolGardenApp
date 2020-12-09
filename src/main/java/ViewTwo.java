@@ -65,7 +65,7 @@ public class ViewTwo {
 	private Button toggleBackgroundButton;
 	private Button generateReport;
 	private Button how_toButton;
-	private BackgroundImage FlowPaneBG;
+	private BackgroundImage AnchorPaneBG;
 	private HBox hbox;
 	private VBox vbox;
 	private Scene scene;
@@ -399,7 +399,6 @@ public class ViewTwo {
 	}
 	
 	public FlowPane makeHelpPane(String helpText) {
-		// TODO Auto-generated method stub
 		FlowPane pane = new FlowPane();
 		pane.setStyle("-fx-background-color: #90EE90;");
 		Label labelOne = new Label(helpText);
@@ -483,8 +482,8 @@ public class ViewTwo {
     	sp.setContent(hbox);
     	ap = new AnchorPane();
     	if(bg != null) {
-        	FlowPaneBG = backgroundMaker(bg);
-        	ap.setBackground(new Background(FlowPaneBG));
+        	AnchorPaneBG = backgroundMaker(bg);
+        	ap.setBackground(new Background(AnchorPaneBG));
     	}
     	else {
     		ap.setStyle("-fx-background-color: #90EE90");
@@ -517,13 +516,13 @@ public class ViewTwo {
     	sp.setContent(hbox);
     	ap = new AnchorPane();
     	if(bg != null) {
-        	FlowPaneBG = backgroundMaker(bg);
-        	ap.setBackground(new Background(FlowPaneBG));
+        	AnchorPaneBG = backgroundMaker(bg);
+        	ap.setBackground(new Background(AnchorPaneBG));
     	}
     	else {
     		ap.setStyle("-fx-background-color: #90EE90");
     	}
-    	ap.setBackground(new Background(FlowPaneBG));
+    	ap.setBackground(new Background(AnchorPaneBG));
     	ap.getChildren().add(vbox);
     	plantReadder(gPlants, scale);
     	bp = new BorderPane();
@@ -694,7 +693,7 @@ public class ViewTwo {
 
 	public BackgroundImage getGardenBackgroundImage() {
 		// TODO Auto-generated method stub
-		return FlowPaneBG;
+		return AnchorPaneBG;
 	}
 
 
