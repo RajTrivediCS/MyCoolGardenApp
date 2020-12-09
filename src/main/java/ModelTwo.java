@@ -41,7 +41,7 @@ public class ModelTwo {
 		ArrayList<Plant> plantsList = new ArrayList<>();
 		while(sc.hasNextLine()) {
 			String currLine = sc.nextLine();
-			String[] parts = currLine.split(";");
+			String[] parts = currLine.split(",");
 			plantsList.add(new Plant(parts[NAMESPOT],0,0,parts[SUNSPOT],parts[SOILSPOT],parts[SIZESPOT]));
 		}
 		return plantsList;
