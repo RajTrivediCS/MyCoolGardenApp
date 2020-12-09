@@ -35,6 +35,7 @@ public class ControllerOne {
 	 */
 	public void handleUploadGardenButtonPress(MouseEvent e) {
 		FileChooser choose = new FileChooser();
+		choose.setInitialDirectory(new File("bg/"));
 		choose.setTitle("Select your background image");
 		bg = choose.showOpenDialog(stage);
 		//this is to stop program from crashing if you exit out of filechooser.
