@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 /***
  * 
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
+ * 
+ *This is the controller for the first scene.
  *
  */
 public class ControllerOne {

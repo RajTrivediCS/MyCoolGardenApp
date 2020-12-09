@@ -45,16 +45,7 @@ public class Plant implements java.io.Serializable {
 		this.plantSize = pSize;
 	}
 	
-	/***
-	 * Updates the location of plant from the given x and y coordinates
-	 * @param gX the x coordinate to update
-	 * @param gY the y coordinate to update
-	 */
-	public void updatePlantLocation(double gX, double gY) {
-		xLoc = gX;
-		yLoc = gY;
-	}
-	
+
 	/***
 	 * Returns x coordinate of plant
 	 * @return the current x coordinate
