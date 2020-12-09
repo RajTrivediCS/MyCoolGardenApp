@@ -598,7 +598,7 @@ public class ControllerTwo {
 				+ "\n" + "to view the plants that were previously deleted.\n\n";
 		
 		help += "Hovering Over Plants:" + "\nIf you hover over a plant, you can see information about it. This information includes \nthe"
-				+ " plants soil and sun needs, its name, and its rough size. You can hover over plants in the sidebar\n\n"
+				+ " plants soil and sun needs, its name, and its rough size. You can hover over plants in the sidebar\n"
 				+ "and in the garden.\n";
 		 
 		help += "Adding Garden Light:" + "\n" + "To simulate lighting on your garden, select 'Garden"
