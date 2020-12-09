@@ -582,44 +582,34 @@ public class ControllerTwo {
 	}
 	
 	private String generateHelpText() {
-		ArrayList<String> helpText = new ArrayList<String>();
 		String help = "";
-		String createGardenText = "Creating A New Garden" + "\n" + "Select 'File', then 'New'."; 
-		String saveGardenText = "Saving A Garden" + "\n" + "Select 'File', then 'Save' ";
-		String loadGardenText = "Opening A Saved Garden" + "\n" + "Select 'File', then 'Load', "
-				+ "\n" + "then select your saved garden file";
-		String addingGardenLightText = "Adding Garden Light" + "\n" + "To simulate lighting on your garden, select 'Garden"
+		help += "Adding Plants:" + "\n" + "You can add plants to your garden by clicking and dragging from the"
+				+ "\n" + "list of plants on the left side-bar. You can search through them faster by sorting them using the 'Sort by'"
+				+ "\n" + "button by plant 'Name', 'Soil', 'Sun' or 'Size'\n\n";
+		help += "Deleting Plants:" + "\n" + "Right-click any plants on your garden to remove them. After deleting"
+				+ "\n" + "plants from your garden you can scroll down the left side-bar and hover your mouse over the recycle bin"
+				+ "\n" + "to view the plants that were previously deleted.\n\n";
+		
+		help += "Hovering Over Plants:" + "\nIf you hover over a plant, you can see information about it. This information includes \nthe"
+				+ " plants soil and sun needs, its name, and its rough size. You can hover over plants in the sidebar\n\n"
+				+ "and in the garden.\n";
+		 
+		help += "Adding Garden Light:" + "\n" + "To simulate lighting on your garden, select 'Garden"
 				+  "\n" +" Options', 'Choose Garden Light' and then select whether you want 'Full', 'Partial, 'Shade', or 'All' the"
-				+ "\n"+ "light options"; 
-		String addingGardenSoilText = "Adding Garden Soil" +"\n" + "To add soil to your garden, select 'Garden Options',"
+				+ "\n"+ "light options\n\n"; 
+		
+		help += "Adding Garden Soil:" +"\n" + "To add soil to your garden, select 'Garden Options',"
 				+ "\n" + " then 'Choose Garden Soil' and then select whether you want 'Loamy', 'Sandy', 'Clay' or 'All' soil"
-						+ "\n" + "types in your garden.";
-		String toggleBackgroundText = "Changing Your Garden Background" + "\n" + "If you'd like to change your garden background"
+						+ "\n" + "types in your garden.\n\n";
+		
+		help += "Changing Your Garden Background:" + "\n" + "If you'd like to change your garden background"
 						+ "\n" + "you can select 'Garden Options' and then 'Toggle Background' to switch to a plain background"
-				+ "\n" + "and you can switch it back by selecting the 'Toggle Background' button again";
-		String generateGardenReportText = "Generating A Garden Report" + "\n" + "Once you've added plants to your garden and"
+				+ "\n" + "and you can switch it back by selecting the 'Toggle Background' button again\n\n";
+		
+		help += "Generating A Garden Report:" + "\n" + "Once you've added plants to your garden and"
 				+ "\n" + "selected a light and soil type you can generate a garden report by selecting 'Garden Options' and then"
 				+ "\n" + "'Generate Garden Report'. This will tell you how well suited your garden is for the plants added to your garden";
-		String addingPlantsText = "Adding Plants" + "\n" + "You can add plants to your garden by clicking and dragging from the"
-				+ "\n" + "list of plants on the left side-bar. You can search through them faster by sorting them using the 'Sort by'"
-				+ "\n" + "button by plant 'Name', 'Soil', 'Sun' or 'Size'";
-		String deletingPlants = "Deleting Plants" + "\n" + "Right-click any plants on your garden to remove them. After deleting"
-				+ "\n" + "plants from your garden you can scroll down the left side-bar and hover your mouse over the recycle bin"
-				+ "\n" + "to view the plants that were previously deleted.";
-		
-		helpText.add(createGardenText);
-		helpText.add(saveGardenText);
-		helpText.add(loadGardenText);
-		helpText.add(addingGardenLightText);
-		helpText.add(addingGardenSoilText);
-		helpText.add(toggleBackgroundText);
-		helpText.add(generateGardenReportText);
-		helpText.add(addingPlantsText);
-		helpText.add(deletingPlants);
-		
-		for (String text:helpText) {
-			help += text + "\n" + "\n";
-		}
+
 		return help;
 	}
 	
