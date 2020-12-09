@@ -53,6 +53,7 @@ public class ViewTwo {
 	private ScrollPane sp;
 	private Menu viewMenu;
 	private Menu fileMenu;
+	private Menu helpMenu;
 	private MenuBar topBar;
 	private MenuButton sortBy;
 	private Button nameButton;
@@ -65,6 +66,7 @@ public class ViewTwo {
 	private Button saveButton;
 	private Button sizeButton;
 	private Button generateReport;
+	private Button how_toButton;
 	private BackgroundImage FlowPaneBG;
 	private HBox hbox;
 	private VBox vbox;
@@ -75,6 +77,8 @@ public class ViewTwo {
 	final static private int HEIGHT = 1000;
 	final static private int REPORT_WIDTH = 550;
 	final static private int REPORT_HEIGHT = 450;
+	final static private int HELP_HEIGHT = 750;
+	final static private int HELP_WIDTH = 650;
 	final static private int SS_HEIGHT = 70;
 	final static private int SS_WIDTH = 300;
 	final static private int IMAGEVIEW_SIZE = 130;
@@ -117,6 +121,7 @@ public class ViewTwo {
 	public void topMenuMaker() {
 		fileMenu = new Menu("File");
 		viewMenu = new Menu("Garden Options");
+		helpMenu = new Menu("Help");
 		
 		newButton = new Button("New");
 		CustomMenuItem newItem = new CustomMenuItem(newButton);
@@ -151,10 +156,15 @@ public class ViewTwo {
 		CustomMenuItem generateReportItem = new CustomMenuItem(generateReport);
 		viewMenu.getItems().add(generateReportItem);
 		
+		how_toButton = new Button("How-to");
+		CustomMenuItem how_toItem = new CustomMenuItem(how_toButton);
+		helpMenu.getItems().add(how_toItem);
+		
 		topBar = new MenuBar();
 		
 		topBar.getMenus().add(fileMenu);
 		topBar.getMenus().add(viewMenu);
+		topBar.getMenus().add(helpMenu);
 		vbox = new VBox(topBar);
 		
 	}
@@ -374,6 +384,25 @@ public class ViewTwo {
         popUp.setWidth(REPORT_WIDTH);
         popUp.initOwner(this.stage);
 		return popUp;
+	}
+	
+	public Stage makePopUpForHelp() {
+		popUp = new Stage();
+		popUp.setTitle("How-to");
+		popUp.initModality(Modality.WINDOW_MODAL);
+		popUp.setHeight(HELP_HEIGHT);
+		popUp.setWidth(HELP_WIDTH);
+		popUp.initOwner(this.stage);
+		return popUp;
+	}
+	
+	public FlowPane makeHelpPane(String helpText) {
+		// TODO Auto-generated method stub
+		FlowPane pane = new FlowPane();
+		pane.setStyle("-fx-background-color: #90EE90;");
+		Label labelOne = new Label(helpText);
+		pane.getChildren().add(labelOne);
+		return pane;
 	}
 	
 	/***
@@ -615,4 +644,11 @@ public class ViewTwo {
 	public Button getSizeButton() {
 		return sizeButton;
 	}
+
+
+	public Button getHow_To() {
+		// TODO Auto-generated method stub
+		return how_toButton;
+	}
+
 }
