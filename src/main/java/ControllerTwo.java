@@ -55,7 +55,8 @@ public class ControllerTwo {
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
-    	model.getGarden().setBg(bg.getPath());
+    	if(bg != null) 
+    		model.getGarden().setBg(bg.getPath());
 		this.stage = stage;
 		identifier = 0;
 		viewTwo.getSortBy().setOnMouseClicked(e-> sortButtonHandler());

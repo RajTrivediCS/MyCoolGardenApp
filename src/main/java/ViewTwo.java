@@ -456,8 +456,13 @@ public class ViewTwo {
     	sp.setFitToWidth(true);
     	sp.setContent(hbox);
     	ap = new AnchorPane();
-    	FlowPaneBG = backgroundMaker(bg);
-    	ap.setBackground(new Background(FlowPaneBG));
+    	if(bg != null) {
+        	FlowPaneBG = backgroundMaker(bg);
+        	ap.setBackground(new Background(FlowPaneBG));
+    	}
+    	else {
+    		ap.setStyle("-fx-background-color: #90EE90");
+    	}
     	ap.getChildren().add(vbox);
     	bp = new BorderPane();
     	bp.setTop(vbox);

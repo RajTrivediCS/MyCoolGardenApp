@@ -110,4 +110,8 @@ public class ViewOne {
 	public TextField getWidthField() {
 		return widthField;
 	}
+	
+	public Button getSkipGardenImageButton() {
+		return skipGardenImageButton;
+	}
 }
