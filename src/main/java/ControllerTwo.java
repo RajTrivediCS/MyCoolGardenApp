@@ -100,7 +100,7 @@ public class ControllerTwo {
 			int i = Integer.parseInt(s);
 			return i;
 		}catch (NumberFormatException e){
-			return 500;
+			return 150;
 		}
 	}
 	
