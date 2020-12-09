@@ -47,21 +47,6 @@ public class ModelTwo {
 		return plantsList;
 	}
 
-/*	NEEDS TO WORKED ON...
-	public void handleDeletionInGarden(double x, double y, Plant tbm) {
-		garden.deletePlant(tbm);
-		trashBin.add(tbm);
-		System.out.println("Deletion successful");
-	}
-	
-	public void handleShowTrash() {
-		System.out.println("You selected the trashbin. Here's what's inside: ");
-		for(Plant p : trashBin) {
-			System.out.print(p.name+" ");
-		}
-		System.out.println("");
-	}
-*/	
 	/***
 	 * Adds the plant with specified x and y coordinates into the Garden
 	 * @param gX the x coordinate for plant

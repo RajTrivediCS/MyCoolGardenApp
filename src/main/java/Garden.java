@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.*;
 
 /***
@@ -9,7 +8,6 @@ import java.util.*;
 public class Garden implements java.io.Serializable{
 	private ArrayList<Plant> gardensPlants = new ArrayList<>();
 	private String gardenLight;
-	private String gardenWater;
 	private String gardenSoil;
 	private int gardenHeight;
 	private int gardenWidth;
@@ -40,28 +38,7 @@ public class Garden implements java.io.Serializable{
 	public void setBg(String bg) {
 		this.bg = bg;
 	}
-
-	/***
-	 * Removes the given Plant from Garden
-	 * @param p the Plant to be removed from Garden
-	 */
-	public void deletePlant(Plant p) {
-		gardensPlants.remove(p);
-	}
-
-/* NEEDS TO BE WORKED ON...
-	public int tallyGardenScore() {
-		return 0;
-	}
 	
-	public String writeGardenScore() {
-		return "";
-	}
-	
-	public String sumGarden() {
-		return "";
-	}
-*/	
 	/***
 	 * Sets the current List of plants with the given List of plants 
 	 * @param plants the List of plants to be initialized 

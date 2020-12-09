@@ -9,7 +9,6 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -101,7 +100,6 @@ public class ViewOne {
 		return scene;
 	}
 	public Button getUploadImageButton() {
-		// TODO Auto-generated method stub
 		return uploadGardenImageButton;
 	}
 	public TextField getHeightField() {

@@ -39,7 +39,6 @@ public class ControllerTwo {
 	private int scale;
 	final private int REPLACE_SIZE = 130;
 	final private int HIDE = 5000;
-	final private int GRID_SIZE = 130;
 	
 	/***
 	 * Initializes the instance variables
