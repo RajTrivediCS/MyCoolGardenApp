@@ -124,7 +124,12 @@ public class ControllerTwo {
 	
 
 	public void handleToggleGridButton(ActionEvent e) {
-		viewTwo.addGridImage();
+		if(viewTwo.getAP().getChildren().contains(viewTwo.getTG())) {
+			viewTwo.getAP().getChildren().remove(viewTwo.getTG());
+		}
+		else{
+			viewTwo.addGridImage();
+		}
 	}
 
 	/***

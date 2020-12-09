@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -634,6 +635,11 @@ public class ViewTwo {
 	}
 	
 	public ImageView gettgImgView() {
+		return tgImgView;
+	}
+
+
+	public ImageView getTG() {
 		return tgImgView;
 	}
 }
