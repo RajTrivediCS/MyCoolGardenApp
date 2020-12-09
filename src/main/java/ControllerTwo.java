@@ -38,6 +38,7 @@ public class ControllerTwo {
 	private int scale;
 	final private int REPLACE_SIZE = 130;
 	final private int HIDE = 5000;
+	final private int GRID_SIZE = 130;
 	
 	/***
 	 * Initializes the instance variables
@@ -118,8 +119,13 @@ public class ControllerTwo {
     	viewTwo.getGSoilButton().setOnAction(e-> handleGSoilButton(e));
     	viewTwo.getGLightButton().setOnAction(e-> handleLightButton(e));
     	viewTwo.getGenerateReport().setOnAction(e-> handleGenerateReport(e));
+    	viewTwo.getToggleGridButton().setOnAction(e->handleToggleGridButton(e));
 	}
 	
+
+	public void handleToggleGridButton(ActionEvent e) {
+		viewTwo.addGridImage();
+	}
 
 	/***
 	 * Replaces image that was in the SideBar with an exact copy

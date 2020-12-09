@@ -64,12 +64,14 @@ public class ViewTwo {
 	private Button loadButton;
 	private Button saveButton;
 	private Button sizeButton;
+	private Button toggleGridButton;
 	private Button generateReport;
 	private BackgroundImage FlowPaneBG;
 	private HBox hbox;
 	private VBox vbox;
 	private Scene scene;
 	private ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
+	private ImageView tgImgView = new ImageView(new Image("img/ToggleGrid.png"));
 	private Stage stage;
 	final static private int WIDTH = 1600;
 	final static private int HEIGHT = 1000;
@@ -79,6 +81,8 @@ public class ViewTwo {
 	final static private int SS_WIDTH = 300;
 	final static private int IMAGEVIEW_SIZE = 130;
 	final static private int WASTEBASKET_SIZE = 90;
+	final static private int GRID_WIDTH = 900;
+	final static private int GRID_HEIGHT = 900;
 
 	/***
 	 * Creates the buttons for "Sort By" Menu and places them on the given GridPane
@@ -139,8 +143,8 @@ public class ViewTwo {
 		viewMenu.getItems().add(gSoilItem);
 		
 		
-		Button togglegridButton = new Button("Toggle Grid");
-		CustomMenuItem togglegridItem = new CustomMenuItem(togglegridButton);
+		toggleGridButton = new Button("Toggle Grid");
+		CustomMenuItem togglegridItem = new CustomMenuItem(toggleGridButton);
 		viewMenu.getItems().add(togglegridItem);
 		
 		Button togglebackgroundButton = new Button("Toggle Background");
@@ -497,6 +501,15 @@ public class ViewTwo {
     	stage.show();
 	}
 	
+	public void addGridImage() {
+		tgImgView.setFitHeight(GRID_HEIGHT * 2);
+		tgImgView.setFitWidth(GRID_WIDTH * 2);
+		tgImgView.setPreserveRatio(true);
+		ap.getChildren().add(tgImgView);
+		tgImgView.toBack();
+		startShow();
+	}
+	
 	/***
 	 * Returns the most recent Stage for ViewTwo
 	 * @return the Stage for ViewTwo
@@ -614,5 +627,13 @@ public class ViewTwo {
 
 	public Button getSizeButton() {
 		return sizeButton;
+	}	
+	
+	public Button getToggleGridButton() {
+		return toggleGridButton;
+	}
+	
+	public ImageView gettgImgView() {
+		return tgImgView;
 	}
 }
