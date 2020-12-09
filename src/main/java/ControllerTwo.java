@@ -337,7 +337,7 @@ public class ControllerTwo {
 		}
 		Garden userSavedGarden = deserializeGarden(fileToLoad);
 		model.setGarden(userSavedGarden);
-		scale = model.getGarden().getHeight() * model.getGarden().getWidth(); 
+		scale = model.getGarden().getHeight() + model.getGarden().getWidth(); 
 		if(model.getGarden().getBg() != null) {
 			viewTwo = new ViewTwo(stage, new File(model.getGarden().getBg()), model.getHotBarPlants(), model.getGarden().getGardensPlants(), scale);
 		}
