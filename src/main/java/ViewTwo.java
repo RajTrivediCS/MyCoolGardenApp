@@ -520,7 +520,13 @@ public class ViewTwo {
     	sp.setFitToWidth(true);
     	sp.setContent(hbox);
     	ap = new AnchorPane();
-    	FlowPaneBG = backgroundMaker(bg);
+    	if(bg != null) {
+        	FlowPaneBG = backgroundMaker(bg);
+        	ap.setBackground(new Background(FlowPaneBG));
+    	}
+    	else {
+    		ap.setStyle("-fx-background-color: #90EE90");
+    	}
     	ap.setBackground(new Background(FlowPaneBG));
     	ap.getChildren().add(vbox);
     	plantReadder(gPlants, scale);
