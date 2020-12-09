@@ -66,7 +66,7 @@ public class ControllerTwo {
 	
 	public ControllerTwo(Stage stage, Garden userSavedGarden) {
 		model.setGarden(userSavedGarden); 
-		scale = model.getGarden().getHeight() * model.getGarden().getWidth(); 
+		scale = model.getGarden().getHeight() + model.getGarden().getWidth(); 
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser(); 
 		if(model.getGarden().getBg() != null) {
@@ -599,7 +599,7 @@ public class ControllerTwo {
 		
 		help += "Hovering Over Plants:" + "\nIf you hover over a plant, you can see information about it. This information includes \nthe"
 				+ " plants soil and sun needs, its name, and its rough size. You can hover over plants in the sidebar\n"
-				+ "and in the garden.\n";
+				+ "and in the garden.\n\n";
 		 
 		help += "Adding Garden Light:" + "\n" + "To simulate lighting on your garden, select 'Garden"
 				+  "\n" +" Options', 'Choose Garden Light' and then select whether you want 'Full', 'Partial, 'Shade', or 'All' the"
