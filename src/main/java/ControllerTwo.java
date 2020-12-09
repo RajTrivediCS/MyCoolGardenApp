@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -120,11 +121,23 @@ public class ControllerTwo {
     	viewTwo.getGSoilButton().setOnAction(e-> handleGSoilButton(e));
     	viewTwo.getGLightButton().setOnAction(e-> handleLightButton(e));
     	viewTwo.getGenerateReport().setOnAction(e-> handleGenerateReport(e));
-<<<<<<< HEAD
     	viewTwo.getHow_To().setOnAction(e-> handleHow_To(e));
-=======
     	viewTwo.getToggleGridButton().setOnAction(e->handleToggleGridButton(e));
->>>>>>> 5b4b9db2e6541f96a2bb5b60da0072819277ab82
+    	viewTwo.getToggleBackgroundButton().setOnAction(e->handleToggleBackgroundButton(e));
+	}
+	
+	public void handleToggleBackgroundButton(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(viewTwo.getGardenBackgroundImage() == null) {
+        	//Does nothing-no background.
+    	}
+    	else if (viewTwo.getAP().getBackground().getImages().contains(viewTwo.getGardenBackgroundImage())){
+    		viewTwo.getAP().setStyle("-fx-background-color: #90EE90");
+    	}
+    	else {
+    		viewTwo.getAP().setStyle(null);
+    		viewTwo.getAP().setBackground(new Background(viewTwo.getGardenBackgroundImage()));
+    	}
 	}
 
 	public void handleToggleGridButton(ActionEvent e) {

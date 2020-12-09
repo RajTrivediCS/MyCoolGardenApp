@@ -12,6 +12,7 @@ public class ControllerOne {
 	private ViewOne viewOne;
 	private Stage stage;
 	private ControllerTwo controllerTwo;
+	private File bg;
 	/***
 	 * Initializes the Stage to set the next Scene
 	 * @param stage the Stage 
@@ -35,16 +36,20 @@ public class ControllerOne {
 	public void handleUploadGardenButtonPress(MouseEvent e) {
 		FileChooser choose = new FileChooser();
 		choose.setTitle("Select your background image");
-		File bg = choose.showOpenDialog(stage);
+		bg = choose.showOpenDialog(stage);
 		//this is to stop program from crashing if you exit out of filechooser.
-		if(bg == null) {
+		if(getBg() == null) {
 			return;
 		}
-		controllerTwo = new ControllerTwo(bg, stage, viewOne.getHeightField().getText(), viewOne.getWidthField().getText());
+		controllerTwo = new ControllerTwo(getBg(), stage, viewOne.getHeightField().getText(), viewOne.getWidthField().getText());
 		controllerTwo.getViewTwo().startShow();
 	}
 
 	public ViewOne getViewOne() {
 		return viewOne;
+	}
+
+	public File getBg() {
+		return bg;
 	}
 }

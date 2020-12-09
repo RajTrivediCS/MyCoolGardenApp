@@ -67,6 +67,7 @@ public class ViewTwo {
 	private Button saveButton;
 	private Button sizeButton;
 	private Button toggleGridButton;
+	private Button toggleBackgroundButton;
 	private Button generateReport;
 	private Button how_toButton;
 	private BackgroundImage FlowPaneBG;
@@ -153,8 +154,8 @@ public class ViewTwo {
 		CustomMenuItem togglegridItem = new CustomMenuItem(toggleGridButton);
 		viewMenu.getItems().add(togglegridItem);
 		
-		Button togglebackgroundButton = new Button("Toggle Background");
-		CustomMenuItem togglebackgroundItem = new CustomMenuItem(togglebackgroundButton);
+		toggleBackgroundButton = new Button("Toggle Background");
+		CustomMenuItem togglebackgroundItem = new CustomMenuItem(toggleBackgroundButton);
 		viewMenu.getItems().add(togglebackgroundItem);
 		
 		generateReport = new Button("Generate Garden Report");
@@ -668,6 +669,11 @@ public class ViewTwo {
 		return toggleGridButton;
 	}
 	
+	public Button getToggleBackgroundButton() {
+		// TODO Auto-generated method stub
+		return toggleBackgroundButton;
+	}
+	
 	public ImageView gettgImgView() {
 		return tgImgView;
 	}
@@ -682,5 +688,12 @@ public class ViewTwo {
 		// TODO Auto-generated method stub
 		return how_toButton;
 	}
+
+
+	public BackgroundImage getGardenBackgroundImage() {
+		// TODO Auto-generated method stub
+		return FlowPaneBG;
+	}
+
 
 }
