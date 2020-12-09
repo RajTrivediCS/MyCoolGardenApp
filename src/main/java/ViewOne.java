@@ -61,9 +61,9 @@ public class ViewOne {
     	widthLab.setTranslateY(HBOX_Y - 20);
     	ap.getChildren().add(widthLab);
     	
-    	widthField = new TextField("500");
+    	widthField = new TextField("250");
     	widthField.setPromptText("Input yard width (ft):");
-    	heightField = new TextField("500");
+    	heightField = new TextField("250");
     	heightField.setPromptText("Input yard height (ft):");
     	
     	hbox.getChildren().add(widthField);

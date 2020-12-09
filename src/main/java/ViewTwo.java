@@ -207,8 +207,9 @@ public class ViewTwo {
 	
 	public int setHeightFormula(double plantWidth, int scale) {
 		int height;
-		height = (int)plantWidth * 4 + 70; 
-		height = (int) (height * 250000 / scale);
+		int hw = WIDTH+HEIGHT;
+		height = (int) (plantWidth * hw/scale); 
+		height = height + 60;
 		return height;
 	}
 	

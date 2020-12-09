@@ -49,7 +49,7 @@ public class ControllerTwo {
 		int w = numChecker(width);
 		model.getGarden().setHeight(h);
 		model.getGarden().setWidth(w);
-		scale = h*w; 
+		scale = h+w; 
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser();
 		viewTwo = new ViewTwo(stage, bg, model.getHotBarPlants(), scale);
