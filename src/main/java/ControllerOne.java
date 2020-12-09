@@ -19,7 +19,13 @@ public class ControllerOne {
 	public ControllerOne(Stage stage) {
 		viewOne = new ViewOne(stage); 
 	  	viewOne.getUploadImageButton().setOnMouseClicked(e -> handleUploadGardenButtonPress(e));
+	  	viewOne.getSkipGardenImageButton().setOnMouseClicked(e->handleSkipGardenImageButton(e));
 		this.stage = stage;
+	}
+
+	public void handleSkipGardenImageButton(MouseEvent e) {
+		controllerTwo = new ControllerTwo(null, stage, viewOne.getHeightField().getText(), viewOne.getWidthField().getText());
+		controllerTwo.getViewTwo().startShow();
 	}
 
 	/***

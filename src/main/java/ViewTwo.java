@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -65,6 +66,7 @@ public class ViewTwo {
 	private Button loadButton;
 	private Button saveButton;
 	private Button sizeButton;
+	private Button toggleGridButton;
 	private Button generateReport;
 	private Button how_toButton;
 	private BackgroundImage FlowPaneBG;
@@ -72,6 +74,7 @@ public class ViewTwo {
 	private VBox vbox;
 	private Scene scene;
 	private ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
+	private ImageView tgImgView = new ImageView(new Image("img/ToggleGrid.png"));
 	private Stage stage;
 	final static private int WIDTH = 1600;
 	final static private int HEIGHT = 1000;
@@ -83,6 +86,8 @@ public class ViewTwo {
 	final static private int SS_WIDTH = 300;
 	final static private int IMAGEVIEW_SIZE = 130;
 	final static private int WASTEBASKET_SIZE = 90;
+	final static private int GRID_WIDTH = 900;
+	final static private int GRID_HEIGHT = 900;
 
 	/***
 	 * Creates the buttons for "Sort By" Menu and places them on the given GridPane
@@ -144,8 +149,8 @@ public class ViewTwo {
 		viewMenu.getItems().add(gSoilItem);
 		
 		
-		Button togglegridButton = new Button("Toggle Grid");
-		CustomMenuItem togglegridItem = new CustomMenuItem(togglegridButton);
+		toggleGridButton = new Button("Toggle Grid");
+		CustomMenuItem togglegridItem = new CustomMenuItem(toggleGridButton);
 		viewMenu.getItems().add(togglegridItem);
 		
 		Button togglebackgroundButton = new Button("Toggle Background");
@@ -480,8 +485,13 @@ public class ViewTwo {
     	sp.setFitToWidth(true);
     	sp.setContent(hbox);
     	ap = new AnchorPane();
-    	FlowPaneBG = backgroundMaker(bg);
-    	ap.setBackground(new Background(FlowPaneBG));
+    	if(bg != null) {
+        	FlowPaneBG = backgroundMaker(bg);
+        	ap.setBackground(new Background(FlowPaneBG));
+    	}
+    	else {
+    		ap.setStyle("-fx-background-color: #90EE90");
+    	}
     	ap.getChildren().add(vbox);
     	bp = new BorderPane();
     	bp.setTop(vbox);
@@ -524,6 +534,15 @@ public class ViewTwo {
 	public void startShow() {
     	stage.setScene(scene);
     	stage.show();
+	}
+	
+	public void addGridImage() {
+		tgImgView.setFitHeight(GRID_HEIGHT * 2);
+		tgImgView.setFitWidth(GRID_WIDTH * 2);
+		tgImgView.setPreserveRatio(true);
+		ap.getChildren().add(tgImgView);
+		tgImgView.toBack();
+		startShow();
 	}
 	
 	/***
@@ -643,6 +662,19 @@ public class ViewTwo {
 
 	public Button getSizeButton() {
 		return sizeButton;
+	}	
+	
+	public Button getToggleGridButton() {
+		return toggleGridButton;
+	}
+	
+	public ImageView gettgImgView() {
+		return tgImgView;
+	}
+
+
+	public ImageView getTG() {
+		return tgImgView;
 	}
 
 
