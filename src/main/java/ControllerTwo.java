@@ -69,7 +69,12 @@ public class ControllerTwo {
 		scale = model.getGarden().getHeight() * model.getGarden().getWidth(); 
 		loadFileChooser = new FileChooser();
 		fileChooserSave = new FileChooser(); 
-		viewTwo = new ViewTwo(stage, new File(model.getGarden().getBg()), model.getHotBarPlants(), model.getGarden().getGardensPlants(), scale);
+		if(model.getGarden().getBg() != null) {
+			viewTwo = new ViewTwo(stage, new File(model.getGarden().getBg()), model.getHotBarPlants(), model.getGarden().getGardensPlants(), scale);
+		}
+		else {
+			viewTwo = new ViewTwo(stage, null, model.getHotBarPlants(), model.getGarden().getGardensPlants(), scale);
+		}
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
@@ -324,6 +329,7 @@ public class ControllerTwo {
 	 */
 	public void handleLoadButtonPress(ActionEvent e) {
 		loadFileChooser.setTitle("Load Your Garden");
+		loadFileChooser.setInitialDirectory(new File("saves/"));
 		loadFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToLoad = loadFileChooser.showOpenDialog(viewTwo.getStage());
 		//this is to stop program from crashing if you exit out of filechooser.
@@ -382,6 +388,7 @@ public class ControllerTwo {
 	 */
 	public void handleSaveButton(Stage stage) {
 		fileChooserSave.setTitle("Save Your Garden");
+		fileChooserSave.setInitialDirectory(new File("saves/"));
 		fileChooserSave.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToSave = fileChooserSave.showSaveDialog(stage);
 		if(fileToSave == null) {

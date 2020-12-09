@@ -37,6 +37,7 @@ public class MainController {
 	 */
 	public void handleLoadGardenButton(MouseEvent e) {
 		fileChooser.setTitle("Load Your Garden");
+		fileChooser.setInitialDirectory(new File("saves/"));
 		fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Serialized File(*.ser)", "*.ser"));
 		fileToLoad = fileChooser.showOpenDialog(stage);
 		if(fileToLoad == null) {
