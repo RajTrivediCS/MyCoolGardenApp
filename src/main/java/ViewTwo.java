@@ -71,7 +71,6 @@ public class ViewTwo {
 	private VBox vbox;
 	private Scene scene;
 	private ImageView wasteBasket = new ImageView("https://www.freeiconspng.com/thumbs/recycle-bin-icon/recycle-bin-icon-31.png");
-	private ImageView tgImgView = new ImageView(new Image("img/ToggleGrid.png"));
 	private Stage stage;
 	final static private int WIDTH = 1600;
 	final static private int HEIGHT = 1000;
@@ -83,8 +82,11 @@ public class ViewTwo {
 	final static private int SS_WIDTH = 300;
 	final static private int IMAGEVIEW_SIZE = 130;
 	final static private int WASTEBASKET_SIZE = 90;
-	final static private int GRID_WIDTH = 900;
-	final static private int GRID_HEIGHT = 900;
+	final static private int GRID_IMG_WIDTH = 1200;
+	final static private int GRID_IMG_HEIGHT = 1200;
+	final static private boolean GRID_IMG_PRESERVE_RATIO = true;
+	final static private boolean GRID_IMG_SMOOTH = false;
+	private ImageView tgImgView = new ImageView(new Image("img/ToggleGrid.png",GRID_IMG_WIDTH,GRID_IMG_HEIGHT,GRID_IMG_PRESERVE_RATIO,GRID_IMG_SMOOTH));
 
 	/***
 	 * Creates the buttons for "Sort By" Menu and places them on the given GridPane
@@ -555,8 +557,6 @@ public class ViewTwo {
 	 * Adds a grid image to back of the anchorpane.
 	 */
 	public void addGridImage() {
-		tgImgView.setFitHeight(GRID_HEIGHT * 2);
-		tgImgView.setFitWidth(GRID_WIDTH * 2);
 		tgImgView.setPreserveRatio(true);
 		ap.getChildren().add(tgImgView);
 		tgImgView.toBack();
