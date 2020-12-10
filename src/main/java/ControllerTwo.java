@@ -589,7 +589,7 @@ public class ControllerTwo {
 				ignore = false;
 			}
 			report = report.substring(0, report.length() -5); //getting rid of " and " at the end
-			report+= "in your garden.\n";
+			report+= " in your garden.\n";
 		}
 		if(model.getGarden().getGardensLight() == null | model.getGarden().getGardensSoil() == null) {
 			report += "You need to go into the file-menu and pick your light and soil type.\n Then we can give you a proper score.";

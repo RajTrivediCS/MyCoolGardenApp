@@ -82,8 +82,8 @@ public class ViewTwo {
 	final static private int SS_WIDTH = 300;
 	final static private int IMAGEVIEW_SIZE = 130;
 	final static private int WASTEBASKET_SIZE = 90;
-	final static private int GRID_IMG_WIDTH = 1200;
-	final static private int GRID_IMG_HEIGHT = 1200;
+	final static private int GRID_IMG_WIDTH = 2000;
+	final static private int GRID_IMG_HEIGHT = 2000;
 	final static private boolean GRID_IMG_PRESERVE_RATIO = true;
 	final static private boolean GRID_IMG_SMOOTH = false;
 	private ImageView tgImgView = new ImageView(new Image("img/ToggleGrid.png",GRID_IMG_WIDTH,GRID_IMG_HEIGHT,GRID_IMG_PRESERVE_RATIO,GRID_IMG_SMOOTH));
@@ -207,7 +207,7 @@ public class ViewTwo {
 		int height;
 		int hw = WIDTH+HEIGHT;
 		height = (int) (plantWidth * hw/scale); 
-		height = height + 60;
+		height = height + 10;
 		return height;
 	}
 	
