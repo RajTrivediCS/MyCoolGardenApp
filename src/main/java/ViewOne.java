@@ -50,12 +50,14 @@ public class ViewOne {
     	ap.setBackground(new Background(backgroundImage));
     	
     	Label heightLab = new Label("Height");
+    	heightLab.setStyle("-fx-font-weight: bold;");
     	heightLab.setTextFill(Color.web("#FFFFFF"));
     	heightLab.setTranslateX(HBOX_X);
     	heightLab.setTranslateY(HBOX_Y - 20);
     	ap.getChildren().add(heightLab);
     	
     	Label  widthLab = new Label("Width");
+    	widthLab.setStyle("-fx-font-weight: bold;");
     	widthLab.setTextFill(Color.web("#FFFFFF"));
     	widthLab.setTranslateX(HBOX_X + 150);
     	widthLab.setTranslateY(HBOX_Y - 20);
