@@ -389,6 +389,10 @@ public class ViewTwo {
 		return popUp;
 	}
 	
+	/***
+	 * Displays the Pop Up on separate Stage for handling "Help" Button
+	 * @return the Pop Up Stage once "Help" Button is clicked
+	 */
 	public Stage makePopUpForHelp() {
 		popUp = new Stage();
 		popUp.setTitle("How-to");
@@ -398,7 +402,12 @@ public class ViewTwo {
 		popUp.initOwner(this.stage);
 		return popUp;
 	}
-	
+
+	/***
+	 * Creates the FlowPane for general "Help" instructions as text and returns it
+	 * @param Helpful instructions as text that needs to be displayed on Stage
+	 * @return the FlowPane with those instructions in it
+	 */
 	public FlowPane makeHelpPane(String helpText) {
 		FlowPane pane = new FlowPane();
 		pane.setStyle("-fx-background-color: #90EE90;");

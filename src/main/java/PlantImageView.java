@@ -2,7 +2,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 /***
- * 
+ * This is to make every Plant in our Garden as an ImageView.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  *
  */

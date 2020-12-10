@@ -3,11 +3,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /***
+ * This is where the main launches from in our program via "launch".
  * 
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
- * 
- * This is where the main launches from in our program via "launch".
- *
+
  */
 public class AppRunner extends Application {
 

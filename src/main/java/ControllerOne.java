@@ -4,11 +4,10 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /***
- * 
+ * This is the controller for the garden options scene. To proceed,
+ * the user must click the skip or load button. Both advance to the second scene.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  * 
- *This is the controller for the garden options scene. To proceed,
- *the user must click the skip or load button. Both advance to the second scene.
  *
  */
 public class ControllerOne {
