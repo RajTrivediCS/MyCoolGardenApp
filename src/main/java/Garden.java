@@ -1,7 +1,7 @@
 import java.util.*;
 
 /***
- * 
+ * Holds info relative to the garden such as its attributes, as well as a list of plants.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  *
  */
@@ -46,41 +46,76 @@ public class Garden implements java.io.Serializable{
 	public void setGardensPlants(ArrayList<Plant> plants) {
 		this.gardensPlants = plants;
 	}
-
+	
+	/***
+	 * Getter for the plants in this garden
+	 * @return the garden's plants
+	 */
 	public ArrayList<Plant> getGardensPlants() {
 		return gardensPlants;
 	}
-
+	
+	/***
+	 * Setter for the garden's soil type
+	 * @param string that represents the garden's soil type
+	 */
 	public void setGardensSoil(String string) {
 		gardenSoil = string;
-		
 	}
 
+	/***
+	 * Setter for the garden's light type
+	 * @param string that represents that garden's light type
+	 */
 	public void setGardensLight(String string) {
 		gardenLight = string;
 	}
-
+	
+	/***
+	 * Getter for the garden's light type
+	 * @return garden's light type
+	 */
 	public String getGardensLight() {
 		return gardenLight;
 	}
-
+	
+	/***
+	 * Getter for the garden's soil type
+	 * @return the garden's soil type
+	 */
 	public String getGardensSoil() {
 		return gardenSoil;
 	}
 
+	/***
+	 * Getter for the garden's height
+	 * @return garden's height
+	 */
 	public int getHeight() {
 		return gardenHeight;
 	}
-
+	
+	/***
+	 * Getter for the garden's width
+	 * @return garden's widths
+	 */
 	public int getWidth() {
 		return gardenWidth;
 	}
 
+	/***
+	 * Setter for the garden's height
+	 * @param h garden's new height
+	 */
 	public void setHeight(int h) {
 		gardenHeight = h;
 		
 	}
-
+	
+	/***
+	 * Setter for the garden's width.
+	 * @param w garden's new width
+	 */
 	public void setWidth(int w) {
 		gardenWidth = w;
 	}

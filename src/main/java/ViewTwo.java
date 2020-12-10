@@ -34,7 +34,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /***
- * 
+ * The biggest of our classes. Handles all the visuals dealing with editing a working garden.
+ * So much information here.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  *
  */
@@ -533,11 +534,17 @@ public class ViewTwo {
     	this.stage = stage;
 	}
 	
+	/***
+	 * Switches the current scene over to this one.
+	 */
 	public void startShow() {
     	stage.setScene(scene);
     	stage.show();
 	}
 	
+	/***
+	 * Adds a grid image to back of the anchorpane.
+	 */
 	public void addGridImage() {
 		tgImgView.setFitHeight(GRID_HEIGHT * 2);
 		tgImgView.setFitWidth(GRID_WIDTH * 2);
@@ -571,130 +578,196 @@ public class ViewTwo {
 		return scene;
 	}
 
-
+	/***
+	 * Getter for the plant image views in the sideview
+	 * @return the arraylist of plant image views in the sideview
+	 */
 	public ArrayList<PlantImageView> getSideView() {
 		return sideView;
 	}
 
-
+	/***
+	 * Getter for the sortBy button
+	 * @return the sortBy button
+	 */
 	public MenuButton getSortBy() {
 		return sortBy;
 	}
 
-
+	/***
+	 * Getter for the plant image views inside the garden workspace
+	 * @return an arraylist of all the plant image views in the workspace
+	 */
 	public ArrayList<PlantImageView> getPlantsInGarden() {
 		return plantsInGarden;
 	}
 
-
+	/***
+	 * Getter for the new button
+	 * @return the new button
+	 */
 	public Button getNewButton() {
 		return newButton;
 	}
 
-
+	/***
+	 * Getter for the load button
+	 * @return the load button
+	 */
 	public Button getLoadButton() {
 		return loadButton;
 	}
 
-
+	/***
+	 * Getter for the save button
+	 * @return the save button
+	 */
 	public Button getSaveButton() {
 		return saveButton;
 	}
 
-
+	/***
+	 * Getter for the garden soil button
+	 * @return the garden soil button
+	 */
 	public Button getGSoilButton() {
 		return gSoilButton;
 	}
 
-
+	/***
+	 * Getter for the garden light button
+	 * @return the garden light button
+	 */
 	public Button getGLightButton() {
 		return gLightButton;
 	}
 
-
+	/***
+	 * Getter for the generate report button.
+	 * @return the generate report button
+	 */
 	public Button getGenerateReport() {
 		return generateReport;
 	}
 
-
+	/***
+	 * Getter for the AnchorPane
+	 * @return the anchor pane
+	 */
 	public AnchorPane getAP() {
 		return ap;
 	}
 
-
+	/***
+	 * Getter for the grid pane
+	 * @return the grid pane
+	 */
 	public GridPane getGP() {
 		return gp;
 	}
 
-
+	/***
+	 * Getter for the plant image views in the waste basket
+	 * @return the plant image views in the waste basket
+	 */
 	public ArrayList<PlantImageView> getPlantsInWasteBasket() {
 		return plantsInWasteBasket;
 	}
 
-
+	/***
+	 * Setter for the popUp
+	 * @param makePopUpForSunSoil decides whether or not it is a sun or soil popUp.
+	 */
 	public void setPopUp(Stage makePopUpForSunSoil) {
 		popUp = makePopUpForSunSoil;
 	}
 
-
+	/***
+	 * Getter for the popUp stage
+	 * @return the popUp stage
+	 */
 	public Stage getPopUp() {
 		return popUp;
 	}
 
-
+	/***
+	 * Getter for the ImageView of the WasteBasket
+	 * @return the image view of the waste basket
+	 */
 	public ImageView getWasteBasketIV() {
 		return wasteBasket;
 	}
 
-
+	/***
+	 * Getter for the name button
+	 * @return the name button
+	 */
 	public Button getNameButton() {
 		return nameButton;
 	}
 
-
+	/***
+	 * Getter for the sun button
+	 * @return the sun button
+	 */
 	public Button getSunButton() {
 		return sunButton;
 	}
 
-
+	/***
+	 * Getter for the soil button
+	 * @return the soil button
+	 */
 	public Button getSoilButton() {
 		return soilButton;
 	}
-
-
+	
+	/***
+	 * Getter for the size button
+	 * @return the size button
+	 */
 	public Button getSizeButton() {
 		return sizeButton;
 	}	
 	
+	/***
+	 * Getter for the toggle grid button
+	 * @return the toggle grid button
+	 */
 	public Button getToggleGridButton() {
 		return toggleGridButton;
 	}
 	
+	/***
+	 * Getter for the toggle background button
+	 * @return the toggle background button
+	 */
 	public Button getToggleBackgroundButton() {
 		// TODO Auto-generated method stub
 		return toggleBackgroundButton;
 	}
 	
-	public ImageView gettgImgView() {
-		return tgImgView;
-	}
-
-
+	/***
+	 * Get the image view of the grid
+	 * @return the image view of the grid
+	 */
 	public ImageView getTG() {
 		return tgImgView;
 	}
 
-
+	/***
+	 * Getter for the how to button
+	 * @return the how to button
+	 */
 	public Button getHow_To() {
-		// TODO Auto-generated method stub
 		return how_toButton;
 	}
 
-
+	/***
+	 * Getter for the background of the anchorpane
+	 * @return the anchorpane's background
+	 */
 	public BackgroundImage getGardenBackgroundImage() {
-		// TODO Auto-generated method stub
 		return AnchorPaneBG;
 	}
-
-
 }

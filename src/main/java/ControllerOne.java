@@ -7,7 +7,8 @@ import javafx.stage.Stage;
  * 
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  * 
- *This is the controller for the first scene.
+ *This is the controller for the garden options scene. To proceed,
+ *the user must click the skip or load button. Both advance to the second scene.
  *
  */
 public class ControllerOne {
@@ -15,8 +16,10 @@ public class ControllerOne {
 	private Stage stage;
 	private ControllerTwo controllerTwo;
 	private File bg;
+	
 	/***
 	 * Initializes the Stage to set the next Scene
+	 * Passes that to ViewOne that uses it.
 	 * @param stage the Stage 
 	 */
 	public ControllerOne(Stage stage) {
@@ -25,7 +28,11 @@ public class ControllerOne {
 	  	viewOne.getSkipGardenImageButton().setOnMouseClicked(e->handleSkipGardenImageButton(e));
 		this.stage = stage;
 	}
-
+	/***
+	 * 
+	 * @param e MouseEvent for clicking the button
+	 * creates the controllerTwo and sets its viewTwo to be the scene (instead of viewOne).
+	 */
 	public void handleSkipGardenImageButton(MouseEvent e) {
 		controllerTwo = new ControllerTwo(null, stage, viewOne.getHeightField().getText(), viewOne.getWidthField().getText());
 		controllerTwo.getViewTwo().startShow();
@@ -47,11 +54,19 @@ public class ControllerOne {
 		controllerTwo = new ControllerTwo(getBg(), stage, viewOne.getHeightField().getText(), viewOne.getWidthField().getText());
 		controllerTwo.getViewTwo().startShow();
 	}
+	/***
+	 * Getter for viewOne
+	 * @return this class's viewOne
+	 */
 
 	public ViewOne getViewOne() {
 		return viewOne;
 	}
 
+	/***
+	 * Getter for bg
+	 * @return returns the file that holds the background image
+	 */
 	public File getBg() {
 		return bg;
 	}

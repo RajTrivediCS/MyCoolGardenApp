@@ -14,7 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /***
- * 
+ * This scene allows the user to input the size of the garden and the background image
+ * if they want to. They can skip this part now too.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  *
  */
@@ -88,6 +89,10 @@ public class ViewOne {
     	ap.getChildren().add(skipGardenImageButton);
     	scene = new Scene(ap,WIDTH,HEIGHT);
 	}
+	
+	/***
+	 * Starts the show. When this is ran the scene switches over to this one
+	 */
 	public void startShow() {
 		stage.setScene(scene);
 		stage.show();
@@ -99,16 +104,35 @@ public class ViewOne {
 	public Scene getScene() {
 		return scene;
 	}
+	
+	/***
+	 * Getter the upload image button
+	 * @return the upload image button
+	 */
 	public Button getUploadImageButton() {
 		return uploadGardenImageButton;
 	}
+	
+	/***
+	 * Getter for the height textfield
+	 * @return the text field for height
+	 */
 	public TextField getHeightField() {
 		return heightField;
 	}
+	
+	/***
+	 * Getter for the width textfield
+	 * @return the text field for width
+	 */
 	public TextField getWidthField() {
 		return widthField;
 	}
 	
+	/***
+	 * Getter for the skip button
+	 * @return the skip garden image button
+	 */
 	public Button getSkipGardenImageButton() {
 		return skipGardenImageButton;
 	}

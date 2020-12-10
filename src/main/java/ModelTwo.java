@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.util.*;
 
 /***
- * 
+ * Holds all of the data for our garden (mainly via the garden)
+ * that is in our program. Also how we load in the csv.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  *
  */
@@ -80,7 +81,11 @@ public class ModelTwo {
 	public Garden getGarden() {
 		return this.garden;
 	}
-
+	
+	/***
+	 * Setter for the garden. Used on loads.
+	 * @param userSavedGarden Garden the user is loading in.
+	 */
 	public void setGarden(Garden userSavedGarden) {
 		garden = userSavedGarden;
 	}

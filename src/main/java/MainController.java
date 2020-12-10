@@ -6,7 +6,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /***
- * 
+ * Controller for the main menu. Depending on what the user inputs, it can go 
+ * to the garden option screen, or it can straight to the garden worskpace.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  *
  */

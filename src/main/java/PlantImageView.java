@@ -44,7 +44,11 @@ public class PlantImageView extends ImageView{
 	public String getPaneLoc() {
 		return this.paneLocation;
 	}
-
+	
+	/***
+	 * Getter for the plant inside the imageview
+	 * @return the plant's imageview
+	 */
 	public Plant getPlant() {
 		return plant;
 	}

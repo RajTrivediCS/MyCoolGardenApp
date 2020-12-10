@@ -6,7 +6,7 @@ import javafx.stage.Stage;
  * 
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  * 
- * This is where the main launches from in our program.
+ * This is where the main launches from in our program via "launch".
  *
  */
 public class AppRunner extends Application {

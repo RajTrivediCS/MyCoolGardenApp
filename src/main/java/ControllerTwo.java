@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 
 /***
  * 
+ * This is the heart of the program, the garden workspace.
+ * Here the user can create, save, and load their own custom garden.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  *
  */
@@ -42,6 +44,7 @@ public class ControllerTwo {
 	
 	/***
 	 * Initializes the instance variables
+	 * This constructor is for creating a new garden
 	 */
 	public ControllerTwo(File bg, Stage stage, String height, String width) {
 		int h = numChecker(height);
@@ -63,6 +66,10 @@ public class ControllerTwo {
 		setOnActionAdder();
 	}
 	
+	/***
+	 * Initializes the instance variables
+	 * This constructor is for loading in a garden
+	 */
 	public ControllerTwo(Stage stage, Garden userSavedGarden) {
 		model.setGarden(userSavedGarden); 
 		scale = model.getGarden().getHeight() + model.getGarden().getWidth(); 
@@ -94,6 +101,11 @@ public class ControllerTwo {
 		setOnActionAdder();
 	}
 	
+	/***
+	 * This checks to see if the info from viewOne's textfields were valid.
+	 * @param s String that is being passed in from viewOne's textfields
+	 * @return
+	 */
 	public int numChecker(String s) {
 		try {
 			int i = Integer.parseInt(s);
@@ -118,6 +130,9 @@ public class ControllerTwo {
 		}
 	}
 	
+	/***
+	 * Setter that handles all of our buttons in viewTwo
+	 */
 	public void setOnActionAdder() {
     	viewTwo.getNewButton().setOnAction(e-> handleNewButtonPress(e));
     	viewTwo.getLoadButton().setOnAction(e-> handleLoadButtonPress(e));
@@ -130,6 +145,10 @@ public class ControllerTwo {
     	viewTwo.getToggleBackgroundButton().setOnAction(e->handleToggleBackgroundButton(e));
 	}
 	
+	/***
+	 * This button handler toggles the background on and off (on by default).
+	 * @param e ActionEvent for clicking on the button
+	 */
 	public void handleToggleBackgroundButton(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(viewTwo.getGardenBackgroundImage() == null) {
@@ -144,6 +163,10 @@ public class ControllerTwo {
     	}
 	}
 
+	/***
+	 * This button handler toggles the grid on and off (off by default)
+	 * @param e Action Event for clicking on the button
+	 */
 	public void handleToggleGridButton(ActionEvent e) {
 		if(viewTwo.getAP().getChildren().contains(viewTwo.getTG())) {
 			viewTwo.getAP().getChildren().remove(viewTwo.getTG());
@@ -177,8 +200,8 @@ public class ControllerTwo {
 	}
 	
 	/***
-	 * Updates the Garden upon addition or deletion of something into the Garden
-	 * @return the Garden after update
+	 * Used to update the Garden upon addition or deletion of something into the Garden.
+	 * @return arrayList after update
 	 */
 	public ArrayList<Plant> updateGarden(){
 		ArrayList<Plant> gard = new ArrayList<Plant>();
@@ -189,7 +212,7 @@ public class ControllerTwo {
 	}
 	
 	/***
-	 * Handles dragging a plant image view to the flow pane
+	 * Handles dragging a plant image view in the anchorpane
 	 * @param event the MouseEvent for drag
 	 * @param v the PlantImageView to update the location of that Plant
 	 */
@@ -211,7 +234,8 @@ public class ControllerTwo {
 	}	
 	
 	/***
-	 * Handles starting the drag operation and replicating the PlantImageView in its location 
+	 * Handles starting the drag operation and replicating the PlantImageView back
+	 * in the sidebar. 
 	 * @param event the MouseEvent for press
 	 * @param v the PlantImageView to drag
 	 */
@@ -235,6 +259,10 @@ public class ControllerTwo {
 		}
 	}
 	
+	/***
+	 * Handler for deleting plants. Right click deletes.
+	 * @param iv1 the plant that we are about to delete
+	 */
 	public void setHandlerDeletePlant(PlantImageView iv1) {
 		iv1.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -587,6 +615,10 @@ public class ControllerTwo {
 		return report;
 	}
 	
+	/***
+	 * Generates the help text which aids the user in creating their garden.
+	 * @return returns the help text that will get added to the popUp window
+	 */
 	private String generateHelpText() {
 		String help = "";
 		help += "Adding Plants:" + "\n" + "You can add plants to your garden by clicking and dragging from the"
@@ -619,6 +651,11 @@ public class ControllerTwo {
 		return help;
 	}
 	
+	/***
+	 * Goes through all of the plants in the garden and if they have needs unmet adds them to a string that gets
+	 * put in the report pop-up.
+	 * @return returns a string that tells user all the plants that are unhappy and what they need.
+	 */
 	public String getUnhappyPlants() {
 		int numUnhappy = 0;
 		String ignoreList = "";
@@ -672,6 +709,10 @@ public class ControllerTwo {
         popUp.show();
 	}
 	
+	/***
+	 * Button handler for the how_to, which displays info on the controls
+	 * @param e Event for pressing the how_to button
+	 */
 	public void handleHow_To(ActionEvent e) {
 		Stage popUp = viewTwo.makePopUpForHelp();
 		String helpText = generateHelpText();
@@ -681,6 +722,10 @@ public class ControllerTwo {
 		popUp.show();
 	}
 
+	/***
+	 * Getter for viewTwo
+	 * @return gets the viewTwo in this class.
+	 */
 	public ViewTwo getViewTwo() {
 		// TODO Auto-generated method stub
 		return viewTwo;

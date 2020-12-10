@@ -1,6 +1,7 @@
 
 /***
- * 
+ * This is a plant. Its name corresponds with an image so we can make lots of
+ * happy little plants. Has the attributes needed for a good garden.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  *
  */
@@ -12,19 +13,6 @@ public class Plant implements java.io.Serializable {
 	private String plantSoil;
 	private String plantSize;
 	private int id;
-	
-	/***
-	 * Initializes the instance variables of Plant with the given parameters
-	 * @param name the name of plant
-	 * @param xLoc the x coordinate of plant
-	 * @param yLoc the y coordinate of plant
-	 */
-	public Plant(String name, double xLoc, double yLoc){
-		this.name = name;
-		this.xLoc = xLoc;
-		this.yLoc = yLoc;
-		//make another constructor in the future
-	}
 	
 	/***
 	 * Initializes the instance variables of Plant with the given parameters
@@ -85,26 +73,50 @@ public class Plant implements java.io.Serializable {
 		return name;
 	}
 
+	/***
+	 * Getter for the plant's ID
+	 * @return the plant's ID
+	 */
 	public int getID() {
 		return id;
 	}
-
+	
+	/***
+	 * Getter for the plant's size
+	 * @return the plant's size
+	 */
 	public String getPlantSize() {
 		return plantSize;
 	}
 
+	/***
+	 * Setter for the plant's ID
+	 * @param identifier the ID the plant is being assigned
+	 */
 	public void setID(int identifier) {
 		this.id = identifier;
 	}
 
+	/***
+	 * Getter for the plant's light type
+	 * @return the plant's light type
+	 */
 	public String getPlantLight() {
 		return plantLight;
 	}
-
+	
+	/***
+	 * Getter for the plant's soil type
+	 * @return the plant's soil type
+	 */
 	public String getPlantSoil() {
 		return plantSoil;
 	}
-
+	
+	/***
+	 * Getter for the plant's name
+	 * @return the plant's name
+	 */
 	public String getName() {
 		return name;
 	}

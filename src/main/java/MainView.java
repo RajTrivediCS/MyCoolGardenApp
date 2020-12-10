@@ -10,7 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 /***
- * 
+ * Handles all of the graphics for the main menu.
  * @author Raj Trivedi, Noah Hodgson, Luis Figueroa
  *
  */
@@ -61,11 +61,19 @@ public class MainView {
 	public Scene getScene() {
 		return scene;
 	}
-
+	
+	/***
+	 * Getter for the newGardenButton
+	 * @return the newGardenButton
+	 */
 	public Button getNewGardenButton() {
 		return newGardenButton;
 	}
-
+	
+	/***
+	 * Getter for the loadGardenButton
+	 * @return the loadGardenButton
+	 */
 	public Button getLoadGardenButton() {
 		return loadGardenButton;
 	}
