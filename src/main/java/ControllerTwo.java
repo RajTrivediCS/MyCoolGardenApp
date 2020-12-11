@@ -345,6 +345,7 @@ public class ControllerTwo {
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
+		setOnActionAdder()
 		viewTwo.startShow();
 	}
 
