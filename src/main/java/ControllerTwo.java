@@ -62,7 +62,6 @@ public class ControllerTwo {
     		model.getGarden().setBg(bg.getPath());
 		this.stage = stage;
 		identifier = 0;
-		viewTwo.getSortBy().setOnMouseClicked(e-> sortButtonHandler());
 		setOnActionAdder();
 	}
 	
@@ -97,7 +96,6 @@ public class ControllerTwo {
     		}
     	}
 		identifier++;
-		viewTwo.getSortBy().setOnMouseClicked(e-> sortButtonHandler());
 		setOnActionAdder();
 	}
 	
@@ -143,6 +141,7 @@ public class ControllerTwo {
     	viewTwo.getHow_To().setOnAction(e-> handleHow_To(e));
     	viewTwo.getToggleGridButton().setOnAction(e->handleToggleGridButton(e));
     	viewTwo.getToggleBackgroundButton().setOnAction(e->handleToggleBackgroundButton(e));
+    	viewTwo.getSortBy().setOnMouseClicked(e-> sortButtonHandler());
 	}
 	
 	/***
@@ -343,7 +342,6 @@ public class ControllerTwo {
 		}
 		model = new ModelTwo();
 		model.getGarden().setBg(bGround);
-		setOnActionAdder();
 		for(PlantImageView p : viewTwo.getSideView()) {
 	    	setHandlerForPress(p);
 		}
